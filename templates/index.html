@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    {% for user in users %}
+        <h1>{{ user.name }}</h1>
+    {% endfor %}
+{% endblock %}

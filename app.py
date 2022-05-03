@@ -1,4 +1,5 @@
 from create import *
+from flask import render_template
 
 db.create_all()
 
@@ -6,9 +7,7 @@ db.create_all()
 def hello_world():  # put application's code here
     user = db.session.query(Users)
 
-    for r in user:
-        print(r.name)
-    return 'Hello World!'
+    return render_template('index.html', users=user)
 
 
 if __name__ == '__main__':
