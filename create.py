@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 #CULO
@@ -22,24 +22,30 @@ class Users(db.Model):
     id_users = db.Column(db.VARCHAR(50),primary_key=True)
     name = db.Column(db.VARCHAR(50))
     surname = db.Column(db.VARCHAR(50))
+    sex = db.Column(db.VARCHAR(1))
     mail = db.Column(db.VARCHAR(50))
-    date_n = db.Column(db.Date)
+    pwd = db.Column(db.VARCHAR(50))
+    birth_date = db.Column(db.Date)
 
-    def __init__(self, id_users, name, surname, mail, date_n):
+    def __init__(self, id_users, name, surname, mail, birth_date):
         self.id_users = id_users
         self.name = name
         self.surname = surname
         self.mail = mail
-        self.date_n = date_n
+        self.birth_date = birth_date
 
 
 class Artists(db.Model):
     __tablename__ = 'artists'
 
     id_artists = db.Column(db.VARCHAR(50), db.ForeignKey('users.id_users'), primary_key=True,)
+    art_name = db.Column(db.VARCHAR(50))
+    label = db.Column(db.VARCHAR(50))
 
-    def __init__(self, id_artists):
+    def __init__(self, id_artists, art_name, label):
         self.id_artists = id_artists
+        self.art_name = art_name
+        self.label = label
 
 
 class Songs(db.Model):

@@ -1,5 +1,4 @@
 from create import *
-from flask import render_template
 
 db.create_all()
 
