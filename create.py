@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-
+#ciao
 app = Flask(__name__)
 
 
