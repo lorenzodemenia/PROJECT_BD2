@@ -4,10 +4,10 @@ db.create_all()
 
 @app.route('/')
 def hello_world():  # put application's code here
-    user = db.session.query(Album)
+    user = db.session.query(Users)
 
     for r in user:
-        print(r.title)
+        print(r.name)
     return 'Hello World!'
 
 
