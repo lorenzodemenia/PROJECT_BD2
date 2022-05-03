@@ -1,7 +1,7 @@
 from create import *
 
 db.create_all()
-
+#prova
 @app.route('/')
 def hello_world():  # put application's code here
     user = db.session.query(Users)
