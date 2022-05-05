@@ -1,13 +1,16 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
-#CULO
+
 app = Flask(__name__)
 
+app.config['SECRET_KEY'] = 'ninninu'
+
 #Radu
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:zxcvbnm@localhost:5432/db_progetto"
+#app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:zxcvbnm@localhost:5432/db_progetto"
 #Lorenzo
-#app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:A1n3m3d123!@localhost:5432/bd2_proj"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:A1n3m3d123!@localhost:5432/bd2_proj"
 #Daniele
 #app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Internet10@localhost:5432/bd2progetto"
 
@@ -26,13 +29,31 @@ class Users(db.Model):
     mail = db.Column(db.VARCHAR(50))
     pwd = db.Column(db.VARCHAR(50))
     birth_date = db.Column(db.Date)
+    authenticated = db.Column(db.Boolean, default=False)
 
-    def __init__(self, id_users, name, surname, mail, birth_date):
+    def __init__(self, id_users, name, surname, mail, birth_date,authenticated):
         self.id_users = id_users
         self.name = name
         self.surname = surname
         self.mail = mail
         self.birth_date = birth_date
+        self.authenticated = authenticated
+
+    def is_active(self):
+        """True, as all users are active."""
+        return True
+
+    def get_id(self):
+        """Return the email address to satisfy Flask-Login's requirements."""
+        return self.mail
+
+    def is_authenticated(self):
+        """Return True if the user is authenticated."""
+        return self.authenticated
+
+    def is_anonymous(self):
+        """False, as anonymous users aren't supported."""
+        return False
 
 
 class Artists(db.Model):

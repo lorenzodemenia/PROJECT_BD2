@@ -1,0 +1,19 @@
+.navbar-black{
+    background: darkblue;
+}
+
+.navbar-brand{
+    color: white;
+}
+.nav-link{
+    color: chartreuse;
+}
+.title{
+    color: darkblue;
+
+
+}
+.is-offset-4{
+    background: white;
+    align-items: center;
+}

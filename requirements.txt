@@ -2,5 +2,7 @@ flask-sqlalchemy
 Flask-Migrate
 psycopg2-binary
 
+flask-login
+
 Flask~=2.1.1
 SQLAlchemy~=1.4.36
