@@ -2,29 +2,39 @@
 
 {% block content %}
 <div class="column is-4 is-offset-4">
-    <h3 class="title">Sign Up</h3>
-    <div class="box">
-        <form method="POST" action="/signup">
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
+    <br><h1 class="text-center">Do you want to sign up as a:</h1><br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <div class="text-center">
+                            <h5>Listener</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">A user that wants the full experience of someone who wants to listen to his favourite music</p>
+                        <a href="#" class="btn btn-outline-primary">Sign-Up</a>
+                    </div>
                 </div>
             </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="name" placeholder="Name" autofocus="">
+            <div class="col-sm-6">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <div class="text-center">
+                            <h5>Artist</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Someone who not only wants to liste to its favourite music, but also wants to create music!</p>
+                        <a href="#" class="btn btn-outline-primary">Sign-Up</a>
+                    </div>
                 </div>
             </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="password" name="password" placeholder="Password">
-                </div>
-            </div>
-
-            <button class="button is-block is-info is-large is-fullwidth">Sign Up</button>
-        </form>
+        </div>
+        <br>
+        <br>
+        <p class="text-center">Do you already have an account? <a href="{{ url_for('login') }}">Sign in</a></p>
     </div>
 </div>
 {% endblock %}
