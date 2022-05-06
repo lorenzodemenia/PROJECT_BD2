@@ -1,37 +1,46 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
-
+from flask_login import *
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'ninninu'
 
-#Radu
-#app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:zxcvbnm@localhost:5432/db_progetto"
-#Lorenzo
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:A1n3m3d123!@localhost:5432/bd2_proj"
-#Daniele
-#app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Internet10@localhost:5432/bd2progetto"
+# Radu
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:zxcvbnm@localhost:5432/db_progetto"
+# Lorenzo
+# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:A1n3m3d123!@localhost:5432/bd2_proj"
+# Daniele
+# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Internet10@localhost:5432/bd2progetto"
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login"
+
 
 db = SQLAlchemy(app)
 
 
-class Users(db.Model):
-    __tablename__ = 'users'
+@login_manager.user_loader
+def load_user(id_users):
+    user = db.session.query(Users).filter(Users.id_users == id_users).first()
 
-    id_users = db.Column(db.VARCHAR(50),primary_key=True)
+    return user
+
+
+class Users(UserMixin, db.Model):
+    id_users = db.Column(db.VARCHAR(50), primary_key=True)
     name = db.Column(db.VARCHAR(50))
     surname = db.Column(db.VARCHAR(50))
     sex = db.Column(db.VARCHAR(1))
-    mail = db.Column(db.VARCHAR(50))
-    pwd = db.Column(db.VARCHAR(50))
+    mail = db.Column(db.VARCHAR(50), unique=True)
+    pwd = db.Column(db.VARCHAR(100))
     birth_date = db.Column(db.Date)
     authenticated = db.Column(db.Boolean, default=False)
 
-    def __init__(self, id_users, name, surname, mail, birth_date,authenticated):
+    def __init__(self, id_users, name, surname, mail, birth_date, authenticated):
         self.id_users = id_users
         self.name = name
         self.surname = surname
@@ -39,27 +48,12 @@ class Users(db.Model):
         self.birth_date = birth_date
         self.authenticated = authenticated
 
-    def is_active(self):
-        """True, as all users are active."""
-        return True
-
     def get_id(self):
-        """Return the email address to satisfy Flask-Login's requirements."""
-        return self.mail
-
-    def is_authenticated(self):
-        """Return True if the user is authenticated."""
-        return self.authenticated
-
-    def is_anonymous(self):
-        """False, as anonymous users aren't supported."""
-        return False
+        return self.id_users
 
 
 class Artists(db.Model):
-    __tablename__ = 'artists'
-
-    id_artists = db.Column(db.VARCHAR(50), db.ForeignKey('users.id_users'), primary_key=True,)
+    id_artists = db.Column(db.VARCHAR(50), db.ForeignKey('users.id_users'), primary_key=True, )
     art_name = db.Column(db.VARCHAR(50))
     label = db.Column(db.VARCHAR(50))
 
@@ -70,8 +64,6 @@ class Artists(db.Model):
 
 
 class Songs(db.Model):
-    __tablename__ = 'songs'
-
     id_songs = db.Column(db.VARCHAR(50), primary_key=True)
     id_artist = db.Column(db.VARCHAR(50), db.ForeignKey('artists.id_artists'))
     title = db.Column(db.VARCHAR(50))
@@ -86,9 +78,7 @@ class Songs(db.Model):
         self.date_pub = date_pub
 
 
-class Playlist (db.Model):
-    __tablename__= 'playlist'
-
+class Playlist(db.Model):
     id_playlist = db.Column(db.VARCHAR(50), primary_key=True)
     date_creation = db.Column(db.Date)
     type = db.Column(db.Boolean)
@@ -100,8 +90,6 @@ class Playlist (db.Model):
 
 
 class Album(db.Model):
-    __tablename__ = 'album'
-
     id_album = db.Column(db.VARCHAR(50), primary_key=True)
     date_pub = db.Column(db.Date)
     title = db.Column(db.VARCHAR(50))
@@ -113,8 +101,6 @@ class Album(db.Model):
 
 
 class PlaylistSongs(db.Model):
-    __tablename__ = 'playlist_songs'
-
     id_songs = db.Column(db.VARCHAR(50), db.ForeignKey('songs.id_songs'), primary_key=True)
     id_playlist = db.Column(db.VARCHAR(50), db.ForeignKey('playlist.id_playlist'), primary_key=True)
 
@@ -124,8 +110,6 @@ class PlaylistSongs(db.Model):
 
 
 class PlaylistUsers(db.Model):
-    __tablename__ = 'playlist_users'
-
     id_users = db.Column(db.VARCHAR(50), db.ForeignKey('users.id_users'), primary_key=True)
     id_playlist = db.Column(db.VARCHAR(50), db.ForeignKey('playlist.id_playlist'), primary_key=True)
 
@@ -135,8 +119,6 @@ class PlaylistUsers(db.Model):
 
 
 class SongsAlbum(db.Model):
-    __tablename__ = 'songs_album'
-
     id_songs = db.Column(db.VARCHAR(50), db.ForeignKey('songs.id_songs'), primary_key=True)
     id_album = db.Column(db.VARCHAR(50), db.ForeignKey('album.id_album'), primary_key=True)
 
@@ -146,15 +128,13 @@ class SongsAlbum(db.Model):
 
 
 class SongsListened(db.Model):
-    __tablename__ = 'songs_listened'
-
     id_songs = db.Column(db.VARCHAR(50), db.ForeignKey('songs.id_songs'), primary_key=True)
     id_users = db.Column(db.VARCHAR(50), db.ForeignKey('users.id_users'), primary_key=True)
     num_times = db.Column(db.Integer)
     date_list = db.Column(db.Date)
 
-    def __init__(self, id_songs, id_playlist, num_times, date_list):
+    def __init__(self, id_songs, id_users, num_times, date_list):
         self.id_songs = id_songs
-        self.id_playlist = id_playlist
+        self.id_users = id_users
         self.num_times = num_times
         self.date_list = date_list

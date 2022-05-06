@@ -3,6 +3,10 @@ Flask-Migrate
 psycopg2-binary
 
 flask-login
+flask_wtf
+flask_bcrypt
+Werkzeug
 
 Flask~=2.1.1
 SQLAlchemy~=1.4.36
+WTForms~=3.0.1
