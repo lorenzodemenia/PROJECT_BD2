@@ -9,7 +9,7 @@ def index():
         return redirect(url_for('login'))#ALtrimenti lo faccio loggare
 
 #----------------------------------------------------Login--------------------------------------------------------------
-#Da fare: implementare l'hashing della password, fare differenza tra un listener e un artist
+#Da fare: implementare l'hashing della password, fare differenza tra un listener e un artist quando questo si logga
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -38,28 +38,34 @@ def login():
             return redirect(url_for('login'))
 
     return render_template('login.html')
+#----------------------------------------------------Homepage-----------------------------------------------------------
 
 
 @app.route("/home", methods=['GET', 'POST'])
 @login_required
 def home():
     return render_template('home.html')
+#----------------------------------------------------Signup-------------------------------------------------------------
 
 
-@app.route("/signup", methods=['GET', 'POST'])
+@app.route("/signup")
 def signup():
-
     return render_template('signup.html')
 
 
 @app.route("/signup_listener", methods=['GET', 'POST'])
 def signup_listener():
+    if request.method == 'POST':
+        print(request.form['name'])
+        #Con gli altri campi schianta, boh...
+
     return render_template('signup_listener.html')
 
 
 @app.route("/signup_artist", methods=['GET', 'POST'])
 def signup_artist():
     return render_template('signup_artist.html')
+#----------------------------------------------------Logout-------------------------------------------------------------
 
 
 @app.route('/logout', methods=['GET','POST'])
@@ -67,6 +73,7 @@ def signup_artist():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+#---------------------------------------------------Profile page--------------------------------------------------------
 
 
 @app.route('/profile')
@@ -76,6 +83,7 @@ def profile():
     print(user.name)
 
     return render_template('profile.html', user=user)
+#------------------------------------------------------Run app----------------------------------------------------------
 
 
 if __name__ == '__main__':
