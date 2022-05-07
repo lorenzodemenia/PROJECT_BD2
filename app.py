@@ -8,23 +8,34 @@ def index():
     else:
         return redirect(url_for('login'))#ALtrimenti lo faccio loggare
 
+#----------------------------------------------------Login--------------------------------------------------------------
+#Da fare: implementare l'hashing della password, fare differenza tra un listener e un artist
 
-#Da fare: implementare l'hashing della password, dire se la password è sbagliata
+
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        user_real_pwd = db.session.query(Users).filter(Users.mail == request.form['mail']).first().pwd#Mi faccio dare la pwd dell'utente
+        user = db.session.query(Users).filter(Users.mail == request.form['mail']).first()  # Controllo se la mail dell'user sta nel db, ergo se l'utente è registrato
 
-        if user_real_pwd is not None:
-            if request.form['pwd'] == user_real_pwd:
-                user = db.session.query(Users).filter(Users.mail == request.form['mail']).first()
-                login_user(user)#Loggo l'utente
+        if user:  # Se effettivamente c'è un user registrato con quella mail
+            user_real_pwd = db.session.query(Users).filter(Users.mail == request.form['mail']).first().pwd  # Mi faccio dare la pwd dell'utente
 
-                return redirect(url_for('home'))
-            else:
-                flash('Password errata!', category='error')
+            if user_real_pwd is not None:
+                if request.form['pwd'] == user_real_pwd:  # Controllo se la pwd del form è uguale a quella nel db
+                    user = db.session.query(Users).filter(Users.mail == request.form[
+                        'mail']).first()  # Mi faccio ritornare un oggetto di tipo user con tutti i campi
+                    login_user(user)  # Loggo l'utente
 
-        return redirect(url_for('login'))
+                    return redirect(url_for('home'))
+                else:
+                    flash('E-mail - password combination is wrong!', category='error')
+
+            return redirect(url_for('login'))
+
+        else:
+            flash('No user with that e-mail is registered', category='error')
+
+            return redirect(url_for('login'))
 
     return render_template('login.html')
 
@@ -38,8 +49,17 @@ def home():
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
 
-
     return render_template('signup.html')
+
+
+@app.route("/signup_listener", methods=['GET', 'POST'])
+def signup_listener():
+    return render_template('signup_listener.html')
+
+
+@app.route("/signup_artist", methods=['GET', 'POST'])
+def signup_artist():
+    return render_template('signup_artist.html')
 
 
 @app.route('/logout', methods=['GET','POST'])
