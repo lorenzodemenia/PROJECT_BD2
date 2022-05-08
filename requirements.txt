@@ -6,6 +6,7 @@ flask-login
 flask_wtf
 flask_bcrypt
 Werkzeug
+psycopg2
 
 Flask~=2.1.1
 SQLAlchemy~=1.4.36

@@ -56,8 +56,32 @@ def signup():
 @app.route("/signup_listener", methods=['GET', 'POST'])
 def signup_listener():
     if request.method == 'POST':
-        print(request.form['name'])
-        #Con gli altri campi schianta, boh...
+
+        name = request.form['name']
+        surname = request.form['surname']
+        sex = request.form['sex']
+        mail = request.form['mail']
+        pwd = request.form['pwd']
+        birth_date = request.form['birth_date']
+
+        user = Users(name, surname, sex, mail, pwd, birth_date)
+
+        print(request.form['pwd'])
+        print(user.pwd)#PERCHÈ POCODDIO È None?!?!?!?!?!?
+        print(request.form['pwd_repeat'])
+        print(user.__class__)
+
+        repeat_pwd = request.form['pwd_repeat']
+
+        if repeat_pwd == user.pwd:#Se le password sono uguali procedo con l'inserimento
+            db.session.add(user)
+            db.session.commit()
+            print('successo!')
+
+            return redirect(url_for('login'))
+        else:
+            flash("""Passwords don't coincide!""", category='error')
+
 
     return render_template('signup_listener.html')
 

@@ -31,12 +31,12 @@ def load_user(id_users):
 
 
 class Users(UserMixin, db.Model):
-    id_users = db.Column(db.VARCHAR(50), primary_key=True)
-    name = db.Column(db.VARCHAR(50))
-    surname = db.Column(db.VARCHAR(50))
-    sex = db.Column(db.VARCHAR(1))
-    mail = db.Column(db.VARCHAR(50), unique=True)
-    pwd = db.Column(db.VARCHAR(100))
+    id_users = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    surname = db.Column(db.String)
+    sex = db.Column(db.String)
+    mail = db.Column(db.String, unique=True)
+    pwd = db.Column(db.String)
     birth_date = db.Column(db.Date)
     authenticated = db.Column(db.Boolean, default=False)
 
@@ -53,9 +53,9 @@ class Users(UserMixin, db.Model):
 
 
 class Artists(db.Model):
-    id_artists = db.Column(db.VARCHAR(50), db.ForeignKey('users.id_users'), primary_key=True, )
-    art_name = db.Column(db.VARCHAR(50))
-    label = db.Column(db.VARCHAR(50))
+    id_artists = db.Column(db.Integer, db.ForeignKey('users.id_users'), primary_key=True, )
+    art_name = db.Column(db.String)
+    label = db.Column(db.String)
 
     def __init__(self, id_artists, art_name, label):
         self.id_artists = id_artists
@@ -64,9 +64,9 @@ class Artists(db.Model):
 
 
 class Songs(db.Model):
-    id_songs = db.Column(db.VARCHAR(50), primary_key=True)
-    id_artist = db.Column(db.VARCHAR(50), db.ForeignKey('artists.id_artists'))
-    title = db.Column(db.VARCHAR(50))
+    id_songs = db.Column(db.Integer, primary_key=True)
+    id_artist = db.Column(db.Integer, db.ForeignKey('artists.id_artists'))
+    title = db.Column(db.String)
     length = db.Column(db.Integer)
     date_pub = db.Column(db.Date)
 
@@ -79,7 +79,7 @@ class Songs(db.Model):
 
 
 class Playlist(db.Model):
-    id_playlist = db.Column(db.VARCHAR(50), primary_key=True)
+    id_playlist = db.Column(db.Integer, primary_key=True)
     date_creation = db.Column(db.Date)
     type = db.Column(db.Boolean)
 
@@ -90,9 +90,9 @@ class Playlist(db.Model):
 
 
 class Album(db.Model):
-    id_album = db.Column(db.VARCHAR(50), primary_key=True)
+    id_album = db.Column(db.Integer, primary_key=True)
     date_pub = db.Column(db.Date)
-    title = db.Column(db.VARCHAR(50))
+    title = db.Column(db.String)
 
     def __init__(self, id_album, date_pub, title):
         self.id_album = id_album
@@ -101,8 +101,8 @@ class Album(db.Model):
 
 
 class PlaylistSongs(db.Model):
-    id_songs = db.Column(db.VARCHAR(50), db.ForeignKey('songs.id_songs'), primary_key=True)
-    id_playlist = db.Column(db.VARCHAR(50), db.ForeignKey('playlist.id_playlist'), primary_key=True)
+    id_songs = db.Column(db.Integer, db.ForeignKey('songs.id_songs'), primary_key=True)
+    id_playlist = db.Column(db.Integer, db.ForeignKey('playlist.id_playlist'), primary_key=True)
 
     def __init__(self, id_songs, id_playlist):
         self.id_songs = id_songs
@@ -110,8 +110,8 @@ class PlaylistSongs(db.Model):
 
 
 class PlaylistUsers(db.Model):
-    id_users = db.Column(db.VARCHAR(50), db.ForeignKey('users.id_users'), primary_key=True)
-    id_playlist = db.Column(db.VARCHAR(50), db.ForeignKey('playlist.id_playlist'), primary_key=True)
+    id_users = db.Column(db.Integer, db.ForeignKey('users.id_users'), primary_key=True)
+    id_playlist = db.Column(db.Integer, db.ForeignKey('playlist.id_playlist'), primary_key=True)
 
     def __init__(self, id_users, id_playlist):
         self.id_users = id_users
@@ -119,8 +119,8 @@ class PlaylistUsers(db.Model):
 
 
 class SongsAlbum(db.Model):
-    id_songs = db.Column(db.VARCHAR(50), db.ForeignKey('songs.id_songs'), primary_key=True)
-    id_album = db.Column(db.VARCHAR(50), db.ForeignKey('album.id_album'), primary_key=True)
+    id_songs = db.Column(db.Integer, db.ForeignKey('songs.id_songs'), primary_key=True)
+    id_album = db.Column(db.Integer, db.ForeignKey('album.id_album'), primary_key=True)
 
     def __init__(self, id_songs, id_album):
         self.id_songs = id_songs
@@ -128,8 +128,8 @@ class SongsAlbum(db.Model):
 
 
 class SongsListened(db.Model):
-    id_songs = db.Column(db.VARCHAR(50), db.ForeignKey('songs.id_songs'), primary_key=True)
-    id_users = db.Column(db.VARCHAR(50), db.ForeignKey('users.id_users'), primary_key=True)
+    id_songs = db.Column(db.Integer, db.ForeignKey('songs.id_songs'), primary_key=True)
+    id_users = db.Column(db.Integer, db.ForeignKey('users.id_users'), primary_key=True)
     num_times = db.Column(db.Integer)
     date_list = db.Column(db.Date)
 
@@ -138,3 +138,6 @@ class SongsListened(db.Model):
         self.id_users = id_users
         self.num_times = num_times
         self.date_list = date_list
+
+
+db.create_all()
