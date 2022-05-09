@@ -22,8 +22,7 @@ def login():
 
             if user_real_pwd is not None:
                 if request.form['pwd'] == user_real_pwd:  # Controllo se la pwd del form è uguale a quella nel db
-                    user = db.session.query(Users).filter(Users.mail == request.form[
-                        'mail']).first()  # Mi faccio ritornare un oggetto di tipo user con tutti i campi
+                    user = db.session.query(Users).filter(Users.mail == request.form['mail']).first()  # Mi faccio ritornare un oggetto di tipo user con tutti i campi
                     login_user(user)  # Loggo l'utente
 
                     return redirect(url_for('home'))
@@ -65,15 +64,18 @@ def signup_listener():
         birth_date = request.form['birth_date']
 
         user = Users(name, surname, sex, mail, pwd, birth_date)
+        check = db.session.query(Users).filter(Users.mail == request.form['mail']).first()
 
-        repeat_pwd = request.form['pwd_repeat']
+        if request.form['pwd_repeat'] == user.pwd:#Se le password sono uguali procedo con l'inserimento
 
-        if repeat_pwd == user.pwd:#Se le password sono uguali procedo con l'inserimento
-            db.session.add(user)#Aggiungo l'user da inserire
-            db.session.commit()#Apporto effettivamente l'INSERT del database
+            if user.mail and check:#Se la mail c'è e non è già stata usata da un altro user
+                db.session.add(user)  # Aggiungo l'user da inserire
+                db.session.commit()  # Apporto effettivamente l'INSERT del database
+            else:#Altrimenti lo avviso che non va bene
+                flash('Mail already in use!', category='error')
 
             return redirect(url_for('login'))
-        else:
+        else:#Altrimenti avviso che non combaciano!
             flash("""Passwords don't coincide!""", category='error')
 
     return render_template('signup_listener.html')
