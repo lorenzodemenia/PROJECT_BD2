@@ -1,19 +1,17 @@
 .navbar-black{
-    background: darkblue;
+    background: black;
 }
 
 .navbar-brand{
-    color: white;
+    color: #ffd200;
 }
 .nav-link{
-    color: chartreuse;
+    color: black;
 }
 .title{
-    color: darkblue;
-
-
+    color: #ffd200;
 }
 .is-offset-4{
-    background: white;
+    background: black;
     align-items: center;
 }
