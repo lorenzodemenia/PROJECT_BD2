@@ -10,13 +10,21 @@
         </div>
     {% endif %}
     <form method="POST">
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="mail" placeholder="Enter e-mail" name="mail">
-            <label for="mail">E-mail</label>
+        <div class="row justify-content-center">
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="mail" placeholder="Enter e-mail" name="mail">
+                    <label for="mail">E-mail</label>
+                </div>
+            </div>
         </div>
-        <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-            <label for="pwd">Password</label>
+        <div class="row justify-content-center">
+            <div class="col-sm-3">
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                    <label for="pwd">Password</label>
+                </div>
+            </div>
         </div>
         <!-- Da aggiungere? Boh...non saprei come implementarlo nel browser
         <div class="form-check mb-3">
@@ -25,10 +33,16 @@
             </label>
         </div>
         -->
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="row justify-content-center">
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
     </form>
     <br>
     <br>
     <br>
-    <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
+    <div class="text-center">
+        <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
+    </div>
 {% endblock %}
