@@ -40,13 +40,13 @@ class Users(UserMixin, db.Model):
     birth_date = db.Column(db.Date)
     authenticated = db.Column(db.Boolean, default=False)
 
-    def __init__(self, id_users, name, surname, mail, birth_date, authenticated):
-        self.id_users = id_users
+    def __init__(self, name, surname, sex, mail, pwd, birth_date):
         self.name = name
         self.surname = surname
+        self.sex = sex
         self.mail = mail
+        self.pwd = pwd
         self.birth_date = birth_date
-        self.authenticated = authenticated
 
     def get_id(self):
         return self.id_users
