@@ -1,7 +1,6 @@
 from app import *
 from sign import *
 from struttura_db import *
-from struttura_db import *
 
 
 # ---------------------------------------------------Stats page---------------------------------------------------------
