@@ -26,5 +26,21 @@ def stats_listener():
     return render_template('Stats/stats_listener.html', headings=headings, data=data)
 
 
-def stats_type():
-    id_user = current_user.id_users
+@app.route('/songs_stats', methods=['GET', 'POST'])
+def songs_stats():
+    return render_template('Stats/DashStats/songs.html', headings=headings, data=data)
+
+
+@app.route('/artists_stats', methods=['GET', 'POST'])
+def artists_stats():
+    return render_template('Stats/DashStats/artists.html', headings=headings, data=data)
+
+
+@app.route('/playlists_stats', methods=['GET', 'POST'])
+def playlists_stats():
+    return render_template('Stats/DashStats/playlists.html', headings=headings, data=data)
+
+
+@app.route('/types_stats', methods=['GET', 'POST'])
+def types_stats():
+    return render_template('Stats/DashStats/types.html', headings=headings, data=data)
