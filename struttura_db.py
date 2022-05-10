@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, flash
-from flask_sqlalchemy import SQLAlchemy
 from flask_login import *
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
@@ -69,13 +69,15 @@ class Songs(db.Model):
     title = db.Column(db.String)
     length = db.Column(db.Integer)
     date_pub = db.Column(db.Date)
+    type = db.Column(db.String)
 
-    def __init__(self, id_songs, id_artists, title, length, date_pub):
+    def __init__(self, id_songs, id_artists, title, length, date_pub, type):
         self.id_artist = id_artists
         self.id_songs = id_songs
         self.title = title
         self.length = length
         self.date_pub = date_pub
+        self.type = type
 
 
 class Playlist(db.Model):

@@ -1,9 +1,10 @@
-from struttura_db import *
 from app import *
-from struttura_db import *
 from sign import *
+from struttura_db import *
+from struttura_db import *
 
-#---------------------------------------------------Stats page---------------------------------------------------------
+
+# ---------------------------------------------------Stats page---------------------------------------------------------
 
 
 @app.route('/stats_listener', methods=['GET', 'POST'])
@@ -13,5 +14,3 @@ def stats_listener():
 
 def stats_type():
     id_user = current_user.id_users
-
-
