@@ -67,7 +67,7 @@ def signup_listener():
 
         user = Users(name, surname, sex, mail, pwd, birth_date)
         check = db.session.query(Users).filter(Users.mail == request.form['mail']).first()
-        print(check)
+
         if request.form['pwd_repeat'] == user.pwd:#Se le password sono uguali procedo con l'inserimento
 
             if user.mail and not check:#Se la mail c'è e non è già stata usata da un altro user
@@ -85,6 +85,36 @@ def signup_listener():
 
 @app.route("/signup_artist", methods=['GET', 'POST'])
 def signup_artist():
+    if request.method == 'POST':
+        name = request.form['name']
+        surname = request.form['surname']
+        sex = request.form['sex']
+        mail = request.form['mail']
+        pwd = request.form['pwd']
+        birth_date = request.form['birth_date']
+
+        user = Users(name, surname, sex, mail, pwd, birth_date)
+        check = db.session.query(Users).filter(Users.mail == request.form['mail']).first()
+
+        if request.form['pwd_repeat'] == user.pwd:#Se le password sono uguali procedo con l'inserimento
+
+            if user.mail and not check:#Se la mail c'è e non è già stata usata da un altro user
+                db.session.add(user)  # Aggiungo l'user da inserire
+                db.session.commit()  # Apporto effettivamente l'INSERT del database
+                #Aggiungo la parte su artist
+                art_name = request.form['art_name']
+                label = request.form['label']
+                artist = Artists(user.id_users,art_name, label)
+                db.session.add(artist)
+                db.session.commit()
+            else:#Altrimenti lo avviso che non va bene
+                flash('Mail already in use!', category='error')
+
+            return redirect(url_for('login'))
+        else:#Altrimenti avviso che non combaciano!
+            flash("""Passwords don't coincide!""", category='error')
+
+
     return render_template('Sign/signup_artist.html')
 #----------------------------------------------------Logout-------------------------------------------------------------
 

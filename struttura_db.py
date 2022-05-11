@@ -82,22 +82,28 @@ class Songs(db.Model):
 
 class Playlist(db.Model):
     id_playlist = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    description = db.Column(db.String)
     date_creation = db.Column(db.Date)
-    type = db.Column(db.Boolean)
+    private = db.Column(db.Boolean, default=False)
 
-    def __init__(self, id_playlist, date_creation, type):
+    def __init__(self, id_playlist, name, description, date_creation, private):
         self.id_playlist = id_playlist
+        self.name = name
+        self.description = description
         self.date_creation = date_creation
-        self.type = type
+        self.private = private
 
 
 class Album(db.Model):
     id_album = db.Column(db.Integer, primary_key=True)
+    id_artist = db.Column(db.Integer, db.ForeignKey('artists.id_artists'))
     date_pub = db.Column(db.Date)
     title = db.Column(db.String)
 
-    def __init__(self, id_album, date_pub, title):
+    def __init__(self, id_album, id_artist, date_pub, title):
         self.id_album = id_album
+        self.id_artist = id_artist
         self.date_pub = date_pub
         self.title = title
 
