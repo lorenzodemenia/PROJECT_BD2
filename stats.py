@@ -1,5 +1,5 @@
 from app import *
-from sign import *
+from auth import *
 from struttura_db import *
 
 # ---------------------------------------------------Stats page---------------------------------------------------------
