@@ -67,10 +67,10 @@ def signup_listener():
 
         user = Users(name, surname, sex, mail, pwd, birth_date)
         check = db.session.query(Users).filter(Users.mail == request.form['mail']).first()
-
+        print(check)
         if request.form['pwd_repeat'] == user.pwd:#Se le password sono uguali procedo con l'inserimento
 
-            if user.mail and check:#Se la mail c'è e non è già stata usata da un altro user
+            if user.mail and not check:#Se la mail c'è e non è già stata usata da un altro user
                 db.session.add(user)  # Aggiungo l'user da inserire
                 db.session.commit()  # Apporto effettivamente l'INSERT del database
             else:#Altrimenti lo avviso che non va bene
