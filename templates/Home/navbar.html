@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Unify</a>
+        {% if current_user.is_authenticated %}
+            <form class="d-flex" method="POST" action="{{ url_for('search') }}">
+                <input class="form-control me-3" id="search" name="search" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" for="search" type="submit">Search</button>
+            </form>
+            <div class="dropdown">
+                <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ current_user.name }}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+                    <a class="dropdown-item" href="#">Statistiche</a>
+                    <a class="dropdown-item" href="#">A</a>
+                </div>
+            </div>
+
+        {% endif %}
+    </div>
+</nav>

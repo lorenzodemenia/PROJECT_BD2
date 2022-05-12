@@ -4,5 +4,6 @@
     <h1>Homepage</h1>
     {% if current_user.is_authenticated %}
         Hi {{ current_user.name }}!
+        Tipo: {{ type }}
     {% endif %}
 {% endblock %}
