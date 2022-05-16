@@ -1,5 +1,4 @@
 
-
 {% extends "Stats/stats_listener.html" %}
 
 {% block lol %}
@@ -9,6 +8,36 @@
         </div>
 
         <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+        <script>
+            const song = {{ songs_name | tojson }};
+            const lol = JSON.parse(song);
+            new Chart("myChart", {
+                type: 'line',
+                data: {
+                    labels: lol,
+                    datasets: [{
+                        data: [{{ number | join(', ') }}],
+                        lineTension: 0,
+                        backgroundColor: 'transparent',
+                        borderColor: '#007bff',
+                        borderWidth: 4,
+                        pointBackgroundColor: '#007bff'
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: false
+                            }
+                        }]
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            });
+        </script>
 
         <h2>Artist Ranking</h2>
         <div class="table-responsive">

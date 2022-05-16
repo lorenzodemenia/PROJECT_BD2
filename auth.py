@@ -1,5 +1,5 @@
-from struttura_db import *
 from stats import *
+from struttura_db import *
 
 
 @app.route('/')  # Splashpage
@@ -7,7 +7,7 @@ def index():
     if current_user.is_authenticated:  # Se l'utente è autenticato
         return redirect(url_for('home'))  # Lo mando alla home
     else:
-        return redirect(url_for('login'))  # Altrimenti lo faccio loggare
+        return redirect(url_for('login'))  # ALtrimenti lo faccio loggare
 
 
 #----------------------------------------------------Login--------------------------------------------------------------
@@ -27,13 +27,7 @@ def login():
                     user = db.session.query(Users).filter(Users.mail == request.form['mail']).first()  # Mi faccio ritornare un oggetto di tipo user con tutti i campi
                     login_user(user)  # Loggo l'utente
 
-                    user_type = 'listener'
-                    check = db.session.query(Artists).filter(Artists.id_artists == user.id_users).first()
-
-                    if check:
-                        user_type = 'artist'
-
-                    return redirect(url_for('home', type=user_type))
+                    return redirect(url_for('home'))
                 else:
                     flash('E-mail - password combination is wrong!', category='error')
 
@@ -48,10 +42,10 @@ def login():
 #----------------------------------------------------Homepage-----------------------------------------------------------
 
 
-@app.route("/home/<string:type>", methods=['GET', 'POST'])
+@app.route("/home", methods=['GET', 'POST'])
 @login_required
-def home(type):
-    return render_template('Home/home.html', type=type)
+def home():
+    return render_template('Home/home.html')
 #----------------------------------------------------Signup-------------------------------------------------------------
 
 
