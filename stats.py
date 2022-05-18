@@ -5,25 +5,9 @@ from app import *
 from auth import *
 from struttura_db import *
 
-user = load_user(1)
+user = current_user
 
 # ---------------------------------------------------Stats page---------------------------------------------------------
-
-headings = ("ID", "Title", "length", "Date", "Type")
-
-data = ()
-lol = db.session.query(SongsListened).order_by(SongsListened.id_users)
-
-for u in lol:
-    # if u.id_users==user.id_users:
-    tmp = []
-    tmp.append(u.id_songs)
-    tmp.append(u.id_users)
-    tmp.append(u.num_times)
-    tmp.append(u.date_list)
-    data_list = list(data)
-    data_list.append(tmp)
-    data = tuple(data_list)
 
 
 def take_song(id_songs):
@@ -41,6 +25,8 @@ def take_artist(id_songs):
 def stats_listener():
     return render_template('Stats/stats_listener.html', headings=headings, data=data)
 
+
+# ---------------------------------------------------Songs Stats--------------------------------------------------------
 
 @app.route('/songs_stats', methods=['GET', 'POST'])
 def songs_stats():
@@ -70,7 +56,10 @@ def songs_stats():
                            songs_name=json.dumps(songs_name))
 
 
-def exists(artist_id, id):
+# ---------------------------------------------------Artists Stats------------------------------------------------------
+
+
+def exists_artist(artist_id, id):
     for artist in artist_id:
         if artist == id:
             return False
@@ -99,7 +88,7 @@ def artists_stats():
         listened = []
         prova = take_artist(artists.id_songs)
 
-        if exists(artist_id, prova.id_artists):
+        if exists_artist(artist_id, prova.id_artists):
             list_tmp = list(artists_list)
             artist_id.append(prova.id_artists)
             count_times.append(count_artist(artis_listened, prova.id_artists))
@@ -116,11 +105,84 @@ def artists_stats():
                            number=count_times, songs_name=json.dumps(artists_name))
 
 
+# ---------------------------------------------------Playlists Stats----------------------------------------------------
+
+def exist_playlist(playlist_id, id):
+    for playlist in playlist_id:
+        if playlist == id:
+            return False
+    return True
+
+
+def take_playlist(id):
+    prova = db.session.query(Playlist)
+
+    for p in prova:
+        if p.id_playlist == id:
+            return p
+
+    return 0
+
+
 @app.route('/playlists_stats', methods=['GET', 'POST'])
 def playlists_stats():
-    return render_template('Stats/DashStats/playlists.html', headings=headings, data=data)
+    headings = ['Name', 'Date Creation']
+    playlist_listened = db.session.query(PlaylistUsers).filter(PlaylistUsers.id_users == user.id_users)
+    playlist_list = ()
+    playlist_id = []
+    for playlist in playlist_listened:
+        listened = []
+        prova = take_playlist(playlist.id_playlist)
+        if exist_playlist(listened, playlist.id_playlist):
+            list_tmp = list(playlist_list)
+            listened.append(prova.name)
+            listened.append(prova.date_creation)
+            playlist_id.append(playlist.id_playlist)
+
+            list_tmp.append(listened)
+            playlist_list = tuple(list_tmp)
+
+    return render_template('Stats/DashStats/playlists.html', headings=headings, data=playlist_list,
+                           number=[], songs_name=json.dumps(playlist_id))
+
+
+# ---------------------------------------------------Type Stats--------------------------------------------------------
+
+def type_exists(type_list, type):
+    for t in type_list:
+        if t == type:
+            return False
+    return True
+
+
+def count_type(type_name, name):
+    count = 0
+    for type in type_name:
+        prova = take_song(type.id_songs)
+        if prova.type == name:
+            count = count + type.num_times
+    return count
 
 
 @app.route('/types_stats', methods=['GET', 'POST'])
 def types_stats():
-    return render_template('Stats/DashStats/types.html', headings=headings, data=data)
+    title = ['Name', 'Last Time']
+    types_list = ()
+    types_listened = db.session.query(SongsListened).filter(SongsListened.id_users == user.id_users)
+    type_name = []
+    count = []
+
+    for type in types_listened:
+        listened = []
+        prova = take_song(type.id_songs)
+        if type_exists(type_name, prova.type):
+            list_tmp = list(types_list)
+            type_name.append(prova.type)
+            count.append(count_type(types_listened, prova.type))
+            listened.append(prova.type)
+            listened.append(type.date_list)
+            list_tmp.append(listened)
+            types_list = tuple(list_tmp)
+
+    return render_template('Stats/DashStats/types.html', headings=title, data=types_list,
+                           number=count, songs_name=json.dumps(type_name))

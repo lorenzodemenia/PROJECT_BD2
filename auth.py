@@ -114,12 +114,11 @@ def signup_artist():
         else:#Altrimenti avviso che non combaciano!
             flash("""Passwords don't coincide!""", category='error')
 
-
     return render_template('Sign/signup_artist.html')
 #----------------------------------------------------Logout-------------------------------------------------------------
 
 
-@app.route('/logout', methods=['GET','POST'])
+@app.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
     logout_user()
