@@ -1,0 +1,270 @@
+{% extends "Home/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Unify: Playlists page</title>
+    </head>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+        .sidenav {
+            height: 100%;
+            width: 180px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 50px;
+        }
+        .sidenav a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181; /*colore delle scritte*/
+            display: block;
+        }
+        .sidenav a:hover {
+            color: #f1f1f1; /*colore delle scritte quando si illuminano*/
+        }
+        .sidenav a2 {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #f1f1f1; /*colore delle scritte*/
+            display: block;
+        }
+        .main {
+            margin-left: 200px; /* Same as the width of the sidenav */
+            margin-right: 260px;
+            font-size: 28px; /* Increased text to enable scrolling */
+            padding: 10px 10px;
+        }
+
+        .accordion {
+            background-color: #eee;
+            color: #111111;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 25px;
+            transition: 0.4s;
+        }
+        .active, .accordion:hover {
+            background-color: #ccc;
+        }
+        .accordion:after {
+            content: '\002B';
+            color: #111111;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }/*
+        .active:after {
+            content: "\2212";
+        }*/
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #e9e9e9;
+        }
+        .topnav a {
+            float: left;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 23px;
+        }
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .topnav a.active {
+            background-color: #2196F3;
+            color: white;
+        }
+        .topnav input[type=text] {
+            float: left;
+            padding: 6px;
+            margin-top: 8px;
+            margin-right: 16px;
+            border: none;
+            font-size: 20px;
+        }
+        @media screen and (max-width: 600px) {
+            .topnav a, .topnav input[type=text] {
+                float: none;
+                display: block;
+                text-align: left;
+                width: 100%;
+                margin: 0;
+                padding: 14px;
+            }
+            .topnav input[type=text] {
+                border: 1px solid #ccc;
+            }
+        }
+
+        .btn {
+            border: 2px solid black;
+            background-color: white;
+            color: black;
+            padding: 14px 28px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        .adda {
+            border-color: #B7B7B7;
+            color: black;
+        }
+
+        .adda:hover {
+            background: #B7B7B7;
+        }
+
+
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 200px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 50px;
+            border: 1px solid #888;
+            width: 50%;
+        }
+        .savebtn {
+            float: right;
+            background: #fefefe;
+        }
+        .deletebtn {
+            float: right;
+            background: #fefefe;
+        }
+        .deletebtn:hover,
+        .deletebtn:focus {
+            cursor: pointer;
+        }
+    </style>
+    <body>
+    {% include 'Home/navbar.html' %}
+        <div class="main">
+            <div class="sidenav">
+                <a>Home</a>
+                <a2>Playlist</a2>
+                <a>Artists</a>
+                <a>Search</a>
+            </div>
+    <!--            <button class="button button0">Prefer</button>-->
+            <h1>Playlist</h1>
+            <button class="accordion">Playlist 1</button>
+            <div class="panel">
+                <div class="topnav">
+                    <!--<a href="#contact">Find a song to add: </a>-->
+                    <a>Find a song to add: </a>
+                    <input type="text" placeholder="Search..">
+                </div>
+            </div>
+            <button class="accordion">Playlist 2</button>
+            <div class="panel">
+                <div class="topnav">
+                    <a>Find a song to add: </a>
+                    <input type="text" placeholder="Search..">
+                </div>
+            </div>
+            <button class="accordion">Playlist 3</button>
+            <div class="panel">
+                <div class="topnav">
+                    <a>Find a song to add: </a>
+                    <input type="text" placeholder="Search..">
+                </div>
+            </div>
+
+            <button id="myBtn" class="btn adda">New Playlist</button>
+            <!-- Modal content -->
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                        <div class="topnav">
+                            <a>Name: </a>
+                            <input type="text" placeholder="Name of new Playlist....">
+                            <button class="deletebtn btn adda">Delete</button>
+                            <button class="savebtn btn adda">Save</button>
+                        </div>
+                </div>
+            </div>
+            <a href="{{ url_for('/playlist_n') }}" class="btn btn-outline-primary">Sign up</a>
+
+                <button class="btn adda" onclick="window.location.href='/playlist_n'">
+                    New Playlist2
+                </button>
+                <button class="btn adda">
+                    <a class="nav-link px-3" href="{{ url_for('/playlist_n') }}">New Playlist3</a>
+                </button>
+
+
+            <script>
+                var acc = document.getElementsByClassName("accordion");
+                var i;
+
+                for (i = 0; i < acc.length; i++) {
+                    acc[i].addEventListener("click", function() {
+                        this.classList.toggle("active");
+                        var panel = this.nextElementSibling;
+                        if (panel.style.maxHeight) {
+                            panel.style.maxHeight = null;
+                        } else {
+                            panel.style.maxHeight = panel.scrollHeight + "px";
+                        }
+                    });
+                }
+
+                // Get the modal
+                var modal = document.getElementById("myModal");
+                // Get the button that opens the modal
+                var btn = document.getElementById("myBtn");
+                // Get the element that closes the modal
+                var span = document.getElementsByClassName("deletebtn")[0];
+                // When the user clicks the button, open the modal
+                btn.onclick = function() {
+                    modal.style.display = "block";
+                }
+                // When the user clicks the button, close the modal
+                span.onclick = function() {
+                    modal.style.display = "none";
+                }
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            </script>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Unify: Artist page</title>
+    </head>
+        <!--
+        <link href ="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+          -->
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+        .sidenav {
+            height: 100%;
+            width: 180px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 50px;
+        }
+        .sidenav a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181; /*colore delle scritte*/
+            display: block;
+        }
+        .sidenav a:hover {
+            color: #f1f1f1; /*colore delle scritte quando si illuminano*/
+        }
+        .sidenav a2 {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #f1f1f1; /*colore delle scritte*/
+            display: block;
+        }
+        .main {
+            margin-left: 200px; /* Same as the width of the sidenav */
+            margin-right: 260px;
+            font-size: 28px; /* Increased text to enable scrolling */
+            padding: 10px 10px;
+        }
+
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 70%;
+        }
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            font-size: 23px;
+        }
+        #customers tr:nth-child(even){
+            background-color: #f2f2f2;
+        }
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+            font-size: 25px;
+        }
+    </style>
+    <body>
+        <div class="main">
+            <h1>Artists</h1>
+            <table id="customers">
+                <tr>
+                    <th>Name</th>
+                    <th>Genre</th>
+                </tr>
+                <tr>
+                    <td>Pippo</td>
+                    <td>Hard Rock</td>
+                </tr>
+                <tr>
+                    <td>Roger</td>
+                    <td>Pop</td>
+                </tr>
+                <tr>
+                    <td>Lollo</td>
+                    <td>Indie</td>
+                </tr>
+                <tr>
+                    <td>Carlo</td>
+                    <td>Classic</td>
+                </tr>
+                <tr>
+                    <td>Mario</td>
+                    <td>Rap</td>
+                </tr>
+            </table>
+            <div class="sidenav">
+                <a>Home</a>
+                <a>Playlist</a>
+                <a2>Artists</a2>
+                <a>Search</a>
+            </div>
+        </div>
+    </body>
+</html>
