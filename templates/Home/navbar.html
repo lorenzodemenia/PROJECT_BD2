@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ url_for('index') }}">Unify</a>
         {% if current_user.is_authenticated %}
@@ -13,8 +13,9 @@
                     {{ current_user.name }}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="{{ url_for('songs_stats') }}">Stats</a>
                     <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+                    <a class="dropdown-item" href="{{ url_for('songs_stats') }}">Statistiche</a>
+                    <a class="dropdown-item" href="#">A</a>
                 </div>
             </div>
 
