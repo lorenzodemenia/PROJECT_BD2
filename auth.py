@@ -1,6 +1,6 @@
-from stats import *
-from struttura_db import *
 
+from struttura_db import *
+from stats import *
 
 @app.route('/')  # Splashpage
 def index():
@@ -133,3 +133,11 @@ def profile():
     print(user.name)
 
     return render_template('Sign/profile.html', user=user)
+
+def is_artist():
+    art = db.session.query(Artists).filter(Artists.id_artists == current_user.id_users)
+    if art:
+        return True
+    return  False
+
+
