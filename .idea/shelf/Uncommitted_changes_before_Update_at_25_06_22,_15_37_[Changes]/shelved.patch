@@ -1,0 +1,61 @@
+Index: struttura_db.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from flask import Flask, render_template, redirect, url_for, request, flash\nfrom flask_login import *\nfrom flask_sqlalchemy import SQLAlchemy\n\napp = Flask(__name__)\n\napp.config['SECRET_KEY'] = 'ninninu'\n\n# Radu\n#app.config['SQLALCHEMY_DATABASE_URI'] = \"postgresql://postgres:zxcvbnm@localhost:5432/db_progetto\"\n# Lorenzo\n#app.config['SQLALCHEMY_DATABASE_URI'] = \"postgresql://postgres:A1n3m3d123!@localhost:5432/bd2_proj\"\n# Daniele\napp.config['SQLALCHEMY_DATABASE_URI'] = \"postgresql://postgres:Internet10@localhost:5432/bd2progetto\"\n\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\n\nlogin_manager = LoginManager()\nlogin_manager.init_app(app)\nlogin_manager.login_view = \"login\"\n\n\ndb = SQLAlchemy(app)\n\n\n@login_manager.user_loader\ndef load_user(id_users):\n    user = db.session.query(Users).filter(Users.id_users == id_users).first()\n\n    return user\n\n\nclass Users(UserMixin, db.Model):\n    id_users = db.Column(db.Integer, primary_key=True)\n    name = db.Column(db.String)\n    surname = db.Column(db.String)\n    sex = db.Column(db.String)\n    mail = db.Column(db.String, unique=True)\n    pwd = db.Column(db.String)\n    birth_date = db.Column(db.Date)\n    authenticated = db.Column(db.Boolean, default=False)\n\n    def __init__(self, name, surname, sex, mail, pwd, birth_date):\n        self.name = name\n        self.surname = surname\n        self.sex = sex\n        self.mail = mail\n        self.pwd = pwd\n        self.birth_date = birth_date\n\n    def get_id(self):\n        return self.id_users\n\n\nclass Artists(db.Model):\n    id_artists = db.Column(db.Integer, db.ForeignKey('users.id_users'), primary_key=True, )\n    art_name = db.Column(db.String)\n    label = db.Column(db.String)\n\n    def __init__(self, id_artists, art_name, label):\n        self.id_artists = id_artists\n        self.art_name = art_name\n        self.label = label\n\n\nclass Songs(db.Model):\n    id_songs = db.Column(db.Integer, primary_key=True)\n    id_artist = db.Column(db.Integer, db.ForeignKey('artists.id_artists'))\n    title = db.Column(db.String)\n    length = db.Column(db.Integer)\n    date_pub = db.Column(db.Date)\n    type = db.Column(db.String)\n\n    def __init__(self, id_songs, id_artists, title, length, date_pub, type):\n        self.id_artist = id_artists\n        self.id_songs = id_songs\n        self.title = title\n        self.length = length\n        self.date_pub = date_pub\n        self.type = type\n\n\nclass Playlist(db.Model):\n    id_playlist = db.Column(db.Integer, primary_key=True)\n    name = db.Column(db.String)\n    description = db.Column(db.String)\n    date_creation = db.Column(db.Date)\n    private = db.Column(db.Boolean, default=False)\n\n    def __init__(self, id_playlist, name, description, date_creation, private):\n        self.id_playlist = id_playlist\n        self.name = name\n        self.description = description\n        self.date_creation = date_creation\n        self.private = private\n\n\nclass Album(db.Model):\n    id_album = db.Column(db.Integer, primary_key=True)\n    id_artist = db.Column(db.Integer, db.ForeignKey('artists.id_artists'))\n    date_pub = db.Column(db.Date)\n    title = db.Column(db.String)\n\n    def __init__(self, id_album, id_artist, date_pub, title):\n        self.id_album = id_album\n        self.id_artist = id_artist\n        self.date_pub = date_pub\n        self.title = title\n\n\nclass PlaylistSongs(db.Model):\n    id_songs = db.Column(db.Integer, db.ForeignKey('songs.id_songs'), primary_key=True)\n    id_playlist = db.Column(db.Integer, db.ForeignKey('playlist.id_playlist'), primary_key=True)\n\n    def __init__(self, id_songs, id_playlist):\n        self.id_songs = id_songs\n        self.id_playlist = id_playlist\n\n\nclass PlaylistUsers(db.Model):\n    id_users = db.Column(db.Integer, db.ForeignKey('users.id_users'), primary_key=True)\n    id_playlist = db.Column(db.Integer, db.ForeignKey('playlist.id_playlist'), primary_key=True)\n\n    def __init__(self, id_users, id_playlist):\n        self.id_users = id_users\n        self.id_playlist = id_playlist\n\n\nclass SongsAlbum(db.Model):\n    id_songs = db.Column(db.Integer, db.ForeignKey('songs.id_songs'), primary_key=True)\n    id_album = db.Column(db.Integer, db.ForeignKey('album.id_album'), primary_key=True)\n\n    def __init__(self, id_songs, id_album):\n        self.id_songs = id_songs\n        self.id_album = id_album\n\n\nclass SongsListened(db.Model):\n    id_songs = db.Column(db.Integer, db.ForeignKey('songs.id_songs'), primary_key=True)\n    id_users = db.Column(db.Integer, db.ForeignKey('users.id_users'), primary_key=True)\n    num_times = db.Column(db.Integer)\n    date_list = db.Column(db.Date)\n\n    def __init__(self, id_songs, id_users, num_times, date_list):\n        self.id_songs = id_songs\n        self.id_users = id_users\n        self.num_times = num_times\n        self.date_list = date_list\n\n\ndb.create_all()\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/struttura_db.py b/struttura_db.py
+--- a/struttura_db.py	(revision 311e41bb3747a514c0f77faf3acb1011f8e975e6)
++++ b/struttura_db.py	(date 1656164238118)
+@@ -7,11 +7,11 @@
+ app.config['SECRET_KEY'] = 'ninninu'
+ 
+ # Radu
+-#app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:zxcvbnm@localhost:5432/db_progetto"
++app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:zxcvbnm@localhost:5432/db_progetto"
+ # Lorenzo
+ #app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:A1n3m3d123!@localhost:5432/bd2_proj"
+ # Daniele
+-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Internet10@localhost:5432/bd2progetto"
++#app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Internet10@localhost:5432/bd2progetto"
+ 
+ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+ 
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" project-jdk-name=\"Python 3.10 (progetto)\" project-jdk-type=\"Python SDK\" />\r\n  <component name=\"PyPackaging\">\r\n    <option name=\"earlyReleasesAsUpgrades\" value=\"true\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 311e41bb3747a514c0f77faf3acb1011f8e975e6)
++++ b/.idea/misc.xml	(date 1656164239231)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (progetto)" project-jdk-type="Python SDK" />
++  <component name="ProjectRootManager" version="2" project-jdk-name="Pipenv (PROJECT_BD2)" project-jdk-type="Python SDK" />
+   <component name="PyPackaging">
+     <option name="earlyReleasesAsUpgrades" value="true" />
+   </component>
+Index: .idea/progetto.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<module type=\"PYTHON_MODULE\" version=\"4\">\n  <component name=\"Flask\">\n    <option name=\"enabled\" value=\"true\" />\n  </component>\n  <component name=\"NewModuleRootManager\">\n    <content url=\"file://$MODULE_DIR$\">\n      <excludeFolder url=\"file://$MODULE_DIR$/venv\" />\n    </content>\n    <orderEntry type=\"jdk\" jdkName=\"Python 3.10 (progetto)\" jdkType=\"Python SDK\" />\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\n  </component>\n  <component name=\"PyDocumentationSettings\">\n    <option name=\"format\" value=\"PLAIN\" />\n    <option name=\"myDocStringFormat\" value=\"Plain\" />\n  </component>\n  <component name=\"TemplatesService\">\n    <option name=\"TEMPLATE_CONFIGURATION\" value=\"Jinja2\" />\n    <option name=\"TEMPLATE_FOLDERS\">\n      <list>\n        <option value=\"$MODULE_DIR$/templates\" />\n      </list>\n    </option>\n  </component>\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/progetto.iml b/.idea/progetto.iml
+--- a/.idea/progetto.iml	(revision 311e41bb3747a514c0f77faf3acb1011f8e975e6)
++++ b/.idea/progetto.iml	(date 1656164239216)
+@@ -7,7 +7,7 @@
+     <content url="file://$MODULE_DIR$">
+       <excludeFolder url="file://$MODULE_DIR$/venv" />
+     </content>
+-    <orderEntry type="jdk" jdkName="Python 3.10 (progetto)" jdkType="Python SDK" />
++    <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+   <component name="PyDocumentationSettings">

@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="dataSourceStorageLocal" created-in="PY-221.5787.24">
     <data-source name="bd2progetto2@localhost" uuid="92802c42-970e-4061-9dae-02a1720ef550">
       <database-info product="PostgreSQL" version="14.3" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.3.3" dbms="POSTGRES" exact-version="14.3" exact-driver-version="42.3">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+=======
+  <component name="dataSourceStorageLocal" created-in="PY-221.5080.212">
+    <data-source name="bd2progetto@localhost" uuid="92802c42-970e-4061-9dae-02a1720ef550">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
+>>>>>>> 1055ab2 (Push di prova di soli xml)
       <secret-storage>master_key</secret-storage>
       <user-name>postgres</user-name>
       <schema-mapping>
         <introspection-scope>
+<<<<<<< HEAD
           <node negative="1">
             <node kind="database" qname="@">
               <node kind="schema" qname="@" />
@@ -17,6 +24,10 @@
             <node kind="database" qname="bd2progetto2">
               <node kind="schema" negative="1" />
             </node>
+=======
+          <node kind="database" negative="1">
+            <node kind="schema" negative="1" />
+>>>>>>> 1055ab2 (Push di prova di soli xml)
           </node>
         </introspection-scope>
       </schema-mapping>
