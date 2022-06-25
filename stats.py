@@ -217,7 +217,7 @@ def types_stats():
                            number=count, songs_name=json.dumps(type_name), artist_b=is_artist())
 
 
-# --------------------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------Canzoni Consigliate-----------------------------------------------
 def song_listened():
     types_listened = db.session.query(SongsListened).filter(SongsListened.id_users == user.id_users)
     list_tmp = []
@@ -252,10 +252,29 @@ def artist_listened():
     return list_tmp
 
 
+def is_accepted(song_list, elem):
+    count = 0
+    for s in song_list:
+        count = count + 1
+        if s[0] == elem and count <= 4:
+            return True
+
+    return False
+
+
 def song_cons():
     artist = artist_listened()
     song = song_listened()
-
+    list_end = []
     song_list = db.session.query(Songs).group_by(Songs.type)
+
+    for s in song_list:
+        if is_accepted(song, s.type) or is_accepted(artist, s.id_artist):
+            list_end.append(s.id_songs)
+
+    return list_end
+
+
+
 
 
