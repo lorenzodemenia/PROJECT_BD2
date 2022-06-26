@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d88d96a5-0874-4866-a26c-939fcccc884d" name="Changes" comment="Lista Canzoni consigliate ... aspetto solo che l'interfaccia delle Playlist sia finita per caricarle">
+    <list default="true" id="d88d96a5-0874-4866-a26c-939fcccc884d" name="Changes" comment="Sistemato l'errore che non mi diceva se ho sbagliato password al login">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/home.html" afterDir="false" />
     </list>
     <list id="c667252f-f681-4057-bf25-df95b3989900" name="Changes by lorenzodemenia" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -109,19 +109,13 @@
       <workItem from="1655989499895" duration="6781000" />
       <workItem from="1656060479483" duration="6096000" />
       <workItem from="1656070017220" duration="1346000" />
-      <workItem from="1656171207761" duration="71000" />
-      <workItem from="1656171299620" duration="62000" />
-      <workItem from="1656171412431" duration="680000" />
-      <workItem from="1656257400036" duration="98000" />
-      <workItem from="1656257921180" duration="5728000" />
-      <workItem from="1656263671604" duration="1010000" />
     </task>
-    <task id="LOCAL-00001" summary="Lista Canzoni consigliate ... aspetto solo che l'interfaccia delle Playlist sia finita per caricarle">
-      <created>1656170262521</created>
+    <task id="LOCAL-00001" summary="Sistemato l'errore che non mi diceva se ho sbagliato password al login">
+      <created>1656256863294</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1656170262521</updated>
+      <updated>1656256863294</updated>
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
@@ -141,12 +135,12 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Lista Canzoni consigliate ... aspetto solo che l'interfaccia delle Playlist sia finita per caricarle" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lista Canzoni consigliate ... aspetto solo che l'interfaccia delle Playlist sia finita per caricarle" />
+    <MESSAGE value="Sistemato l'errore che non mi diceva se ho sbagliato password al login" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sistemato l'errore che non mi diceva se ho sbagliato password al login" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__auth_py_.coverage" NAME="Flask (auth.py) Coverage Results" MODIFIED="1656161871967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1656263725134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1656260169897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1656095750225" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
