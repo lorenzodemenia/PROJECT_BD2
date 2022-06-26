@@ -1,6 +1,7 @@
 
 from struttura_db import *
 from stats import *
+from passlib.hash import scram
 
 @app.route('/')  # Splashpage
 def index():
@@ -10,8 +11,8 @@ def index():
         return redirect(url_for('login'))  # ALtrimenti lo faccio loggare
 
 
-#----------------------------------------------------Login--------------------------------------------------------------
-#Da fare: implementare l'hashing della password, fare differenza tra un listener e un artist quando questo si logga
+# ----------------------------------------------------Login--------------------------------------------------------------
+# Da fare: implementare l'hashing della password, fare differenza tra un listener e un artist quando questo si logga
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -21,9 +22,10 @@ def login():
 
         if user:  # Se effettivamente c'è un user registrato con quella mail
             user_real_pwd = db.session.query(Users).filter(Users.mail == request.form['mail']).first().pwd  # Mi faccio dare la pwd dell'utente
-
             if user_real_pwd is not None:
-                if request.form['pwd'] == user_real_pwd:  # Controllo se la pwd del form è uguale a quella nel db
+                print(request.form['pwd'])
+
+                if scram.verify(request.form['pwd'], user_real_pwd):  # Controllo se la pwd del form è uguale a quella nel db
                     user = db.session.query(Users).filter(Users.mail == request.form['mail']).first()  # Mi faccio ritornare un oggetto di tipo user con tutti i campi
                     login_user(user)  # Loggo l'utente
 
@@ -39,14 +41,15 @@ def login():
             return redirect(url_for('login'))
 
     return render_template('Sign/login.html')
-#----------------------------------------------------Homepage-----------------------------------------------------------
+# ----------------------------------------------------Homepage-----------------------------------------------------------
 
 
 @app.route("/home", methods=['GET', 'POST'])
 @login_required
 def home():
+    prova_hash()
     return render_template('Home/home.html')
-#----------------------------------------------------Signup-------------------------------------------------------------
+# ----------------------------------------------------Signup-------------------------------------------------------------
 
 
 @app.route("/signup")
@@ -65,10 +68,10 @@ def signup_listener():
         pwd = request.form['pwd']
         birth_date = request.form['birth_date']
 
-        user = Users(name, surname, sex, mail, pwd, birth_date)
+        user = Users(name, surname, sex, mail, scram.using(rounds=8000).hash(pwd), birth_date)
         check = db.session.query(Users).filter(Users.mail == request.form['mail']).first()
 
-        if request.form['pwd_repeat'] == user.pwd:#Se le password sono uguali procedo con l'inserimento
+        if scram.verify(request.form['pwd_repeat'], user.pwd):#Se le password sono uguali procedo con l'inserimento
 
             if user.mail and not check:#Se la mail c'è e non è già stata usata da un altro user
                 db.session.add(user)  # Aggiungo l'user da inserire
@@ -93,10 +96,9 @@ def signup_artist():
         pwd = request.form['pwd']
         birth_date = request.form['birth_date']
 
-        user = Users(name, surname, sex, mail, pwd, birth_date)
+        user = Users(name, surname, sex, mail, scram.using(rounds=8000).hash(pwd), birth_date)
         check = db.session.query(Users).filter(Users.mail == request.form['mail']).first()
-
-        if request.form['pwd_repeat'] == user.pwd:#Se le password sono uguali procedo con l'inserimento
+        if scram.verify(request.form['pwd_repeat'], user.pwd):#Se le password sono uguali procedo con l'inserimento
 
             if user.mail and not check:#Se la mail c'è e non è già stata usata da un altro user
                 db.session.add(user)  # Aggiungo l'user da inserire
@@ -104,7 +106,7 @@ def signup_artist():
                 #Aggiungo la parte su artist
                 art_name = request.form['art_name']
                 label = request.form['label']
-                artist = Artists(user.id_users,art_name, label)
+                artist = Artists(user.id_users, art_name, label)
                 db.session.add(artist)
                 db.session.commit()
             else:#Altrimenti lo avviso che non va bene
@@ -115,7 +117,7 @@ def signup_artist():
             flash("""Passwords don't coincide!""", category='error')
 
     return render_template('Sign/signup_artist.html')
-#----------------------------------------------------Logout-------------------------------------------------------------
+# ----------------------------------------------------Logout-------------------------------------------------------------
 
 
 @app.route('/logout', methods=['GET', 'POST'])
@@ -123,7 +125,7 @@ def signup_artist():
 def logout():
     logout_user()
     return redirect(url_for('login'))
-#---------------------------------------------------Profile page--------------------------------------------------------
+# ---------------------------------------------------Profile page-------------------------------------------------------
 
 
 @app.route('/profile')
@@ -134,10 +136,23 @@ def profile():
 
     return render_template('Sign/profile.html', user=user)
 
+
 def is_artist():
     art = db.session.query(Artists).filter(Artists.id_artists == current_user.id_users)
     if art:
         return True
     return  False
+
+
+# ------------------------------------------------ Hashing PWD ---------------------------------------------------------
+
+
+@app.route('/prova_h', methods=['GET', 'POST'])
+def prova_hash():
+    hash = scram.using(rounds=8000).hash("dewti5-Tugzob-xuktok")
+    print(hash)
+    return render_template('Home/home.html')
+
+
 
 
