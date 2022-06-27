@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d88d96a5-0874-4866-a26c-939fcccc884d" name="Changes" comment="Ho fatto in modo che nella home gli artisti vengano caricati dal db, ho iniziato a lavorare alla pagina dell'artista">
+    <list default="true" id="d88d96a5-0874-4866-a26c-939fcccc884d" name="Changes" comment="Ora il testo nella card ha un aspetto decente">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/struttura_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/struttura_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Home/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/navbar.html" afterDir="false" />
     </list>
     <list id="c667252f-f681-4057-bf25-df95b3989900" name="Changes by lorenzodemenia" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -153,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656352887482</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Ora il testo nella card ha un aspetto decente">
+      <created>1656353157305</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1656353157305</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,7 +183,8 @@
     <MESSAGE value="mi son svegliato" />
     <MESSAGE value="Fanculo ho messo un'immagine stock per tutte e ciao, presa da un link online così non devo caricare nulla" />
     <MESSAGE value="Ho fatto in modo che nella home gli artisti vengano caricati dal db, ho iniziato a lavorare alla pagina dell'artista" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ho fatto in modo che nella home gli artisti vengano caricati dal db, ho iniziato a lavorare alla pagina dell'artista" />
+    <MESSAGE value="Ora il testo nella card ha un aspetto decente" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ora il testo nella card ha un aspetto decente" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__auth_py_.coverage" NAME="Flask (auth.py) Coverage Results" MODIFIED="1656161871967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
