@@ -45,7 +45,8 @@ def login():
 @app.route("/home", methods=['GET', 'POST'])
 @login_required
 def home():
-    return render_template('Home/home.html')
+    artists = db.session.query(Artists).all()
+    return render_template('Home/home.html', artists=artists)
 #----------------------------------------------------Signup-------------------------------------------------------------
 
 
