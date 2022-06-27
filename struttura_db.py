@@ -51,6 +51,16 @@ class Users(UserMixin, db.Model):
     def get_id(self):
         return self.id_users
 
+    def is_artist(self):
+        art = db.session.query(Artists).filter(Artists.id_artists == self.id_users)
+        count = 0
+        for a in art:
+            count = count + 1
+
+        if count >= 1:
+            return True
+        return False
+
 
 class Artists(db.Model):
     id_artists = db.Column(db.Integer, db.ForeignKey('users.id_users'), primary_key=True, )

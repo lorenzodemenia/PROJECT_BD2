@@ -2,6 +2,9 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ url_for('index') }}">Unify</a>
         {% if current_user.is_authenticated %}
+            {% if current_user.is_artist() %}
+                porcoddio
+            {% endif %}
             <form class="d-flex" method="POST" action="{{ url_for('search') }}">
                 <input class="form-control me-3" id="search" name="search" type="search" placeholder="Search"
                        aria-label="Search">
