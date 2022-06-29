@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d88d96a5-0874-4866-a26c-939fcccc884d" name="Changes" comment="Iniziata la pagina dell'artista, intanto mi reindirizza alla pagina giusta e mi fa evdere il nome, riordinato artist.py, aggiunto un metodo e ho tolto user e uso current user, era useless...">
-      <change afterPath="$PROJECT_DIR$/templates/Home/add.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Home/add_album.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Home/add_single.html" afterDir="false" />
+    <list default="true" id="d88d96a5-0874-4866-a26c-939fcccc884d" name="Changes" comment="Fatta la pagina per l'aggiunta di singolo o album, ora devo fare la parte del form e via dicendo, sarà divertente">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artist.py" beforeDir="false" afterPath="$PROJECT_DIR$/artist.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Home/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Sign/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Sign/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Sign/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Sign/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Sign/signup_artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Sign/signup_artist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Sign/signup_listener.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Sign/signup_listener.html" afterDir="false" />
     </list>
     <list id="c667252f-f681-4057-bf25-df95b3989900" name="Changes by lorenzodemenia" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -185,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656519109695</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Fatta la pagina per l'aggiunta di singolo o album, ora devo fare la parte del form e via dicendo, sarà divertente">
+      <created>1656536607686</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1656536607686</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,7 +208,8 @@
     <MESSAGE value="Ora il testo nella card ha un aspetto decente" />
     <MESSAGE value="Aggiunto su struttura db il metodo per vedere se un utente è anche un artista" />
     <MESSAGE value="Iniziata la pagina dell'artista, intanto mi reindirizza alla pagina giusta e mi fa evdere il nome, riordinato artist.py, aggiunto un metodo e ho tolto user e uso current user, era useless..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Iniziata la pagina dell'artista, intanto mi reindirizza alla pagina giusta e mi fa evdere il nome, riordinato artist.py, aggiunto un metodo e ho tolto user e uso current user, era useless..." />
+    <MESSAGE value="Fatta la pagina per l'aggiunta di singolo o album, ora devo fare la parte del form e via dicendo, sarà divertente" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fatta la pagina per l'aggiunta di singolo o album, ora devo fare la parte del form e via dicendo, sarà divertente" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__auth_py_.coverage" NAME="Flask (auth.py) Coverage Results" MODIFIED="1656161871967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

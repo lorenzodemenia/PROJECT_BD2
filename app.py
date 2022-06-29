@@ -15,6 +15,7 @@ def artist(id_artists):
 @app.route('/add')
 @login_required
 def add():
+
     check = current_user.is_artist()#Un check in più non fa mai male...
     if check:
         return render_template('/Home/add.html')
