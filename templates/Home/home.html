@@ -14,7 +14,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <a href="{{ url_for('artist', id_artists=i.id_artists) }}" class="stretched-link"><h5 class="card-title">{{ i.art_name}}</h5></a>
+                                <a class="home_artista" href="{{ url_for('artist', id_artists=i.id_artists) }}" class="stretched-link"><h5 class="card-title">{{ i.art_name}}</h5></a>
                             </div>
                         </div>
                     </div>
@@ -24,4 +24,6 @@
     </div>
     <hr>
     <h2>Le tue playlist</h2>
+    <hr>
+    <h2>Le playlist che segui</h2>
 {% endblock %}

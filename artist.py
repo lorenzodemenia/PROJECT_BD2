@@ -105,3 +105,4 @@ def alb_ar():
 @app.route('/art', methods=['GET', 'POST'])
 def default():
     return render_template('Stats/Artist/stats_artist.html')
+
