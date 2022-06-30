@@ -3,7 +3,7 @@
         <a class="navbar-brand" href="{{ url_for('index') }}">Unify</a>
         {% if current_user.is_authenticated %}
             {% if current_user.is_artist() %}
-                porcoddio
+                <a class="btn btn-outline-success" href="{{ url_for('add') }}">Aggiungi</a>
             {% endif %}
             <form class="d-flex" method="POST" action="{{ url_for('search') }}">
                 <input class="form-control me-3" id="search" name="search" type="search" placeholder="Search"

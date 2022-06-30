@@ -10,11 +10,11 @@
                 <div class="card border-dark mb-3">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="https://ik.imagekit.io/bayc/assets/ape1.png" class="img-fluid rounded-start">
+                            <img src="https://cloud.radiofreccia.it/RadioFreccia/News/Article/600x600/rhcp-fruscianteil-meglio-deve-ancora-arrivare-square-site-suszn.jpg" class="img-fluid rounded-start">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <a href="#" class="stretched-link"><h5 class="card-title">{{ i.art_name}}</h5></a>
+                                <a class="home_artista" href="{{ url_for('artist', id_artists=i.id_artists) }}" class="stretched-link"><h5 class="card-title">{{ i.art_name}}</h5></a>
                             </div>
                         </div>
                     </div>
@@ -24,4 +24,6 @@
     </div>
     <hr>
     <h2>Le tue playlist</h2>
+    <hr>
+    <h2>Le playlist che segui</h2>
 {% endblock %}

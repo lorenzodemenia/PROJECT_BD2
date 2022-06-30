@@ -18,8 +18,11 @@
 .search{
     width: 800px !important;
 }
-a {
+.home_artista {
 color: black;
 text-decoration: none;
-cursor: auto;
+}
+.home_aggiungi{
+    color: green;
+    text-decoration: none;
 }

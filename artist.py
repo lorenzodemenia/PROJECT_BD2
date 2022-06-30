@@ -5,11 +5,6 @@ from auth import *
 from struttura_db import *
 
 
-
-user = current_user
-
-# artist = db.session.query(Artists).filter(Artists.id_artists == user.id_users).first()
-
 def is_artist():
     art = db.session.query(Artists).filter(Artists.id_artists == current_user.id_users)
     count = 0
@@ -35,12 +30,18 @@ def id_play():
     return playlist.id_playlist
 
 
+def get_artist(id):
+    artist = db.session.query(Artists).filter(Artists.id_artists == id).first()
+
+    return artist
+
+
 @app.route('/song_ar', methods=['GET', 'POST'])
 def song_ar():
 
     title = ( "Title", "length", "Date", "Type", "Listened")
     print(id_play())
-    sl = db.session.query(Songs).filter(Songs.id_artist == user.id_users)
+    sl = db.session.query(Songs).filter(Songs.id_artist == current_user.id_users)
     number = []
     songs_name = []
     list_tmp = []
@@ -73,11 +74,12 @@ def count_album(id_album):
 
     return x
 
+
 @app.route('/album_ar', methods=['GET', 'POST'])
 def alb_ar():
     title = ("Title", "Date", "Listened")
 
-    sl = db.session.query(Album).filter(Album.id_artist == user.id_users)
+    sl = db.session.query(Album).filter(Album.id_artist == current_user.id_users)
     number = []
     songs_name = []
     list_tmp = []
@@ -100,7 +102,7 @@ def alb_ar():
                            songs_name=json.dumps(songs_name), artist_b=is_artist())
 
 
-
 @app.route('/art', methods=['GET', 'POST'])
 def default():
     return render_template('Stats/Artist/stats_artist.html')
+
