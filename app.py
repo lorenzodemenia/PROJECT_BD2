@@ -1,8 +1,4 @@
-from auth import *
-from search import *
-from struttura_db import *
-from artist import *
-from auth import *
+from views import *
 
 
 @app.route('/<int:id_artists>')

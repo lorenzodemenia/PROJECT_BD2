@@ -12,7 +12,7 @@
             const song = {{ songs_name | tojson }};
             const lol = JSON.parse(song);
             new Chart("myChart", {
-                type: 'line',
+                type: 'bar',
                 data: {
                     labels: lol,
                     datasets: [{

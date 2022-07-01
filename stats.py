@@ -5,6 +5,8 @@ from app import *
 from auth import *
 from struttura_db import *
 from artist import *
+from passlib.hash import scram
+
 
 
 user = current_user
@@ -61,7 +63,7 @@ def songs_stats():
 
     song_list = tuple(list_tmp)
 
-    return render_template('Stats/DashStats/songs.html', headings=title, data=song_list, number=number,
+    return render_template('Stats/DashStats/songs_stats.html', headings=title, data=song_list, number=number,
                            songs_name=json.dumps(songs_name), artist_b=is_artist())
 
 
@@ -114,7 +116,7 @@ def artists_stats():
 
     artists_list = tuple(list_tmp)
 
-    return render_template('Stats/DashStats/artists.html', headings=title, data=artists_list,
+    return render_template('Stats/DashStats/artists_stats.html', headings=title, data=artists_list,
                            number=count_times, songs_name=json.dumps(artists_name), artist_b=is_artist())
 
 
@@ -167,7 +169,7 @@ def playlists_stats():
             list_tmp.append(listened)
             playlist_list = tuple(list_tmp)
 
-    return render_template('Stats/DashStats/playlists.html', headings=headings, data=playlist_list,
+    return render_template('Stats/DashStats/playlists_stats.html', headings=headings, data=playlist_list,
                            number=take, songs_name=json.dumps(playlist_id), artist_b=is_artist())
 
 
@@ -213,7 +215,7 @@ def types_stats():
 
     types_list = tuple(list_tmp)
 
-    return render_template('Stats/DashStats/types.html', headings=title, data=types_list,
+    return render_template('Stats/DashStats/types_stats.html', headings=title, data=types_list,
                            number=count, songs_name=json.dumps(type_name), artist_b=is_artist())
 
 
@@ -274,6 +276,33 @@ def song_cons():
 
     return list_end
 
+# ---------------------------------------------------Profile page-------------------------------------------------------
+
+
+@app.route('/profile')
+@login_required
+def profile():
+    user = current_user
+    print(user.name)
+
+    return render_template('Sign/profile.html', user=user)
+
+
+def is_artist():
+    art = db.session.query(Artists).filter(Artists.id_artists == current_user.id_users)
+    if art:
+        return True
+    return  False
+
+
+# ------------------------------------------------ Hashing PWD ---------------------------------------------------------
+
+
+@app.route('/prova_h', methods=['GET', 'POST'])
+def prova_hash():
+    hash = scram.using(rounds=8000).hash("dewti5-Tugzob-xuktok")
+    print(hash)
+    return render_template('Home/home.html')
 
 
 

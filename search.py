@@ -1,7 +1,7 @@
 from struttura_db import *
 
 
-@app.route('/search', methods=['POST'])
+@app.route('/s', methods=['POST'])
 @login_required
 def search():
     if request.method == 'POST':
