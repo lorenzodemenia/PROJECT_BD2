@@ -1,15 +1,16 @@
 from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_login import *
 from flask_sqlalchemy import SQLAlchemy
+from datetime import date
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'ninninu'
 
 # Radu
-# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:zxcvbnm@localhost:5432/db_progetto"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:zxcvbnm@localhost:5432/db_progetto"
 # Lorenzo
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:A1n3m3d123!@localhost:5432/bd2_proj"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:A1n3m3d123!@localhost:5432/bd2_proj"
 # Daniele
 # app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Internet10@localhost:5432/bd2progetto"
 
@@ -81,9 +82,8 @@ class Songs(db.Model):
     date_pub = db.Column(db.Date)
     type = db.Column(db.String)
 
-    def __init__(self, id_songs, id_artists, title, length, date_pub, type):
+    def __init__(self, id_artists, title, length, date_pub, type):
         self.id_artist = id_artists
-        self.id_songs = id_songs
         self.title = title
         self.length = length
         self.date_pub = date_pub
@@ -111,8 +111,7 @@ class Album(db.Model):
     date_pub = db.Column(db.Date)
     title = db.Column(db.String)
 
-    def __init__(self, id_album, id_artist, date_pub, title):
-        self.id_album = id_album
+    def __init__(self, id_artist, date_pub, title):
         self.id_artist = id_artist
         self.date_pub = date_pub
         self.title = title

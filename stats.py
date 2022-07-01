@@ -7,8 +7,6 @@ from struttura_db import *
 from artist import *
 from passlib.hash import scram
 
-
-
 user = current_user
 
 # ---------------------------------------------------Stats page---------------------------------------------------------
