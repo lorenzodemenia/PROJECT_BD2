@@ -9,9 +9,9 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ninninu'
 
 # Radu
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:zxcvbnm@localhost:5432/db_progetto"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:zxcvbnm@localhost:5432/db_progetto"
 # Lorenzo
-# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:A1n3m3d123!@localhost:5432/bd2_proj"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:A1n3m3d123!@localhost:5432/bd2_proj"
 # Daniele
 # app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Internet10@localhost:5432/bd2progetto"
 
@@ -132,10 +132,10 @@ class PlaylistUsers(db.Model):
     id_playlist = db.Column(db.Integer, db.ForeignKey('playlist.id_playlist'), primary_key=True)
     count_song = db.Column(db.Integer)
 
-    def __init__(self, id_users, id_playlist):
+    def __init__(self, id_users, id_playlist, count_song):
         self.id_users = id_users
         self.id_playlist = id_playlist
-        count_song = 0
+        count_song = count_song
 
 
 class SongsAlbum(db.Model):

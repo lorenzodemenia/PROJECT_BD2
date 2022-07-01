@@ -5,7 +5,7 @@ from auth import *
 from stats import *
 from stats import take_song, take_playlist
 from struttura_db import *
-
+from views import *
 user = current_user
 
 
@@ -31,12 +31,23 @@ def pl_page():
     return render_template('Playlist/playlist_list.html', playlist=play_list)
 
 
-@app.route('/playlist/<id_playlist>', methods=['GET', 'POST'])
-def playlist_page(id_playlist=None):
+def take_list_song(id_playlist):
+    song = db.session.query(Songs)
+    song_list = []
+    for s in song:
+        if not exits_song_playlist(id_playlist, s.id_songs):
+            tmp = []
+            tmp.append(s.id_songs)
+            tmp.append(s.title)
+            song_list.append(tmp)
+    return song_list
+
+
+@app.route('/playlist_page/<id_playlist>', methods=['GET', 'POST'])
+def playlist_page(id_playlist):
     title = ("#", "Title", "length", "Date", "Type")
 
     playlist = db.session.query(PlaylistSongs).filter(PlaylistSongs.id_playlist == id_playlist)
-
     list_tmp = []
     count = 0
     for s in playlist:
@@ -53,6 +64,67 @@ def playlist_page(id_playlist=None):
     song_list = tuple(list_tmp)
     play_list = get_playlist()
     play = take_playlist(id_playlist)
+    song_choose = take_list_song(id_playlist)
 
     return render_template('Playlist/playlist.html', headings=title, data=song_list, playlist=play_list,
-                           playlist_obj=play)
+                           playlist_obj=play, song_choose=song_choose)
+
+
+def count_id_playlist():
+    return db.session.query(func.max(Playlist.id_playlist)).first()
+
+
+def exits_song_playlist(id_playlist, id_song):
+    song = db.session.query(PlaylistSongs).filter(PlaylistSongs.id_playlist == id_playlist)
+
+    for s in song:
+        if s.id_songs == id_song:
+            return True
+    return False
+
+
+@app.route('/create_playlist', methods=['GET', 'POST'])
+def create_playlist():
+    if request.method == 'POST':
+        lol = count_id_playlist()
+
+        id_playlist = lol[0]+1
+        name = request.form['name']
+        private = request.form['type']
+        description = request.form['description']
+        date_creation = date.today()
+
+        if private == "True":
+            playlist = Playlist(id_playlist, name, description, date_creation, True)
+        else:
+            playlist = Playlist(id_playlist, name, description, date_creation, False)
+
+        db.session.add(playlist)
+        db.session.commit()
+
+        playlist_user = PlaylistUsers(user.id_users, id_playlist, 0)
+
+        db.session.add(playlist_user)
+        db.session.commit()
+
+        return playlist_page(id_playlist)
+
+    return render_template('Playlist/nuova_playlist.html')
+
+
+@app.route('/addSongPlaylist/<id_song>/<id_playlist>', methods=['GET', 'POST'])
+def add_song_playlist(id_song, id_playlist):
+
+    playlist_song = PlaylistSongs(id_song, id_playlist)
+    song_list = db.session.query(PlaylistUsers).filter(PlaylistUsers.id_users == user.id_users)
+
+    for s in song_list:
+        if s.id_playlist == id_playlist:
+            s.count_song += 1
+            db.session.commit()
+
+    db.session.add(playlist_song)
+
+    db.session.commit()
+
+    return playlist_page(id_playlist)
