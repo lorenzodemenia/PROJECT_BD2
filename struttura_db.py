@@ -143,8 +143,8 @@ class SongsAlbum(db.Model):
     id_songs = db.Column(db.Integer, db.ForeignKey('songs.id_songs'), primary_key=True)
 
     def __init__(self, id_album, id_songs):
-        self.id_songs = id_album
-        self.id_album = id_songs
+        self.id_album = id_album
+        self.id_songs = id_songs
 
 
 class SongsListened(db.Model):
