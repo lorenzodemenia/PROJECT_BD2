@@ -41,9 +41,9 @@ def add_album():
         #Aggiungo l'album al db
         db.session.add(album)
         db.session.commit()
-
-        album_id = Album.query.filter_by(id_album=album.id_album).first()
-
+        #Mi salvo l'id dell'album appena inserito
+        album_id = db.session.query(Album).order_by(Album.id_album.desc()).first().id_album
+        #Qua dentro mi salvo gli id delle canzoni che ho appena inserito
         song_ids = []
 
         #Inserisco con un ciclo for le canzoni
@@ -53,16 +53,29 @@ def add_album():
             db.session.add(song)
             db.session.commit()
 
-            song_ids.append(Songs.query.filter_by(id_songs=song.id_songs).first())
+            song_ids.append(last_song_id())
+            print('last song id:' + last_song_id().__str__())
 
-        print(song_ids)
+        # Associo le canzoni inserite all'album inserito
+        x = song_ids.__len__()
 
-        #Associo le canzoni inserite all'album inserito
+        for j in range(0, x):
+            print('Provo a inserire:')
+            print(album_id, song_ids[j])
 
+            song_album = SongsAlbum(album_id, song_ids[j])
+
+            db.session.add(song_album)
+            db.session.commit()
 
         return redirect(url_for('home'))
 
     return render_template('Album/add_album.html')
+
+def last_song_id():
+    # So che l'id dell'ultima canzone inserita è il
+    return db.session.query(func.max(Songs.id_songs))
+
 
 
 @app.route('/add_single')

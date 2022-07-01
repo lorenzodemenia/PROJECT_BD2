@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_login import *
 from flask_sqlalchemy import SQLAlchemy
 from datetime import date
+from sqlalchemy import func
 
 app = Flask(__name__)
 
@@ -138,12 +139,12 @@ class PlaylistUsers(db.Model):
 
 
 class SongsAlbum(db.Model):
-    id_songs = db.Column(db.Integer, db.ForeignKey('songs.id_songs'), primary_key=True)
     id_album = db.Column(db.Integer, db.ForeignKey('album.id_album'), primary_key=True)
+    id_songs = db.Column(db.Integer, db.ForeignKey('songs.id_songs'), primary_key=True)
 
-    def __init__(self, id_songs, id_album):
-        self.id_songs = id_songs
-        self.id_album = id_album
+    def __init__(self, id_album, id_songs):
+        self.id_songs = id_album
+        self.id_album = id_songs
 
 
 class SongsListened(db.Model):
