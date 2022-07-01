@@ -19,9 +19,12 @@ def add():
         render_template('/Home/home.html')
 
 
-@app.route('/add_album')
+@app.route('/add_album', methods=['GET', 'POST'])
 @login_required
 def add_album():
+    if request.method == 'POST':
+        print('ciao')
+        return redirect(url_for('home'))
 
     return render_template('/Home/add_album.html')
 
