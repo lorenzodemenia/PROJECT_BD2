@@ -5,7 +5,7 @@ from views import *
 @login_required
 def artist(id_artists):
     artist = get_artist(id_artists)
-    return render_template('/Home/artist.html', artist=artist)
+    return render_template('Home/artist.html', artist=artist)
 
 
 @app.route('/add')
@@ -26,14 +26,14 @@ def add_album():
         print('ciao')
         return redirect(url_for('home'))
 
-    return render_template('/Home/add_album.html')
+    return render_template('Album/add_album.html')
 
 
 @app.route('/add_single')
 @login_required
 def add_single():
 
-    return render_template('/Home/add_single.html')
+    return render_template('Home/add_single.html')
 
 
 if __name__ == '__main__':

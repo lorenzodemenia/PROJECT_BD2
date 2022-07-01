@@ -12,6 +12,7 @@ from passlib.hash import scram
 user = current_user
 
 # ---------------------------------------------------Stats page---------------------------------------------------------
+
 def is_artist():
     art = db.session.query(Artists).filter(Artists.id_artists == current_user.id_users)
     count = 0
@@ -130,13 +131,8 @@ def exist_playlist(playlist_id, id):
 
 
 def take_playlist(id):
-    prova = db.session.query(Playlist)
-
-    for p in prova:
-        if p.id_playlist == id:
-            return p
-
-    return 0
+    prova = db.session.query(Playlist).filter(Playlist.id_playlist == id).first()
+    return prova
 
 def take_playlist_song(id_playlist):
     pl = db.session.query(PlaylistSongs).filter(PlaylistSongs.id_playlist == id_playlist)

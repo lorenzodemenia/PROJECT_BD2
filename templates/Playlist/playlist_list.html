@@ -99,13 +99,13 @@
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       {% for play in playlist %}
         <div class="col">
-          <div class="card shadow-sm">
+          <div class="card shadow-sm" >
                 <img src="https://cloud.radiofreccia.it/RadioFreccia/News/Article/300x300/rhcp-fruscianteil-meglio-deve-ancora-arrivare-square-site-suszn.jpg" class="img-fluid rounded-start">
-            <div class="card-body">
-              <p class="card-text">{{ play[0] }}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <small class="text-muted"> {{ play[1] }} songs</small>
-              </div>
+            <div class="card-body ">
+                <a class="home_artista" href="{{ url_for('playlist_page', id_playlist=play[2]) }}" ><h5 class="card-title">{{ play[0] }}</h5></a>
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted"> {{ play[1] }} songs</small>
+                  </div>
             </div>
           </div>
         </div>
