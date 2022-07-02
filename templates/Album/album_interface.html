@@ -99,29 +99,6 @@
             }
         </style>
     <!-- JS-->
-    <script>
-        /* When the user clicks on the button,
-        toggle between hiding and showing the dropdown content */
-        function myFunction() {
-          document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        function filterFunction() {
-          var input, filter, ul, li, a, i;
-          input = document.getElementById("myInput");
-          filter = input.value.toUpperCase();
-          div = document.getElementById("myDropdown");
-          a = div.getElementsByTagName("a");
-          for (i = 0; i < a.length; i++) {
-            txtValue = a[i].textContent || a[i].innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-              a[i].style.display = "";
-            } else {
-              a[i].style.display = "none";
-            }
-          }
-        }
-    </script>
 
     <!-- Custom styles for this template -->
     <link href="templates/Stats/dashboard.rlt.css" rel="stylesheet">
@@ -152,18 +129,6 @@
     <div class="row">
         <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse shadow sidebar">
             <div class="position-sticky pt-3">
-
-                 <div class="dropdown">
-                      <button onclick="myFunction()" class="btn btn-outline-dark dropdown-toggle" >Add a Song</button>
-                      <div id="myDropdown" class="dropdown-content">
-                        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                          {% for s in song_choose %}
-                              <a href="{{ url_for('add_song_playlist', id_song=s[0], id_playlist=playlist_obj.id_playlist) }}">{{ s[1] }}</a>
-                          {% endfor %}
-
-                      </div>
-                </div>
-
                 <ul class="nav flex-column">
                     <h6 class="sidebar-header d-flex justify-content-between align-items-center px-1 mt-4 mb-1 text-muted">
                         <span>Statistics</span>
@@ -171,11 +136,11 @@
                             <span data-feather="plus-circle"></span>
                         </a>
                     </h6>
-                    {% for l in playlist %}
+                    {% for al in albums %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('playlist_page', id_playlist=l[2]) }}">
+                        <a class="nav-link" href="{{ url_for('album_page', id_album=al[0].id_album) }}">
                             <span data-feather="Type"></span>
-                            {{ l[0] }}
+                            {{ al[0].title}}
                         </a>
                     </li>
                     {% endfor %}

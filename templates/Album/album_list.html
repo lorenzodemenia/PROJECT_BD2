@@ -89,7 +89,7 @@
   <section class="py-5 text-center container ">
     <div class="row py-lg-3">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Playlist</h1>
+        <h1 class="fw-light">Album</h1>
       </div>
     </div>
   </section>
@@ -97,14 +97,14 @@
   <div class="album py-5 bg-light shadow">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      {% for play in playlist %}
+      {% for al in album %}
         <div class="col">
           <div class="card shadow-sm" >
                 <img src="https://cloud.radiofreccia.it/RadioFreccia/News/Article/300x300/rhcp-fruscianteil-meglio-deve-ancora-arrivare-square-site-suszn.jpg" class="img-fluid rounded-start">
             <div class="card-body shadow">
-                <a class="home_artista" href="{{ url_for('playlist_page', id_playlist=play[2]) }}" ><h5 class="card-title">{{ play[0] }}</h5></a>
+                <a class="home_artista" href="{{ url_for('album_page', id_album=al[0].id_album) }}" ><h5 class="card-title">{{ al[0].title }}</h5></a>
                 <div class="d-flex justify-content-between align-items-center">
-                    <small class="text-muted"> {{ play[1] }} songs</small>
+                    <small class="text-muted "> {{ al[0].date_pub }}</small><small class="text-muted ">  {{ al[1].art_name }}</small>
                   </div>
             </div>
           </div>
