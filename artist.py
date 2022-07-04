@@ -36,6 +36,18 @@ def get_artist(id):
     return artist
 
 
+def get_artist_albums(id):
+    albums = db.session.query(Album).filter(Album.id_artist == id).all()
+
+    return albums
+
+
+def get_artist_songs(id):
+    songs = db.session.query(Songs).filter(Songs.id_songs == id).all()
+
+    return songs
+
+
 @app.route('/song_ar', methods=['GET', 'POST'])
 def song_ar():
 

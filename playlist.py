@@ -91,16 +91,16 @@ def create_playlist():
     if request.method == 'POST':
         lol = count_id_playlist()
 
-        id_playlist = lol[0]+1
+        id_playlist = 1
         name = request.form['name']
         private = request.form['type']
         description = request.form['description']
         date_creation = date.today()
 
         if private == "True":
-            playlist = Playlist(id_playlist, name, description, date_creation, True)
+            playlist = Playlist(id_playlist + 1, name, description, date_creation, True)
         else:
-            playlist = Playlist(id_playlist, name, description, date_creation, False)
+            playlist = Playlist(id_playlist + 1, name, description, date_creation, False)
 
         db.session.add(playlist)
         db.session.commit()
