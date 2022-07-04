@@ -49,6 +49,7 @@ def get_artist_songs(id):
 
 
 @app.route('/song_ar', methods=['GET', 'POST'])
+@login_required
 def song_ar():
 
     title = ( "Title", "length", "Date", "Type", "Listened")
@@ -88,6 +89,7 @@ def count_album(id_album):
 
 
 @app.route('/album_ar', methods=['GET', 'POST'])
+@login_required
 def alb_ar():
     title = ("Title", "Date", "Listened")
 
@@ -114,7 +116,5 @@ def alb_ar():
                            songs_name=json.dumps(songs_name), artist_b=is_artist())
 
 
-@app.route('/art', methods=['GET', 'POST'])
-def default():
-    return render_template('Stats/Artist/stats_artist.html')
+
 

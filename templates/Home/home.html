@@ -25,6 +25,25 @@
     <hr>
         <a class="home_artista" href="{{ url_for('pl_page')}}"><h2>Le tue playlist</h2></a>
     <hr>
+    <div class="row">
+        {% for i in playlist %}
+            <div class="col-sm-3">
+                <div class="card border-dark mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://cloud.radiofreccia.it/RadioFreccia/News/Article/600x600/rhcp-fruscianteil-meglio-deve-ancora-arrivare-square-site-suszn.jpg" class="img-fluid rounded-start">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <a class="home_artista" href="{{ url_for('playlist_page', id_playlist=i.id_playlist) }}" class="stretched-link"><h5 class="card-title">
+                                    {{ i.name }}</h5></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
     <hr>
         <a class="home_artista" href="{{ url_for('album_list_page')}}"><h2>I tuoi album</h2></a>
     <hr>

@@ -23,6 +23,7 @@ def get_playlist():
 
 
 @app.route('/play_page', methods=['GET', 'POST'])
+@login_required
 def pl_page():
     play_list = get_playlist()
 
@@ -42,9 +43,8 @@ def take_list_song(id_playlist):
     return song_list
 
 
-
-
 @app.route('/playlist_page/<id_playlist>', methods=['GET', 'POST'])
+@login_required
 def playlist_page(id_playlist):
     title = ("#", "Title", "Artist", "length", "Date", "Type")
 
@@ -87,6 +87,7 @@ def exits_song_playlist(id_playlist, id_song):
 
 
 @app.route('/create_playlist', methods=['GET', 'POST'])
+@login_required
 def create_playlist():
     if request.method == 'POST':
         lol = count_id_playlist()
@@ -116,6 +117,7 @@ def create_playlist():
 
 
 @app.route('/addSongPlaylist/<id_song>/<id_playlist>', methods=['GET', 'POST'])
+@login_required
 def add_song_playlist(id_song, id_playlist):
 
     playlist_song = PlaylistSongs(id_song, id_playlist)
