@@ -11,21 +11,19 @@ user = current_user
 
 # ---------------------------------------------------Stats page---------------------------------------------------------
 
+# controlla se l'utente corrente è un artista
 def is_artist():
-    art = db.session.query(Artists).filter(Artists.id_artists == current_user.id_users)
-    count = 0
-    for a in art:
-        count = count + 1
-
-    if count >= 1:
+    art = db.session.query(Artists).filter(Artists.id_artists == current_user.id_users).first()
+    if art:
         return True
     return False
 
+# prende una canzone usando il id
 def take_song(id_songs):
     song = db.session.query(Songs).filter(Songs.id_songs == id_songs).first()
     return song
 
-
+# prende un artista utilizzando id di una canzone
 def take_artist(id_songs):
     song = take_song(id_songs)
     artist = db.session.query(Artists).filter(Artists.id_artists == song.id_artist).first()
@@ -34,19 +32,21 @@ def take_artist(id_songs):
 
 # ---------------------------------------------------Songs Stats--------------------------------------------------------
 
+# funzione che passa i dati necessari per fare le statistiche
 @app.route('/songs_stats', methods=['GET', 'POST'])
+@login_required
 def songs_stats():
+
     title = ("#", "Title", "length", "Date", "Type")
 
     sl = db.session.query(SongsListened).order_by(SongsListened.id_users)
     number = []
     songs_name = []
     list_tmp = []
-    count = 0
+    count = 1
     for s in sl:
         if s.id_users == user.id_users:
             song_tmp = []
-            count = count + 1
             prova = take_song(s.id_songs)
             song_tmp.append(count)
             song_tmp.append(prova.title)
@@ -57,8 +57,10 @@ def songs_stats():
             list_tmp.append(song_tmp)
 
             song = take_song(s.id_songs)
-            songs_name.append(song.title)
-            number.append(s.num_times)
+            if count <= 10:
+                songs_name.append(song.title)
+                number.append(s.num_times)
+            count += 1
 
     song_list = tuple(list_tmp)
 
@@ -86,6 +88,7 @@ def count_artist(artist_id, id):
 
 
 @app.route('/artists_stats', methods=['GET', 'POST'])
+@login_required
 def artists_stats():
     title = ("#", "Name", "Label", "Last Time")
 
@@ -101,17 +104,18 @@ def artists_stats():
         prova = take_artist(artists.id_songs)
 
         if exists_artist(artist_id, prova.id_artists):
-            count = count + 1
-            artist_id.append(prova.id_artists)
-            count_times.append(count_artist(artis_listened, prova.id_artists))
-            artists_name.append(prova.art_name)
 
+            artist_id.append(prova.id_artists)
             listened.append(count)
             listened.append(prova.art_name)
             listened.append(prova.label)
             listened.append(artists.date_list)
 
             list_tmp.append(listened)
+            if count <= 10:
+                count_times.append(count_artist(artis_listened, prova.id_artists))
+                artists_name.append(prova.art_name)
+            count += 1
 
     artists_list = tuple(list_tmp)
 
@@ -132,6 +136,7 @@ def take_playlist(id):
     prova = db.session.query(Playlist).filter(Playlist.id_playlist == id).first()
     return prova
 
+
 def take_playlist_song(id_playlist):
     pl = db.session.query(PlaylistSongs).filter(PlaylistSongs.id_playlist == id_playlist)
     count = 0
@@ -140,28 +145,32 @@ def take_playlist_song(id_playlist):
     return count
 
 @app.route('/playlists_stats', methods=['GET', 'POST'])
+@login_required
 def playlists_stats():
     headings = ["#", "Name", "Date Creation", "Description"]
     playlist_listened = db.session.query(PlaylistUsers).filter(PlaylistUsers.id_users == user.id_users)
     playlist_list = ()
     playlist_id = []
     take = []
+    list_tmp = []
     count = 0
     for playlist in playlist_listened:
         listened = []
         prova = take_playlist(playlist.id_playlist)
         if exist_playlist(listened, playlist.id_playlist):
-            count = count + 1
-            list_tmp = list(playlist_list)
-            take.append(take_playlist_song(playlist.id_playlist))
             listened.append(count)
             listened.append(prova.name)
             listened.append(prova.date_creation)
             listened.append(prova.description)
-            playlist_id.append(prova.name)
 
             list_tmp.append(listened)
-            playlist_list = tuple(list_tmp)
+
+            if count <= 10:
+                playlist_id.append(prova.name)
+                take.append(take_playlist_song(playlist.id_playlist))
+            count += 1
+
+    playlist_list = tuple(list_tmp)
 
     return render_template('Stats/DashStats/playlists_stats.html', headings=headings, data=playlist_list,
                            number=take, songs_name=json.dumps(playlist_id), artist_b=is_artist())
@@ -186,9 +195,9 @@ def count_type(type_name, name):
 
 
 @app.route('/types_stats', methods=['GET', 'POST'])
+@login_required
 def types_stats():
     title = ["#", "Name", "Last Time"]
-    types_list = ()
     types_listened = db.session.query(SongsListened).filter(SongsListened.id_users == user.id_users)
     type_name = []
     count = []
@@ -199,13 +208,15 @@ def types_stats():
         prova = take_song(type.id_songs)
         if type_exists(type_name, prova.type):
 
-            type_name.append(prova.type)
-            count.append(count_type(types_listened, prova.type))
-            count_s = count_s + 1
             listened.append(count_s)
             listened.append(prova.type)
             listened.append(type.date_list)
             list_tmp.append(listened)
+
+            if count_s <= 10:
+                type_name.append(prova.type)
+                count.append(count_type(types_listened, prova.type))
+            count_s = count_s + 1
 
     types_list = tuple(list_tmp)
 
@@ -266,37 +277,11 @@ def song_cons():
 
     for s in song_list:
         if is_accepted(song, s.type) or is_accepted(artist, s.id_artist):
-            list_end.append(s.id_songs)
+            list_end.append(s)
 
     return list_end
 
-# ---------------------------------------------------Profile page-------------------------------------------------------
 
-
-@app.route('/profile')
-@login_required
-def profile():
-    user = current_user
-    print(user.name)
-
-    return render_template('Sign/profile.html', user=user)
-
-
-def is_artist():
-    art = db.session.query(Artists).filter(Artists.id_artists == current_user.id_users)
-    if art:
-        return True
-    return  False
-
-
-# ------------------------------------------------ Hashing PWD ---------------------------------------------------------
-
-
-@app.route('/prova_h', methods=['GET', 'POST'])
-def prova_hash():
-    hash = scram.using(rounds=8000).hash("dewti5-Tugzob-xuktok")
-    print(hash)
-    return render_template('Home/home.html')
 
 
 

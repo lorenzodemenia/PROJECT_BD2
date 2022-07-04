@@ -3,15 +3,20 @@ from flask_login import *
 from flask_sqlalchemy import SQLAlchemy
 from datetime import date
 from sqlalchemy import func
+import os
+
+IMAGE_FOLDER = os.path.join('static', 'Image')
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'ninninu'
+app.config['UPLOAD_FOLDER'] = IMAGE_FOLDER
+
 
 # Radu
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:zxcvbnm@localhost:5432/db_progetto"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:zxcvbnm@localhost:5432/db_progetto"
 # Lorenzo
-# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:A1n3m3d123!@localhost:5432/bd2_proj"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:A1n3m3d123!@localhost:5432/bd2_proj"
 # Daniele
 # app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Internet10@localhost:5432/bd2progetto"
 

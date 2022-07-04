@@ -117,9 +117,7 @@
                     {{ current_user.name }}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="lol">
-                    {% if artist_b==True %}
-                        <a class="dropdown-item" href="{{ url_for('song_ar') }}">Artist</a>
-                    {% endif %}
+                    <a class="dropdown-item" href="{{ url_for('songs_stats') }}">Stats</a>
                     <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
                 </div>
             </div>

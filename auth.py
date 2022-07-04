@@ -1,6 +1,7 @@
 
 from struttura_db import *
 from stats import *
+from home import *
 
 @app.route('/')  # Splashpage
 def index():
@@ -40,14 +41,32 @@ def login():
             return redirect(url_for('login'))
 
     return render_template('Sign/login.html')
+
 #----------------------------------------------------Homepage-----------------------------------------------------------
 
+
+def playlist_filter(playlist):
+    count = 0
+    lol = []
+    for p in playlist:
+        if count < 4:
+
+            lol.append(take_playlist(p.id_playlist))
+        count += 1
+    return lol
 
 @app.route("/home", methods=['GET', 'POST'])
 @login_required
 def home():
     artists = db.session.query(Artists).all()
-    return render_template('Home/home.html', artists=artists)
+    playlist = db.session.query(PlaylistUsers).filter(PlaylistUsers.id_users == user.id_users)
+    playlist = playlist_filter(playlist)
+
+    logo_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'images.jpeg')
+
+    return render_template('Home/home.html', artists=artists, playlist=playlist, songs=playlist,
+                           logo_image=logo_filename)
+
 #----------------------------------------------------Signup-------------------------------------------------------------
 
 
