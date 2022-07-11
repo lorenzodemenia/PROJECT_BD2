@@ -10,7 +10,6 @@ def index():
     else:
         return redirect(url_for('login'))  # ALtrimenti lo faccio loggare
 
-
 #----------------------------------------------------Login--------------------------------------------------------------
 #Da fare: implementare l'hashing della password, fare differenza tra un listener e un artist quando questo si logga
 
@@ -145,7 +144,7 @@ def logout():
     return redirect(url_for('login'))
 #---------------------------------------------------Profile page--------------------------------------------------------
 
-# @app.route('/profile')
+@app.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
     user = current_user

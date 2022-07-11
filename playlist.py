@@ -92,7 +92,7 @@ def create_playlist():
     if request.method == 'POST':
         lol = count_id_playlist()
 
-        id_playlist = 1
+        id_playlist = 8
         name = request.form['name']
         private = request.form['type']
         description = request.form['description']
@@ -107,6 +107,7 @@ def create_playlist():
         db.session.commit()
 
         playlist_user = PlaylistUsers(user.id_users, id_playlist, 0)
+        '''playlist_user = PlaylistUsers(user.id_users, id_playlist)'''
 
         db.session.add(playlist_user)
         db.session.commit()
