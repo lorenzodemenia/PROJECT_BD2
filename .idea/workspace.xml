@@ -5,30 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d88d96a5-0874-4866-a26c-939fcccc884d" name="Changes" comment="Ora il testo nella card ha un aspetto decente">
+      <change afterPath="$PROJECT_DIR$/static/Image/Netflix-avatar.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/progetto.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/progetto.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_06_22__15_46__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_06_22__15_46__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/playlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artist.py" beforeDir="false" afterPath="$PROJECT_DIR$/artist.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/profile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/struttura_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/struttura_db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Album/album_interface.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Album/album_interface.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Album/album_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Album/album_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Home/artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/artist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Home/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Home/headers.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/headers.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Home/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Playlist/playlist_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Playlist/playlist_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Playlist/playlists_interface.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Playlist/playlists_interface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Playlist/add_playlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Playlist/add_playlist.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Profile/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Profile/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Sign/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Sign/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Stats/Artist/stats_artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Stats/Artist/stats_artist.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Stats/DashStats/stats_listener.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Stats/DashStats/stats_listener.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Stats/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Stats/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Stats/dashboard.rtl.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/dashboard.rtl.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/views.py" afterDir="false" />
     </list>
     <list id="c667252f-f681-4057-bf25-df95b3989900" name="Changes by lorenzodemenia" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -325,9 +318,9 @@
     <option name="LAST_COMMIT_MESSAGE" value="Ho aggiunto su struttura_db func da sqlalchemy" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1657525832111" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__auth_py_.coverage" NAME="Flask (auth.py) Coverage Results" MODIFIED="1656161871967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PROJECT_BD2$app.coverage" NAME="app Coverage Results" MODIFIED="1656755028549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__auth_py_.coverage" NAME="Flask (auth.py) Coverage Results" MODIFIED="1656400346764" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1656929627323" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1656678137328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1657527328837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

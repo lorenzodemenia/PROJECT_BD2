@@ -53,7 +53,6 @@ def get_artist_songs(id):
 def song_ar():
 
     title = ( "Title", "length", "Date", "Type", "Listened")
-    print(id_play())
     sl = db.session.query(Songs).filter(Songs.id_artist == current_user.id_users)
     number = []
     songs_name = []

@@ -97,7 +97,7 @@ def artists_stats():
     count_times = []
     artists_name = []
     list_tmp = []
-    count = 0
+    count = 1
     for artists in artis_listened:
 
         listened = []
@@ -153,7 +153,7 @@ def playlists_stats():
     playlist_id = []
     take = []
     list_tmp = []
-    count = 0
+    count = 1
     for playlist in playlist_listened:
         listened = []
         prova = take_playlist(playlist.id_playlist)
@@ -202,7 +202,7 @@ def types_stats():
     type_name = []
     count = []
     list_tmp = []
-    count_s = 0
+    count_s = 1
     for type in types_listened:
         listened = []
         prova = take_song(type.id_songs)
