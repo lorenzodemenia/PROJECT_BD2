@@ -1,4 +1,4 @@
-
+from stats import user
 from struttura_db import *
 from stats import *
 from home import *
@@ -54,6 +54,7 @@ def playlist_filter(playlist):
         count += 1
     return lol
 
+
 @app.route("/home", methods=['GET', 'POST'])
 @login_required
 def home():
@@ -62,9 +63,10 @@ def home():
     playlist = playlist_filter(playlist)
 
     logo_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'images.jpeg')
+    user_image = os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
 
     return render_template('Home/home.html', artists=artists, playlist=playlist, songs=playlist,
-                           logo_image=logo_filename)
+                           logo_image=logo_filename, user_image=user_image)
 
 #----------------------------------------------------Signup-------------------------------------------------------------
 
@@ -84,8 +86,9 @@ def signup_listener():
         mail = request.form['mail']
         pwd = request.form['pwd']
         birth_date = request.form['birth_date']
+        image = 'Netflix-avatar.png'
 
-        user = Users(name, surname, sex, mail, scram.using(rounds=8000).hash(pwd), birth_date)
+        user = Users(name, surname, sex, mail, scram.using(rounds=8000).hash(pwd), birth_date, image)
         check = db.session.query(Users).filter(Users.mail == request.form['mail']).first()
 
         if scram.verify(request.form['pwd_repeat'], user.pwd):#Se le password sono uguali procedo con l'inserimento
@@ -106,14 +109,16 @@ def signup_listener():
 @app.route("/signup_artist", methods=['GET', 'POST'])
 def signup_artist():
     if request.method == 'POST':
+
         name = request.form['name']
         surname = request.form['surname']
         sex = request.form['sex']
         mail = request.form['mail']
         pwd = request.form['pwd']
         birth_date = request.form['birth_date']
+        image = 'Netflix-avatar.png'
 
-        user = Users(name, surname, sex, mail, scram.using(rounds=8000).hash(pwd), birth_date)
+        user = Users(name, surname, sex, mail, scram.using(rounds=8000).hash(pwd), birth_date, image)
         check = db.session.query(Users).filter(Users.mail == request.form['mail']).first()
         if scram.verify(request.form['pwd_repeat'], user.pwd):#Se le password sono uguali procedo con l'inserimento
 

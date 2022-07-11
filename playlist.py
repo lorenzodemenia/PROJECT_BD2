@@ -3,7 +3,7 @@ import json
 from app import *
 from auth import *
 from stats import *
-from stats import take_song, take_playlist
+from stats import take_song, take_playlist, user
 from struttura_db import *
 
 

@@ -109,9 +109,9 @@ def add_album():
         genres = form.getlist('type')
         #Conto quante canzoni devo inserire
         counter = titles.__len__()
-
+        image_album = 'images.jpeg'
         #Creo oggetto album
-        album = Album(current_user.id_users, date.today(), album_name)
+        album = Album(current_user.id_users, date.today(), album_name, image_album)
 
         #Aggiungo l'album al db
         db.session.add(album)
@@ -121,7 +121,7 @@ def add_album():
 
         #Inserisco con un ciclo for le canzoni
         for i in range(0, counter):
-            song = Songs(current_user.id_users, titles[i], lengths[i], date.today(), genres[i])
+            song = Songs(current_user.id_users, titles[i], lengths[i], date.today(), genres[i], image_album)
             # Aggiungo la canzone
             db.session.add(song)
             db.session.commit()
