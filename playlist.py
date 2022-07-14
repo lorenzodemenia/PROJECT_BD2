@@ -47,7 +47,6 @@ def take_list_song(id_playlist):
 @login_required
 def playlist_page(id_playlist):
     title = ("#", "Title", "Artist", "length", "Date", "Type")
-
     playlist = db.session.query(PlaylistSongs).filter(PlaylistSongs.id_playlist == id_playlist)
     list_tmp = []
     count = 0

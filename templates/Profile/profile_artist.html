@@ -1,0 +1,163 @@
+{% extends "Home/base.html" %}
+
+{% block content %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="statssheet" href="static/css/stats.css">
+    <link rel="navbarsheet" href="static/css/headers.css">
+    <link href="headers.css" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+        <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 5rem;
+                }
+            }
+        </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="templates/Stats/dashboard.rlt.css" rel="stylesheet">
+    <link href="templates/Stats/dashboard.css" rel="stylesheet">
+    <script type="text/javascript" src="../dashboard.js"></script>
+    <section style="background-color: #eee;">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card mb-4">
+          <div class="card-body text-center shadow">
+            <img  width="120" height="120" alt="Logo Image" src="{{ user_image }}"  >
+            <h5 class="my-3">{{ artist.art_name }}</h5>
+            <p class="text-muted mb-1">Artist</p>
+              <div class="d-flex justify-content-center mb-2">
+                  <a href="{{ url_for('change_avatar') }}"> <button type="button" class="btn btn-primary" >Change Icon</button> </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="card mb-4">
+          <div class="card-body shadow">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Full Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ current_user.name }} {{ current_user.surname }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ current_user.mail }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Label</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ artist.label }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Birth Date</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ current_user.birth_date }}</p>
+              </div>
+            </div>
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-4 mb-md-0">
+              <div class="card-body shadow">
+                <a class="home_artista" href="{{ url_for('artists_stats') }}"><span class="text-primary font-italic me-1">Type Stats</span>
+                </a>
+                  {% for t in type %}
+                    <p class="mt-4 mb-1" style="font-size: .77rem;">{{ t[0] }}</p>
+                    <div class="progress rounded" style="height: 5px;">
+                      <div class="progress-bar" role="progressbar" style="width: {{ t[1] }}%" aria-valuenow="80"
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card mb-4 mb-md-0">
+              <div class="card-body shadow">
+                <a class="home_artista" href="{{ url_for('alb_ar') }}"><span class="text-primary font-italic me-1">Album Stats</span>
+                </a>
+                  {% for t in album %}
+                    <p class="mt-4 mb-1" style="font-size: .77rem;">{{ t[0].title }}</p>
+                    <div class="progress rounded" style="height: 5px;">
+                      <div class="progress-bar" role="progressbar" style="width: {{ t[1] }}%" aria-valuenow="80"
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </section>
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+        integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+        crossorigin="anonymous"></script>
+<script src="../dashboard.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+        integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous">
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<script src="../dashboard.js"></script>
+</body>
+</html>
+
+{% endblock %}
