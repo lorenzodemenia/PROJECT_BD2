@@ -36,21 +36,7 @@
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{{ url_for('index') }}">Unify</a>
-            <div class="dropdown">
-                <button class="btn btn-outline-dark dropdown-toggle" type="button" id="lol"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ current_user.name }}
-                </button>
-                <div class="dropdown-menu" aria-labelledby="lol">
-                    <a class="dropdown-item" href="{{ url_for('songs_stats') }}">Listener</a>
-                    <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
-                </div>
-            </div>
-    </div>
-</nav>
+
 <div class="container-fluid">
     <div class="row">
         <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse shadow">

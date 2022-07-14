@@ -2,10 +2,14 @@ import json
 
 import auth
 from app import *
-from auth import *
 from struttura_db import *
 from artist import *
 from passlib.hash import scram
+
+
+def upload_user_image():
+    return os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
+
 
 user = current_user
 
@@ -65,7 +69,7 @@ def songs_stats():
     song_list = tuple(list_tmp)
 
     return render_template('Stats/DashStats/songs_stats.html', headings=title, data=song_list, number=number,
-                           songs_name=json.dumps(songs_name), artist_b=is_artist())
+                           songs_name=json.dumps(songs_name), artist_b=is_artist(), user_image=upload_user_image())
 
 
 # ---------------------------------------------------Artists Stats------------------------------------------------------
@@ -120,7 +124,7 @@ def artists_stats():
     artists_list = tuple(list_tmp)
 
     return render_template('Stats/DashStats/artists_stats.html', headings=title, data=artists_list,
-                           number=count_times, songs_name=json.dumps(artists_name), artist_b=is_artist())
+                           number=count_times, songs_name=json.dumps(artists_name), artist_b=is_artist(), user_image=upload_user_image())
 
 
 # ---------------------------------------------------Playlists Stats----------------------------------------------------
@@ -173,7 +177,7 @@ def playlists_stats():
     playlist_list = tuple(list_tmp)
 
     return render_template('Stats/DashStats/playlists_stats.html', headings=headings, data=playlist_list,
-                           number=take, songs_name=json.dumps(playlist_id), artist_b=is_artist())
+                           number=take, songs_name=json.dumps(playlist_id), artist_b=is_artist(), user_image=upload_user_image())
 
 
 # ---------------------------------------------------Type Stats--------------------------------------------------------
@@ -221,7 +225,7 @@ def types_stats():
     types_list = tuple(list_tmp)
 
     return render_template('Stats/DashStats/types_stats.html', headings=title, data=types_list,
-                           number=count, songs_name=json.dumps(type_name), artist_b=is_artist())
+                           number=count, songs_name=json.dumps(type_name), artist_b=is_artist(), user_image=upload_user_image())
 
 
 # ----------------------------------------------------Canzoni Consigliate-----------------------------------------------

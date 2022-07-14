@@ -27,7 +27,7 @@ def get_playlist():
 def pl_page():
     play_list = get_playlist()
 
-    return render_template('Playlist/playlist_list.html', playlist=play_list)
+    return render_template('Playlist/playlist_list.html', playlist=play_list, user_image=upload_user_image())
 
 
 def take_list_song(id_playlist):
@@ -69,7 +69,7 @@ def playlist_page(id_playlist):
     song_choose = take_list_song(id_playlist)
 
     return render_template('Playlist/playlist.html', headings=title, data=song_list, playlist=play_list,
-                           playlist_obj=play, song_choose=song_choose)
+                           playlist_obj=play, song_choose=song_choose, user_image=upload_user_image())
 
 
 def count_id_playlist():
@@ -113,7 +113,7 @@ def create_playlist():
 
         return playlist_page(id_playlist)
 
-    return render_template('Playlist/add_playlist.html')
+    return render_template('Playlist/add_playlist.html', user_image=upload_user_image())
 
 
 @app.route('/addSongPlaylist/<id_song>/<id_playlist>', methods=['GET', 'POST'])

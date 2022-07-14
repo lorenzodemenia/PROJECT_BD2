@@ -4,6 +4,9 @@ from app import *
 from auth import *
 from struttura_db import *
 
+def upload_user_image():
+    return os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
+
 
 def is_artist():
     art = db.session.query(Artists).filter(Artists.id_artists == current_user.id_users)
@@ -75,7 +78,7 @@ def song_ar():
     list_tmp.sort(key=lambda x:x[4], reverse=True)
     song_list = tuple(list_tmp)
     return render_template('Stats/Artist/songs_artist.html', headings=title, data=song_list, number=number,
-                           songs_name=json.dumps(songs_name), artist_b=is_artist())
+                           songs_name=json.dumps(songs_name), artist_b=is_artist(), user_image=upload_user_image())
 
 
 def count_album(id_album):
@@ -112,7 +115,7 @@ def alb_ar():
     list_tmp.sort(key=lambda x: x[2], reverse=True)
     song_list = tuple(list_tmp)
     return render_template('Stats/Artist/albums_artist.html', headings=title, data=song_list, number=number,
-                           songs_name=json.dumps(songs_name), artist_b=is_artist())
+                           songs_name=json.dumps(songs_name), artist_b=is_artist(), user_image=upload_user_image())
 
 
 

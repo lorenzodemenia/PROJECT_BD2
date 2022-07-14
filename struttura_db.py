@@ -171,3 +171,4 @@ class SongsListened(db.Model):
 
 
 db.create_all()
+

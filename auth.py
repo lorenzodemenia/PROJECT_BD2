@@ -3,6 +3,10 @@ from struttura_db import *
 from stats import *
 from home import *
 
+def upload_user_image():
+    return os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
+
+
 @app.route('/')  # Splashpage
 def index():
     if current_user.is_authenticated:  # Se l'utente è autenticato
