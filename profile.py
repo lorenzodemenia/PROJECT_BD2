@@ -172,24 +172,7 @@ def choose_avatar(name_avatar):
         db.session.commit()
 
         if artist_bool:
-
-            dim = 5
-            user_image = os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
-            type_list = listener_type(dim)
-            song_list = listener_song(dim)
-            artist_list = listener_artist(dim)
-            playlist_list = listener_playlist(dim)
-
-            return render_template('Profile/profile_listener.html', user_image=user_image, type=type_list, song=song_list,
-                                   artist=artist_list, playlist=playlist_list)
+            return redirect(url_for('listener_page'))
         else:
-            artist_user = db.session.query(Artists).filter(Artists.id_artists == current_user.id_users).first()
-
-            user_image = os.path.join(app.config['UPLOAD_FOLDER'],  current_user.image)
-
-            type_list = stats_types()
-            album_list = stats_album()
-
-            return render_template('Profile/profile_artist.html', artist=artist_user, user_image=user_image,
-                                   type=type_list, album=album_list)
+            return redirect(url_for('artist_page'))
 
