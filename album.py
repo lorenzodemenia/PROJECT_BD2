@@ -10,7 +10,7 @@ from struttura_db import *
 
 
 def get_album():
-    album_list = db.session.query(Album).filter(Album.id_artist == user.id_users)
+    album_list = db.session.query(Album).filter(Album.id_artist == current_user.id_users)
     album = []
     for al in album_list:
         tmp = []

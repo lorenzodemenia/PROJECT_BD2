@@ -1,7 +1,6 @@
-from stats import user
-from struttura_db import *
 from stats import *
 from home import *
+from passlib.hash import scram
 
 def upload_user_image():
     return os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
@@ -63,7 +62,7 @@ def playlist_filter(playlist):
 @login_required
 def home():
     artists = db.session.query(Artists).all()
-    playlist = db.session.query(PlaylistUsers).filter(PlaylistUsers.id_users == user.id_users)
+    playlist = db.session.query(PlaylistUsers).filter(PlaylistUsers.id_users == current_user.id_users)
     playlist = playlist_filter(playlist)
 
     logo_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'images.jpeg')

@@ -4,6 +4,33 @@ from app import *
 from auth import *
 from struttura_db import *
 
+
+# take a song using the id
+def take_song(id_songs):
+    song = db.session.query(Songs).filter(Songs.id_songs == id_songs).first()
+    return song
+
+
+# check if an element is in the list
+def exists(list_id, elem_id):
+    for ld in list_id:
+        if ld == elem_id:
+            return False
+    return True
+
+
+# count how many element is in the list
+def count_num(list_id, elem_id,):
+    count = 0
+    for art in list_id:
+        prova = take_song(art.id_songs)
+        if prova.id_artist == elem_id or prova.type == elem_id:
+            count = count + art.num_times
+    return count
+
+
+
+
 def upload_user_image():
     return os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
 
@@ -55,7 +82,7 @@ def get_artist_songs(id):
 @login_required
 def song_ar():
 
-    title = ( "Title", "length", "Date", "Type", "Listened")
+    title = ("Title", "length", "Date", "Type", "Listened")
     sl = db.session.query(Songs).filter(Songs.id_artist == current_user.id_users)
     number = []
     songs_name = []
@@ -78,6 +105,33 @@ def song_ar():
     list_tmp.sort(key=lambda x:x[4], reverse=True)
     song_list = tuple(list_tmp)
     return render_template('Stats/Artist/songs_artist.html', headings=title, data=song_list, number=number,
+                           songs_name=json.dumps(songs_name), artist_b=is_artist(), user_image=upload_user_image())
+
+
+@app.route('/types_stats_artist', methods=['GET', 'POST'])
+def types_stats_artist():
+    title = ["Name", "Number of Times"]
+    list_type = db.session.query(Songs).filter(Songs.id_artist == current_user.id_users)
+    song_type_listened= db.session.query(SongsListened)
+    end_list = []
+    prova = []
+    number = []
+    songs_name = []
+    count = 1
+    for t in list_type:
+        if exists(prova, t.type):
+            tmp = []
+            prova.append(t.type)
+            tmp.append(t.type)
+            tmp.append(count_num(song_type_listened, t.type))
+            end_list.append(tmp)
+            if count <= 10:
+                number.append(count_num(song_type_listened, t.type))
+                songs_name.append(t.type)
+            count += 1
+
+    end_list.sort(key=lambda x: x[1], reverse=True)
+    return render_template('Stats/Artist/types_artist.html', headings=title, data=end_list, number=number,
                            songs_name=json.dumps(songs_name), artist_b=is_artist(), user_image=upload_user_image())
 
 

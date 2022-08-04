@@ -46,7 +46,6 @@
       }
     </style>
 -->
-
     <body>
         <nav class="p-3 mb-3 border-bottom shadow">
             <div class="container">
@@ -70,10 +69,18 @@
                                 <li><a href="{{ url_for('add') }}" class="nav-link px-2 link-dark">Create</a></li>
                             {% endif %}
                         </ul>
+                        {% if search_bar %}
+                            <form method="POST" action="{{ url_for('search') }}"  class="live-search-box col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                                <input  type="search" class="form-control filter" id="filter" onkeyup="searchProduct()" aria-label="Search" >
+                            </form>
+                            {% else %}
+                                <a href="{{ url_for('search') }}" class="nav-link  link-dark ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                    </svg>
+                                </a>
 
-                        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                            <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-                        </form>
+                        {% endif %}
 
                         <div class="dropdown">
                             <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -90,6 +97,9 @@
                 </div>
             </div>
         </nav>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+
 <!--
    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 -->

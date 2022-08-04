@@ -4,15 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d88d96a5-0874-4866-a26c-939fcccc884d" name="Changes" comment="aggiornamento">
+    <list default="true" id="d88d96a5-0874-4866-a26c-939fcccc884d" name="Changes" comment="lollone">
+      <change afterPath="$PROJECT_DIR$/static/Image/playlist_def.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Image/playlist_logo.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Image/playlist_wallpaper.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/Search/prova.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/Stats/Artist/types_artist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/progetto.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/progetto.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Album/album.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Album/album.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Album/album_interface.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Album/album_interface.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Album/album_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Album/album_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Home/artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/artist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/album.py" beforeDir="false" afterPath="$PROJECT_DIR$/album.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artist.py" beforeDir="false" afterPath="$PROJECT_DIR$/artist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/profile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/struttura_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/struttura_db.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Home/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Stats/DashStats/stats_listener.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Stats/DashStats/stats_listener.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Home/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Home/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Search/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Playlist/playlist_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Playlist/playlist_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Playlist/playlists_interface.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Playlist/playlists_interface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Profile/profile_artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Profile/profile_artist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Stats/Artist/albums_artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Stats/Artist/albums_artist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/views.py" afterDir="false" />
     </list>
     <list id="c667252f-f681-4057-bf25-df95b3989900" name="Changes by lorenzodemenia" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +40,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
         <option value="HTML File" />
       </list>
     </option>
@@ -82,6 +99,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/Image" />
+      <recent name="$PROJECT_DIR$/templates/Search" />
       <recent name="$PROJECT_DIR$/templates" />
     </key>
   </component>
@@ -173,6 +192,13 @@
       <workItem from="1657797122915" duration="1616000" />
       <workItem from="1657970337349" duration="4250000" />
       <workItem from="1658306997017" duration="9853000" />
+      <workItem from="1658482079915" duration="2513000" />
+      <workItem from="1658506918498" duration="896000" />
+      <workItem from="1658997012578" duration="13280000" />
+      <workItem from="1659084127259" duration="21089000" />
+      <workItem from="1659440341266" duration="678000" />
+      <workItem from="1659536929589" duration="11991000" />
+      <workItem from="1659600666991" duration="8256000" />
     </task>
     <task id="LOCAL-00001" summary="Sistemato l'errore che non mi diceva se ho sbagliato password al login">
       <created>1656256863294</created>
@@ -350,9 +376,9 @@
     <option name="LAST_COMMIT_MESSAGE" value="aggiornamento" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1658307061431" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__auth_py_.coverage" NAME="Flask (auth.py) Coverage Results" MODIFIED="1656161871967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PROJECT_BD2$app.coverage" NAME="app Coverage Results" MODIFIED="1656755028549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__auth_py_.coverage" NAME="Flask (auth.py) Coverage Results" MODIFIED="1656400346764" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1656929627323" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1656678137328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1659600700381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

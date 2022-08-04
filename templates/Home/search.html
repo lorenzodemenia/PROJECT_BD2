@@ -1,9 +1,0 @@
-{% extends "Home/base.html" %}
-
-{% block content %}
-    <h1>Search</h1>
-    {% if current_user.is_authenticated %}
-        Hi {{ current_user.name }}!
-        You searched {{ search }}
-    {% endif %}
-{% endblock %}

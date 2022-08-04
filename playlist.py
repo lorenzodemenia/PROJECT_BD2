@@ -1,14 +1,12 @@
-import json
 
 from app import *
-from auth import *
 from stats import *
-from stats import take_song, take_playlist, user
+from stats import take_song, take_playlist
 from struttura_db import *
 
 
 def get_playlist():
-    playlist = db.session.query(PlaylistUsers).filter(PlaylistUsers.id_users == user.id_users)
+    playlist = db.session.query(PlaylistUsers).filter(PlaylistUsers.id_users == current_user.id_users)
     play_list = []
 
     for play in playlist:
@@ -46,7 +44,9 @@ def take_list_song(id_playlist):
 @app.route('/playlist_page/<id_playlist>', methods=['GET', 'POST'])
 @login_required
 def playlist_page(id_playlist):
+
     title = ("#", "Title", "Artist", "length", "Date", "Type")
+
     playlist = db.session.query(PlaylistSongs).filter(PlaylistSongs.id_playlist == id_playlist)
     list_tmp = []
     count = 0
@@ -105,7 +105,7 @@ def create_playlist():
         db.session.add(playlist)
         db.session.commit()
 
-        playlist_user = PlaylistUsers(user.id_users, id_playlist, 0)
+        playlist_user = PlaylistUsers(current_user.id_users, id_playlist, 0)
         '''playlist_user = PlaylistUsers(user.id_users, id_playlist)'''
 
         db.session.add(playlist_user)
@@ -119,10 +119,15 @@ def create_playlist():
 @app.route('/addSongPlaylist/<id_song>/<id_playlist>', methods=['GET', 'POST'])
 @login_required
 def add_song_playlist(id_song, id_playlist):
+    print(id_song)
+    print(id_playlist)
+    if not exits_song_playlist(id_playlist,id_song):
+        playlist_song = PlaylistSongs(id_song, id_playlist)
+        db.session.add(playlist_song)
+        db.session.commit()
+        return redirect(url_for('playlist_page', id_playlist=id_playlist))
+    else:
 
-    playlist_song = PlaylistSongs(id_song, id_playlist)
+        return False
 
-    db.session.add(playlist_song)
-    db.session.commit()
 
-    return playlist_page(id_playlist)

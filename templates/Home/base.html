@@ -89,4 +89,25 @@
             {% endblock %}
         </div>
     </body>
+    <script>
+        function searchProduct(){
+            const input = document.getElementById('filter').value.toUpperCase();
+            const cardContainer = document.getElementById('card-list');
+            const cards = document.getElementsByClassName('card');
+            console.log(cards.length);
+            for(let i=0; i<cards.length; i++){
+                let title = cards[i].querySelector(".container h5.card-title");
+
+            if (title) {
+                    console.log(title);
+                  txtValue = title.textContent || title.innerText;
+                  if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    cards[i].style.display = "";
+                  } else {
+                    cards[i].style.display = "none";
+                  }
+                }
+            }
+        }
+    </script>
 </html>

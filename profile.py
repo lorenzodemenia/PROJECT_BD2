@@ -3,7 +3,7 @@ import json
 from app import *
 from auth import *
 from stats import *
-from stats import take_song, take_playlist, type_exists, count_type
+from stats import take_song, take_playlist
 from struttura_db import *
 
 list_image = ['chicken-avatar.png', 'monster-avatar.png', 'panda-avatar.png', 'penguin-avatar.png', 'yellow-avatar.jpeg',
@@ -18,11 +18,11 @@ def stats_types():
     end_list = []
     prova = []
     for t in list_type:
-        if type_exists(prova, t.type):
+        if exists(prova, t.type):
             tmp = []
             prova.append(t.type)
             tmp.append(t.type)
-            tmp.append(count_type(list_listened, t.type))
+            tmp.append(count_num(list_listened, t.type))
             end_list.append(tmp)
 
     return end_list
@@ -45,12 +45,11 @@ def stats_album():
     return album
 
 
-
-
 def upload_user_image():
     return os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
 
 ''' , user_image=upload_user_image() '''
+
 
 @app.route('/artist_page',  methods=['GET', 'POST'])
 def artist_page():
@@ -79,10 +78,10 @@ def listener_type(num):
     for sl in song_list:
         song = take_song(sl.id_songs)
         count += 1
-        if type_exists(type_list, song.type) and count <= num:
+        if exists(type_list, song.type) and count <= num:
             tmp = []
             tmp.append(song.type)
-            tmp.append(count_type(song_list, song.type))
+            tmp.append(count_num(song_list, song.type))
             end_list.append(tmp)
 
     return end_list
@@ -112,11 +111,11 @@ def listener_artist(num):
     for artists in artist_list:
         prova = take_artist(artists.id_songs)
         count += 1
-        if exists_artist(artist_id, prova.id_artists) and count <= num:
+        if exists(artist_id, prova.id_artists) and count <= num:
             listened = []
             artist_id.append(prova.id_artists)
             listened.append(prova)
-            listened.append(count_artist(artist_list, prova.id_artists))
+            listened.append(count_num(artist_list, prova.id_artists))
             list_tmp.append(listened)
 
     return list_tmp
