@@ -23,6 +23,7 @@
         rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="static/css/style.css">
 
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
 
@@ -93,11 +94,12 @@
         function searchProduct(){
             const input = document.getElementById('filter').value.toUpperCase();
             const cardContainer = document.getElementById('card-list');
-            const cards = document.getElementsByClassName('card');
-            console.log(cards.length);
-            for(let i=0; i<cards.length; i++){
-                let title = cards[i].querySelector(".container h5.card-title");
+            const cards = document.getElementsByClassName('flip-card');
+            console.log(cards)
 
+            for(let i=0; i<cards.length; i++){
+                let title = cards[i].querySelector(".flip-card-back h4.card-title");
+                console.log(title)
             if (title) {
                     console.log(title);
                   txtValue = title.textContent || title.innerText;

@@ -71,7 +71,7 @@
                         </ul>
                         {% if search_bar %}
                             <form method="POST" action="{{ url_for('search') }}"  class="live-search-box col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                                <input  type="search" class="form-control filter" id="filter" onkeyup="searchProduct()" aria-label="Search" >
+                                <input  type="search" class="form-control filter" id="filter" onkeyup="searchProduct()" placeholder="Search.." aria-label="Search" >
                             </form>
                             {% else %}
                                 <a href="{{ url_for('search') }}" class="nav-link  link-dark ">

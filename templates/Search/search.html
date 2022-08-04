@@ -3,219 +3,145 @@
 {% block content %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="static/css/style.css">
-    <link rel="statssheet" href="static/css/stats.css">
-    <link rel="navbarsheet" href="static/css/headers.css">
-    <link href="headers.css" rel="stylesheet">
+    <link href="static/css/prova.css" rel="stylesheet">
+
+
+
 
     <!-- Bootstrap core CSS -->
         <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 5rem;
-            }
-        }
-        /* Gray */
-        .default {
-          border-color: #e7e7e7;
-          color: black;
-        }
-
-        .default:hover {
-          background: #e7e7e7;
-        }
-        /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
-        .flip-card {
-          background-color: transparent;
-          width: 200px;
-          height: 200px;
-          border: 1px solid #f1f1f1;
-          perspective: 1000px; /* Remove this if you don't want the 3D effect */
-        }
-
-        /* This container is needed to position the front and back side */
-        .flip-card-inner {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          text-align: center;
-          transition: transform 0.8s;
-          transform-style: preserve-3d;
-        }
-
-        /* Do an horizontal flip when you move the mouse over the flip box container */
-        .flip-card:hover .flip-card-inner {
-          transform: rotateY(180deg);
-        }
-
-        /* Position the front and back side */
-        .flip-card-front, .flip-card-back {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          -webkit-backface-visibility: hidden; /* Safari */
-          backface-visibility: hidden;
-        }
-
-        /* Style the front side (fallback if image is missing) */
-        .flip-card-front {
-          background-color: white;
-          color: black;
-        }
-
-        /* Style the back side */
-        .flip-card-back {
-          background-color: white;
-          color: white;
-          transform: rotateY(180deg);
-        }
 
 
-    </style>
-    <section class="vh-100">
-      <div class="container-xxl  py-4 ">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card mb-4">
-                  <div class="card-body shadow">
-                      <div class="row">
-                          <div class="col-md-6">
-                            <div class="mb-8 mb-md-6">
-                              <div class="card-body shadow">
-                                  <a href="{{ url_for('playlist_page', id_playlist=13) }}"><img src="{{ playlst_logo }}" width="300" height="220" class="img-rounded" alt="">
-                                        <h1 class="card-text">Best Playlist</h1>
-                                  </a>
+    <br><br>
+    <div class="row">
+    <div class="mb-8 mb-md-6 col-md-6" style="height: 25em; display: flex; align-items: center; justify-content: center ">
+        <div class="flip-card-big shadow" >
+          <div class="flip-card-inner-big">
+               <a href="{{ url_for('playlist_page', id_playlist=13) }}">
+                <div class="flip-card-front-big">
+                    <div>
+                        <img src="{{ playlist_logo }}" alt="Avatar" style="width:400px;height:400px;">
+                    </div>
+                </div>
+                <div class="flip-card-back-big">
+                   <h1 class="card-title text-dark" style="height: 8em; display: flex; align-items: center; justify-content: center ">Best Playlist</h1>
+                </div>
+               </a>
+          </div>
+        </div>
+    </div>
+      <div class="col-md-6" >
+        <div class="card-body shadow  mb-8 mb-md-6" >
+        <h1 style="margin-left: initial">Songs</h1>
+         <div class="card-list">
+          {% for song in songs %}
+              {% if song[4] <= 5 %}
+                      <div class="card-header" style="width: 35rem; height: 4rem;  background-color: white; ">
+                          <div class="row g-1">
+                              <div class="col-md-2">
+                                  <img src="{{ song[1] }}" width="60" height="40" class="img-rounded" alt="">
                               </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6" >
-                            <div class="card-body shadow mb-8 mb-md-6" >
-                            <h1>Songs</h1>
-                             <div class="card-list">
-                              {% for song in songs %}
-                                  {% if song[4] <= 5 %}
-                                          <div class="card-header" style="width: 35rem; height: 4rem;  background-color: white; ">
-                                              <div class="row g-1">
-                                                  <div class="col-md-2">
-                                                      <img src="{{ song[1] }}" width="60" height="40" class="img-rounded" alt="">
-                                                  </div>
-                                                  <div class="col-md">
-                                                      <div class="card-body " style="padding: 1px">
-                                                          <h6 class="card-title" style="margin-right: 0; width: 8rem; height: 1rem; font-weight: bold;">
-                                                             <strong>{{ song[0].title }}</strong>
-                                                              <a  class="bd-placeholder-img" style=" margin-left: 8em" href="{{ url_for('add_song_playlist', id_song=song[0].id_songs, id_playlist=13) }}">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-balloon-heart-fill" viewBox="0 0 16 16">
-                                                                  <path fill-rule="evenodd" d="M8.49 10.92C19.412 3.382 11.28-2.387 8 .986 4.719-2.387-3.413 3.382 7.51 10.92l-.234.468a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2.376 2.376 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224l-.235-.468ZM6.726 1.269c-1.167-.61-2.8-.142-3.454 1.135-.237.463-.36 1.08-.202 1.85.055.27.467.197.527-.071.285-1.256 1.177-2.462 2.989-2.528.234-.008.348-.278.14-.386Z"/>
-                                                                </svg>
+                              <div class="col-md">
+                                  <div class="card-body " style="padding: 1px">
+                                      <h6 class="card-title" style="margin-right: 0; width: 8rem; height: 1rem; font-weight: bold;">
+                                         <strong>{{ song[0].title }}</strong>
+                                          <a  class="bd-placeholder-img" style=" margin-left: 8em" href="{{ url_for('add_song_playlist', id_song=song[0].id_songs, id_playlist=13) }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-balloon-heart-fill" viewBox="0 0 16 16">
+                                              <path fill-rule="evenodd" d="M8.49 10.92C19.412 3.382 11.28-2.387 8 .986 4.719-2.387-3.413 3.382 7.51 10.92l-.234.468a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2.376 2.376 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224l-.235-.468ZM6.726 1.269c-1.167-.61-2.8-.142-3.454 1.135-.237.463-.36 1.08-.202 1.85.055.27.467.197.527-.071.285-1.256 1.177-2.462 2.989-2.528.234-.008.348-.278.14-.386Z"/>
+                                            </svg>
 
-                                                              </a>
-                                                              <a style=" margin-left: 2em">{{ song[3] }}</a>
-
-                                                          </h6>
-                                                          <p class="card-text" style="margin-right: 1px; display: flex; padding-top: -29rem">
-                                                              {{ song[2] }}
-                                                          </p>
-                                                      </div>
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  {% endif %}
-                              {% endfor %}
-                             </div>
+                                          </a>
+                                          <a style=" margin-left: 2em">{{ song[3] }}</a>
+                                      </h6>
+                                      <p class="card-text" style="margin-right: 1px; display: flex; padding-top: -29rem">
+                                          {{ song[2] }}
+                                      </p>
+                                  </div>
+                              </div>
                       </div>
                   </div>
-                </div>
-            </div>
-            <div class="col-lg-12">
-             <div class="card mb-4">
-                <h1>Artists</h1>
-                <br>
-                <div class="card-list" id="card-list">
-                    <div class="row justify-content-around">
-                        {% for i in artists %}
-                            {% if i[2] <= 4 %}
-                             <div class="flip-card">
-                                <a href="{{ url_for('artist', id_artists=i[0].id_artists) }}" class=home_artista>
-                                   <div class="flip-card-inner">
-                                        <div class="flip-card-front">
-                                            <div class="card-body">
-                                              <img src="{{ i[1] }}"  class="card-img" alt="...">
-                                          </div>
-                                        </div>
-                                        <div class="flip-card-back">
-                                              <h4 class="card-title text-dark" style="height: 8em; display: flex; align-items: center; justify-content: center ">{{ i[0].art_name }}</h4>
-                                          </div>
-                                    </div>
-                                </a>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                    </div>
-                </div>
-                <br>
-                <h1>Album</h1>
-                <br>
-                <div class="card-list" id="card-list">
-                    <div class="row justify-content-around">
-                        {% for i in album %}
-                            {% if i[2] <= 4 %}
-                                <div class="flip-card">
-                                    <a  href="{{ url_for('album_page', id_album=i[0].id_album) }}" class=home_artista>
-                                        <div class="flip-card-inner">
-                                            <div class="flip-card-front">
-                                                <div class="card-body">
-                                                  <img src="{{ i[1] }}"  class="card-img" alt="..." >
-                                                </div>
-                                            </div>
-                                            <div class="flip-card-back">
-                                              <h4 class="card-title text-dark" style="height: 8em; display: flex; align-items: center; justify-content: center ">{{ i[0].title }}</h4>
-                                            </div>
-                                        </div>
-                                    </a>
+              {% endif %}
+          {% endfor %}
+         </div>
+    </div>
+    </div>
+    </div>
+    <br><br><br>
+    <h1 style="margin-left: initial">Artists</h1>
+    <br>
+    <div class="card-list" id="card-list">
+        <div class="row justify-content-around">
+            {% for i in artists %}
+                {% if i[2] <= 4 %}
+                     <div class="flip-card shadow">
+                        <a href="{{ url_for('artist', id_artists=i[0].id_artists) }}" class=home_artista>
+                           <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="card-body">
+                                      <img src="{{ i[1] }}"  class="card-img" alt="...">
+                                   </div>
                                 </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-                <br>
-                <h1>Playlist</h1>
-                <br>
-                <div class="card-list" id="card-list">
-                    <div class="row justify-content-around">
-                        {% for i in playlist %}
-                            {% if i[2] <= 4 %}
-                                <div class="flip-card">
-                                <a  href="{{ url_for('playlist_page', id_playlist=i[0].id_playlist) }}" class=home_artista>
-                                  <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <div class="card-body">
-                                            <img src="{{ i[1] }}"  class="card-img" alt="...">
-                                        </div>
-                                    </div>
-                                    <div class="flip-card-back">
-                                      <h4 class="card-title text-dark" style="height: 8em; display: flex; align-items: center; justify-content: center">{{ i[0].name }}</h4>
-                                    </div>
+                                <div class="flip-card-back">
+                                      <h4 class="card-title text-dark" style="height: 8em; display: flex; align-items: center; justify-content: center ">{{ i[0].art_name }}</h4>
                                   </div>
-                                </a>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
+                            </div>
+                        </a>
                     </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <br><br>
+    <h1>Album</h1>
+    <br>
+    <div class="card-list" id="card-list">
+        <div class="row justify-content-around">
+        {% for i in album %}
+            {% if i[2] <= 4 %}
+                <div class="flip-card shadow">
+                    <a  href="{{ url_for('album_page', id_album=i[0].id_album) }}" class=home_artista>
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="card-body">
+                                  <img src="{{ i[1] }}"  class="card-img" alt="..." >
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                              <h4 class="card-title text-dark" style="height: 8em; display: flex; align-items: center; justify-content: center ">{{ i[0].title }}</h4>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <br>
-             </div>
-            </div>
+            {% endif %}
+        {% endfor %}
         </div>
+    </div>
+    <br><br>
+    <h1>Playlist</h1>
+    <br>
+    <div class="card-list" id="card-list">
+        <div class="row justify-content-around">
+        {% for i in playlist %}
+            {% if i[2] <= 4 %}
+                <div class="flip-card shadow">
+                    <a  href="{{ url_for('playlist_page', id_playlist=i[0].id_playlist) }}" class=home_artista>
+                      <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="card-body">
+                                <img src="{{ i[1] }}"  class="card-img" alt="...">
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                          <h4 class="card-title text-dark" style="height: 8em; display: flex; align-items: center; justify-content: center">{{ i[0].name }}</h4>
+                        </div>
+                      </div>
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
         </div>
-      </div>
-    </section>
+    </div>
+    <br>
+
+
 {% endblock %}

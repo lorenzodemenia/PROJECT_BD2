@@ -85,8 +85,9 @@ def album_list():
 @app.route('/search', methods=['POST', 'GET'])
 @login_required
 def search():
+    best_playlist = db.session.query(Playlist).filter(Playlist.name == 'Preferiti').first()
     user_image = os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
-    playlist_logo_love = os.path.join(app.config['UPLOAD_FOLDER'], "playlist_logo.jpeg")
+    playlist_logo_love = os.path.join(app.config['UPLOAD_FOLDER'], "heart.jpeg")
     playlist_wallpaper = os.path.join(app.config['UPLOAD_FOLDER'], "playlist_wallpaper.jpg")
 
     list_song_image = song_list()
@@ -96,6 +97,7 @@ def search():
 
     return render_template('Search/search.html', search_bar=True, user_image=user_image, artists=list_artist_image,
                            playlist=list_playlist_image, songs=list_song_image, album=list_album_image,
-                           playlst_logo=playlist_logo_love, playlist_wallpaper=playlist_wallpaper)
+                           playlist_logo=playlist_logo_love, playlist_wallpaper=playlist_wallpaper,
+                           best_playlist=best_playlist)
 
 
