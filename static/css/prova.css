@@ -111,4 +111,22 @@
           transform: rotateY(180deg);
         }
 
+        .card-list-song{
+              display: grid;
+              overflow-y: auto;
+              grid-auto-flow: row;
+              column-gap: 11%;
+              overflow-x: auto;
+          }
+          .card-list{
+              display: grid;
+              overflow-y: auto;
+              grid-auto-flow: column;
+              column-gap: 11%;
+              overflow-x: auto;
+          }
+
+
+
+
 

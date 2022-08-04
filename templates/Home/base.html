@@ -101,21 +101,24 @@
                 let title = cards[i].querySelector(".flip-card-back h4.card-title");
                 let title_song = card_song[i].querySelector(".card-body h6.card-title ");
 
-            if (title || title_song) {
+            if (title) {
                   txtValue = title.textContent || title.innerText;
-                  txtValue_song = title_song.textContent || title_song.innerText;
+
                   if (txtValue.toUpperCase().indexOf(input) > -1) {
                     cards[i].style.display = "";
                   } else {
                     cards[i].style.display = "none";
                   }
-                  if (txtValue_song.toUpperCase().indexOf(input) > -1) {
+
+                }
+            if(title_song){
+                txtValue_song = title_song.textContent || title_song.innerText;
+                if (txtValue_song.toUpperCase().indexOf(input) > -1) {
                     card_song[i].style.display = "";
                   } else {
                     card_song[i].style.display = "none";
                   }
-
-                }
+            }
             }
         }
     </script>

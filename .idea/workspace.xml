@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d88d96a5-0874-4866-a26c-939fcccc884d" name="Changes" comment="La ricerca funziona ma solo su quello che ho visualizzato ...">
+    <list default="true" id="d88d96a5-0874-4866-a26c-939fcccc884d" name="Changes" comment="La ricerca funziona ma solo su quello che ho visualizzato ... anche per le canzoni">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/prova.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/prova.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Home/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Search/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Search/search.html" afterDir="false" />
     </list>
@@ -177,7 +179,7 @@
       <workItem from="1659084127259" duration="21089000" />
       <workItem from="1659440341266" duration="678000" />
       <workItem from="1659536929589" duration="11991000" />
-      <workItem from="1659600666991" duration="14361000" />
+      <workItem from="1659600666991" duration="21053000" />
     </task>
     <task id="LOCAL-00001" summary="Sistemato l'errore che non mi diceva se ho sbagliato password al login">
       <created>1656256863294</created>
@@ -319,7 +321,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659626155291</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="La ricerca funziona ma solo su quello che ho visualizzato ... anche per le canzoni">
+      <created>1659626726774</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1659626726774</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -368,12 +377,13 @@
     <MESSAGE value="aggiornamento" />
     <MESSAGE value="Quasi finito di fare la ricerca... devo modificare un due cose e farla effettivamente funzionare" />
     <MESSAGE value="La ricerca funziona ma solo su quello che ho visualizzato ..." />
-    <option name="LAST_COMMIT_MESSAGE" value="La ricerca funziona ma solo su quello che ho visualizzato ..." />
+    <MESSAGE value="La ricerca funziona ma solo su quello che ho visualizzato ... anche per le canzoni" />
+    <option name="LAST_COMMIT_MESSAGE" value="La ricerca funziona ma solo su quello che ho visualizzato ... anche per le canzoni" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__auth_py_.coverage" NAME="Flask (auth.py) Coverage Results" MODIFIED="1656161871967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PROJECT_BD2$app.coverage" NAME="app Coverage Results" MODIFIED="1656755028549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1656678137328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1659622789953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1659633342728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
