@@ -4,26 +4,6 @@
 {% block content %}
     <br>
     <br>
-<!--
-
-    <a href="/home">Click me</a>
-
-
-@app.route('/home')
-, Songs.id_songs
-
-
-    <h1>Buongiorno</h1>
-    <h2>Brani che potrebbero piacerti</h2>
-    <a href="{{ url_for('album_list_page') }}">Click me</a>
-
-    <form action="/Home">
-            <input type="submit" value="Click me" />
-        </form>
-
-    <button> <a href="/Home">Click me</a></button>
--->
-
     <h2>I nostri artisti</h2>
     <div class="row">
         {% for i in artists %}
@@ -35,10 +15,8 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <!--
-                                <a class="home_artista" href="{{ url_for('artist', id_artists=i.id_artists) }}" class="stretched-link"><h5 class="card-title">{{ i.art_name}}</h5></a>
-                                -->
-                                <a href="{{ url_for('artist', id_artists=i.id_artists) }}" class="stretched-link"><h5 class="card-title">{{ i.art_name}}</h5></a>
+
+                                <a href="{{ url_for('artist_profile_page', id_artists=i.id_artists) }}" class="stretched-link"><h5 class="card-title">{{ i.art_name}}</h5></a>
 
                             </div>
                         </div>

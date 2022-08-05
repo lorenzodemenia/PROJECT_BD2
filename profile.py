@@ -48,8 +48,6 @@ def stats_album():
 def upload_user_image():
     return os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
 
-''' , user_image=upload_user_image() '''
-
 
 @app.route('/artist_page',  methods=['GET', 'POST'])
 def artist_page():

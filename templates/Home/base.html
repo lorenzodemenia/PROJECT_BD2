@@ -96,12 +96,13 @@
             const cardContainer = document.getElementById('card-list');
             const cards = document.getElementsByClassName('flip-card');
             const card_song = document.getElementsByClassName('card-header');
+            console.log(cards);
 
             for(let i=0; i<cards.length+card_song.length; i++){
                 let title = cards[i].querySelector(".flip-card-back h4.card-title");
                 let title_song = card_song[i].querySelector(".card-body h6.card-title ");
 
-            if (title) {
+
                   txtValue = title.textContent || title.innerText;
 
                   if (txtValue.toUpperCase().indexOf(input) > -1) {
@@ -110,7 +111,7 @@
                     cards[i].style.display = "none";
                   }
 
-                }
+
             if(title_song){
                 txtValue_song = title_song.textContent || title_song.innerText;
                 if (txtValue_song.toUpperCase().indexOf(input) > -1) {

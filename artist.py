@@ -29,8 +29,6 @@ def count_num(list_id, elem_id,):
     return count
 
 
-
-
 def upload_user_image():
     return os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
 
@@ -104,6 +102,7 @@ def song_ar():
 
     list_tmp.sort(key=lambda x:x[4], reverse=True)
     song_list = tuple(list_tmp)
+
     return render_template('Stats/Artist/songs_artist.html', headings=title, data=song_list, number=number,
                            songs_name=json.dumps(songs_name), artist_b=is_artist(), user_image=upload_user_image())
 
@@ -171,6 +170,16 @@ def alb_ar():
     return render_template('Stats/Artist/albums_artist.html', headings=title, data=song_list, number=number,
                            songs_name=json.dumps(songs_name), artist_b=is_artist(), user_image=upload_user_image())
 
+
+@app.route('/artist_profile_page/<int:id_artists>', methods=['GET', 'POST'])
+@login_required
+def artist_profile_page(id_artists):
+
+    artist = get_artist(id_artists)
+    album = get_artist_albums(id_artists)
+    user_image = os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
+
+    return render_template('Home/home.html', artist=artist, album=album, user_image=user_image)
 
 
 

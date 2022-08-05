@@ -112,11 +112,13 @@
         }
 
         .card-list-song{
-              display: grid;
-              overflow-y: auto;
-              grid-auto-flow: row;
-              column-gap: 11%;
-              overflow-x: auto;
+                margin:4px, 4px;
+                padding:4px;
+                width: 500px;
+                height: 320px;
+                overflow-x: hidden;
+                overflow-y: auto;
+                text-align:justify;
           }
           .card-list{
               display: grid;
