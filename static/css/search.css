@@ -119,14 +119,23 @@
                 overflow-x: hidden;
                 overflow-y: auto;
                 text-align:justify;
-          }
-          .card-list{
+        }
+        .card-list-search{
               display: grid;
               overflow-y: auto;
               grid-auto-flow: column;
               column-gap: 11%;
               overflow-x: auto;
-          }
+        }
+        .card-list-playlist{
+            margin:4px, 4px;
+            padding:4px;
+            width: 600px;
+            height: 600px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            text-align:justify;
+        }
 
 
 

@@ -10,7 +10,7 @@
         <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <br><br>
     <div class="row">
-    <div class="mb-8 mb-md-6 col-md-6" style="height: 25em; display: flex; align-items: center; justify-content: center ">
+        <div class="mb-8 mb-md-6 col-md-6" style="height: 25em; display: flex; align-items: center; justify-content: center ">
         <div class="flip-card-big shadow" >
           <div class="flip-card-inner-big">
                <a href="{{ url_for('playlist_page', id_playlist=13) }}">
@@ -25,13 +25,12 @@
                </a>
           </div>
         </div>
-    </div>
+        </div>
       <div class="col-md-6" >
         <div class="card-body shadow  mb-8 mb-md-6" >
         <h1 style="margin-left: initial">Songs</h1>
          <div class="card-list-song">
           {% for song in songs %}
-
                       <div class="card-header" style="width: 35rem; height: 4rem;  background-color: white; ">
                           <div class="row g-1">
                               <div class="col-md-2">
@@ -64,7 +63,7 @@
     <br><br><br>
     <h1 style="margin-left: initial">Artists</h1>
     <br>
-    <div class="card-list" id="card-list">
+    <div class="card-list-search" id="card-list">
             {% for i in artists %}
                      <div class="flip-card shadow">
                         <a href="{{ url_for('artist_profile_page', id_artists=i[0].id_artists) }}" class=home_artista>
@@ -80,13 +79,12 @@
                             </div>
                         </a>
                     </div>
-
             {% endfor %}
     </div>
     <br><br>
     <h1 style="margin-left: initial">Album</h1>
     <br>
-    <div class="card-list" id="card-list">
+    <div class="card-list-search" id="card-list">
             {% for i in album %}
                 <div class="flip-card shadow">
                     <a  href="{{ url_for('album_page', id_album=i[0].id_album) }}" class=home_artista>
@@ -107,7 +105,7 @@
     <br><br>
     <h1 style="margin-left: initial">Playlist</h1>
     <br>
-    <div class="card-list" id="card-list">
+    <div class="card-list-search" id="card-list">
             {% for i in playlist %}
                 <div class="flip-card shadow">
                     <a  href="{{ url_for('playlist_page', id_playlist=i[0].id_playlist) }}" class=home_artista>

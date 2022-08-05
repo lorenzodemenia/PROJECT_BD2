@@ -10,22 +10,45 @@ def get_playlist():
     play_list = []
 
     for play in playlist:
+
         tmp = []
         p = take_playlist(play.id_playlist)
-        tmp.append(p.name)
-        tmp.append(play.count_song)
-        tmp.append(play.id_playlist)
-        play_list.append(tmp)
+        if p.name != 'Preferiti':
+            tmp.append(p.name)
+            tmp.append(play.count_song)
+            tmp.append(play.id_playlist)
+            play_list.append(tmp)
 
     return play_list
+
+def is_love(id_playlist):
+    playlist = db.session.query(Playlist).filter(Playlist.id_playlist == id_playlist).filter
+
+    if playlist.name == 'Preferiti':
+        return True
+    return False
+
+
+def take_love():
+    playlist_user = db.session.query(PlaylistSongs).filter(PlaylistUsers.id_users == current_user.id_users)
+    for play in playlist_user:
+        if is_love(play.id_playlist):
+            return play
+    return False
 
 
 @app.route('/play_page', methods=['GET', 'POST'])
 @login_required
 def pl_page():
     play_list = get_playlist()
+    playlist_img = os.path.join(app.config['UPLOAD_FOLDER'], "playlist_def.jpeg")
+    playlist_logo_love = os.path.join(app.config['UPLOAD_FOLDER'], "heart.jpeg")
+    play_love = take_love()
 
-    return render_template('Playlist/playlist_list.html', playlist=play_list, user_image=upload_user_image())
+
+
+    return render_template('Playlist/playlist_list.html', playlist=play_list, user_image=upload_user_image(),
+                           playlist_img=playlist_img, playlist_logo=playlist_logo_love, play_love=play_love)
 
 
 def take_list_song(id_playlist):
