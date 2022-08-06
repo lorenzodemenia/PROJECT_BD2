@@ -22,7 +22,7 @@ def song_list():
         song_artist = db.session.query(Artists).filter(Artists.id_artists == song.id_artist).first()
         tmp.append(song)
         tmp.append(os.path.join(app.config['UPLOAD_FOLDER'], song.image))
-        tmp.append(song_artist.art_name)
+        tmp.append(song_artist)
         tmp.append(str(datetime.timedelta(seconds=song.length)))
         tmp.append(count_song)
         list_song_image.append(tmp)
@@ -89,6 +89,7 @@ def search():
     user_image = os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
     playlist_logo_love = os.path.join(app.config['UPLOAD_FOLDER'], "heart.jpeg")
     playlist_wallpaper = os.path.join(app.config['UPLOAD_FOLDER'], "playlist_wallpaper.jpg")
+    all_playlist = db.session.query(Playlist)
 
     list_song_image = song_list()
     list_artist_image = artist_list()
@@ -98,6 +99,6 @@ def search():
     return render_template('Search/search.html', search_bar=True, user_image=user_image, artists=list_artist_image,
                            playlist=list_playlist_image, songs=list_song_image, album=list_album_image,
                            playlist_logo=playlist_logo_love, playlist_wallpaper=playlist_wallpaper,
-                           best_playlist=best_playlist)
+                           best_playlist=best_playlist, all_playlist=all_playlist)
 
 

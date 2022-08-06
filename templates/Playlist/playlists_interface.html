@@ -4,7 +4,7 @@
 {% block content %}
     <link href="static/css/search.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <div class="container">
         <div class="row g-0">
             <div class="col-md-3">
@@ -46,31 +46,25 @@
                     <div class="col-md-1">
                         <div class="dropdown">
                             <button class="btn dropdown" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
-                                  <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                                 </svg>
                             </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" href="">Rimuovi il brano dalla playlist</a></li>
-                                <li class="dropdown-item ">
-                                    <div class=" dropdown-item">
-                                      <a class="dropdown-item" href="#">
-                                        Aggiungo alla playlist &raquo;
-                                      </a>
-                                      <ul class="dropdown-menu dropdown-submenu">
-                                        <li>
-                                          <a class="dropdown-item" href="#">Submenu item 1</a>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                </li>
+                            <ul class="dropdown-menu" onkeyup="clearCache()" style="margin:4px; padding:4px; width: 300px; height: 350px; overflow-x: hidden; overflow-y: auto; text-align:justify;"  role="menu" aria-labelledby="dLabel">
+                                <form method="POST" action=""  class="live-search-box col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                                    <input  type="search" class="form-control filter" id="filter-playlist" onkeyup="searchPlaylist()" placeholder="Search.." aria-label="Search" >
+                                </form>
+                                {% for all in all_playlist %}
+                                    <li class="card-body prova"><a class="dropdown-item"  href="{{ url_for('add_song_playlist', id_song=play[0].id_songs ,id_playlist=all.id_playlist, id_playlist_arr=playlist.id_playlist) }}">
+                                        {{ all.name }}
+                                    </a>
+                                    </li>
+                                {% endfor %}
                             </ul>
                         </div>
-
                     </div>
                 </div>
             </div>
-
         {% endfor %}
     </div>
 

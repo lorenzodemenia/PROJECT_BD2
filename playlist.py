@@ -72,6 +72,7 @@ def playlist_page(id_playlist=None):
 
     playlist_list_song = db.session.query(PlaylistSongs).filter(PlaylistSongs.id_playlist == id_playlist)
     playlist = db.session.query(Playlist).filter(Playlist.id_playlist == id_playlist).first()
+    all_playlist = db.session.query(Playlist).filter(Playlist.id_playlist != id_playlist)
 
     playlist_list = []
 
@@ -88,8 +89,9 @@ def playlist_page(id_playlist=None):
         playlist_logo = os.path.join(app.config['UPLOAD_FOLDER'], "heart.jpeg")
     else:
         playlist_logo = os.path.join(app.config['UPLOAD_FOLDER'], "playlist_def.jpeg")
+
     return render_template('Playlist/playlists_interface.html', playlist=playlist, playlist_list_song=playlist_list,
-                           playlist_logo=playlist_logo)
+                           playlist_logo=playlist_logo, all_playlist=all_playlist)
 
 
 @app.route('/playlist_prova/<int:id_playlist>', methods=['GET', 'POST'])
@@ -142,18 +144,18 @@ def create_playlist():
     return render_template('Playlist/add_playlist.html', user_image=upload_user_image())
 
 
-@app.route('/addSongPlaylist/<id_song>/<id_playlist>', methods=['GET', 'POST'])
+@app.route('/addSongPlaylist/<id_song>/<id_playlist>/<id_playlist_arr>', methods=['GET', 'POST'])
 @login_required
-def add_song_playlist(id_song, id_playlist):
-    print(id_song)
-    print(id_playlist)
-    if not exits_song_playlist(id_playlist,id_song):
+def add_song_playlist(id_song, id_playlist, id_playlist_arr):
+    if not exits_song_playlist(id_playlist, id_song):
         playlist_song = PlaylistSongs(id_song, id_playlist)
         db.session.add(playlist_song)
         db.session.commit()
         return redirect(url_for('playlist_page', id_playlist=id_playlist))
     else:
-
-        return False
+        if id_playlist_arr == -1:
+            return redirect(url_for('search'))
+        else:
+            return redirect(url_for('playlist_page', id_playlist=id_playlist_arr))
 
 

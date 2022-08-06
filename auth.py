@@ -1,6 +1,7 @@
 from stats import *
 from home import *
 from passlib.hash import scram
+from search import *
 
 
 
@@ -63,15 +64,25 @@ def playlist_filter(playlist):
 @app.route("/home", methods=['GET', 'POST'])
 @login_required
 def home():
-    artists = db.session.query(Artists).all()
-    playlist = db.session.query(PlaylistUsers).filter(PlaylistUsers.id_users == current_user.id_users)
-    playlist = playlist_filter(playlist)
+
+    best_playlist = db.session.query(Playlist).filter(Playlist.name == 'Preferiti').first()
+    user_image = os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
+    playlist_logo_love = os.path.join(app.config['UPLOAD_FOLDER'], "heart.jpeg")
+    playlist_wallpaper = os.path.join(app.config['UPLOAD_FOLDER'], "playlist_wallpaper.jpg")
+    all_playlist = db.session.query(Playlist)
+
+    list_song_image = song_list()
+    list_artist_image = artist_list()
+    list_playlist_image = playlist_list()
+    list_album_image = album_list()
 
     logo_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'images.jpeg')
     user_image = os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
 
-    return render_template('Home/home.html', artists=artists, playlist=playlist, songs=playlist,
-                           logo_image=logo_filename, user_image=user_image)
+    return render_template('Home/home.html', user_image=user_image, artists=list_artist_image,
+                           playlist=list_playlist_image, songs=list_song_image, album=list_album_image,
+                           playlist_logo=playlist_logo_love, playlist_wallpaper=playlist_wallpaper,
+                           best_playlist=best_playlist, all_playlist=all_playlist)
 
 #----------------------------------------------------Signup-------------------------------------------------------------
 
