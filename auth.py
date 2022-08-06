@@ -2,6 +2,8 @@ from stats import *
 from home import *
 from passlib.hash import scram
 
+
+
 def upload_user_image():
     return os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
 

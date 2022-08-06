@@ -1,8 +1,11 @@
+import json
 
 from app import *
+from auth import *
 from stats import *
 from stats import take_song, take_playlist
 from struttura_db import *
+import datetime
 
 
 def get_playlist():
@@ -21,8 +24,9 @@ def get_playlist():
 
     return play_list
 
+
 def is_love(id_playlist):
-    playlist = db.session.query(Playlist).filter(Playlist.id_playlist == id_playlist).filter
+    playlist = db.session.query(Playlist).filter(Playlist.id_playlist == id_playlist).first()
 
     if playlist.name == 'Preferiti':
         return True
@@ -45,8 +49,6 @@ def pl_page():
     playlist_logo_love = os.path.join(app.config['UPLOAD_FOLDER'], "heart.jpeg")
     play_love = take_love()
 
-
-
     return render_template('Playlist/playlist_list.html', playlist=play_list, user_image=upload_user_image(),
                            playlist_img=playlist_img, playlist_logo=playlist_logo_love, play_love=play_love)
 
@@ -66,33 +68,34 @@ def take_list_song(id_playlist):
 
 @app.route('/playlist_page/<id_playlist>', methods=['GET', 'POST'])
 @login_required
-def playlist_page(id_playlist):
+def playlist_page(id_playlist=None):
 
-    title = ("#", "Title", "Artist", "length", "Date", "Type")
+    playlist_list_song = db.session.query(PlaylistSongs).filter(PlaylistSongs.id_playlist == id_playlist)
+    playlist = db.session.query(Playlist).filter(Playlist.id_playlist == id_playlist).first()
 
-    playlist = db.session.query(PlaylistSongs).filter(PlaylistSongs.id_playlist == id_playlist)
-    list_tmp = []
-    count = 0
-    for s in playlist:
-        song_tmp = []
-        count = count + 1
-        prova = take_song(s.id_songs)
-        song_tmp.append(count)
-        song_tmp.append(prova.title)
-        art = db.session.query(Artists).filter(Artists.id_artists == prova.id_artist).first()
-        song_tmp.append(art.art_name)
-        song_tmp.append(prova.length)
-        song_tmp.append(prova.date_pub)
-        song_tmp.append(prova.type)
-        list_tmp.append(song_tmp)
+    playlist_list = []
 
-    song_list = tuple(list_tmp)
-    play_list = get_playlist()
-    play = take_playlist(id_playlist)
-    song_choose = take_list_song(id_playlist)
+    for play in playlist_list_song:
+        tmp = []
+        song = take_song(play.id_songs)
+        tmp.append(song)
+        tmp.append(os.path.join(app.config['UPLOAD_FOLDER'], song.image))
+        tmp.append(take_artist(play.id_songs))
+        tmp.append(str(datetime.timedelta(seconds=song.length)))
+        playlist_list.append(tmp)
 
-    return render_template('Playlist/playlist.html', headings=title, data=song_list, playlist=play_list,
-                           playlist_obj=play, song_choose=song_choose, user_image=upload_user_image())
+    if is_love(id_playlist):
+        playlist_logo = os.path.join(app.config['UPLOAD_FOLDER'], "heart.jpeg")
+    else:
+        playlist_logo = os.path.join(app.config['UPLOAD_FOLDER'], "playlist_def.jpeg")
+    return render_template('Playlist/playlists_interface.html', playlist=playlist, playlist_list_song=playlist_list,
+                           playlist_logo=playlist_logo)
+
+
+@app.route('/playlist_prova/<int:id_playlist>', methods=['GET', 'POST'])
+def playlist_prova(id_playlist):
+
+    return render_template('Playlist/playlists_interface.html')
 
 
 def count_id_playlist():

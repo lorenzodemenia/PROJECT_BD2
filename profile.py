@@ -8,8 +8,15 @@ from struttura_db import *
 
 list_image = ['chicken-avatar.png', 'monster-avatar.png', 'panda-avatar.png', 'penguin-avatar.png', 'yellow-avatar.jpeg',
               'Netflix-avatar.png']
-artist_bool = False
+ARTIST_BOOL = False
 # ----------------------------------------------------Artist------------------------------------------------------------
+
+
+def prova_art():
+    if is_artist():
+        return True
+    else:
+        return False
 
 
 def stats_types():
@@ -45,6 +52,30 @@ def stats_album():
     return album
 
 
+def count_song_listened(id_song):
+    song = db.session.query(SongsListened).filter(SongsListened.id_songs == id_song)
+    count = 0
+    for s in song:
+        count += s.num_times
+
+    return count
+
+
+def stats_song():
+    song = db.session.query(Songs).filter(Songs.id_artist == current_user.id_users)
+    song_list = []
+    count = 0
+    for s in song:
+        count += 1
+        if count <= 5:
+            tmp = []
+            tmp.append(s)
+            tmp.append(count_song_listened(s.id_songs))
+            song_list.append(tmp)
+
+    return song_list
+
+
 def upload_user_image():
     return os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
 
@@ -56,13 +87,14 @@ def artist_page():
 
     user_image = os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
 
+    song = stats_song()
+
     type_list = stats_types()
     album_list = stats_album()
+    ARTIST_BOOL = True
 
-    artist_bool = True
-
-    return render_template('Profile/profile_artist.html', artist=artist_user, user_image=user_image,
-                           type=type_list, album=album_list)
+    return render_template('Profile/profile_artist.html', IS_ARTIST= prova_art(), artist=artist_user, user_image=user_image,
+                           type=type_list, album=album_list, song=song, artist_bool=True)
 
 
 # ----------------------------------------------------Listener----------------------------------------------------------
@@ -144,11 +176,9 @@ def listener_page():
     song_list = listener_song(dim)
     artist_list = listener_artist(dim)
     playlist_list = listener_playlist(dim)
-
-    artist_bool = False
-
-    return render_template('Profile/profile_listener.html', user_image=user_image, type=type_list, song=song_list,
-                           artist=artist_list, playlist=playlist_list)
+    ARTIST_BOOL = False
+    return render_template('Profile/profile_listener.html', IS_ARTIST=prova_art(), user_image=user_image, type=type_list, song=song_list,
+                           artist=artist_list, playlist=playlist_list, artist_bool=False)
 
 # ----------------------------------------------------Change Icon-------------------------------------------------------
 
@@ -175,8 +205,8 @@ def choose_avatar(name_avatar):
         current_user.image = name_avatar
         db.session.commit()
 
-        if artist_bool:
-            return redirect(url_for('listener_page'))
-        else:
+        if ARTIST_BOOL:
             return redirect(url_for('artist_page'))
+        else:
+            return redirect(url_for('listener_page'))
 
