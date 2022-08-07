@@ -4,13 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d88d96a5-0874-4866-a26c-939fcccc884d" name="Changes" comment="Playlist prova">
+    <list default="true" id="d88d96a5-0874-4866-a26c-939fcccc884d" name="Changes" comment="Finito l'inserimento di una canzone in una playlist... ho anche aggiornato la homepage e quasi finito la pagina della playlist">
+      <change afterPath="$PROJECT_DIR$/static/js/search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/playlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlist.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/search.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/search.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Home/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Playlist/playlist.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Playlist/playlists_interface.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Playlist/playlists_interface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Search/prova.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Search/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Search/search.html" afterDir="false" />
     </list>
     <list id="c667252f-f681-4057-bf25-df95b3989900" name="Changes by lorenzodemenia" comment="" />
@@ -22,10 +28,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Python Script" />
         <option value="HTML File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -187,7 +193,9 @@
       <workItem from="1659686422530" duration="9219000" />
       <workItem from="1659709900506" duration="4064000" />
       <workItem from="1659775152369" duration="8306000" />
-      <workItem from="1659790943453" duration="12536000" />
+      <workItem from="1659790943453" duration="12853000" />
+      <workItem from="1659862469604" duration="8441000" />
+      <workItem from="1659881332994" duration="3658000" />
     </task>
     <task id="LOCAL-00001" summary="Sistemato l'errore che non mi diceva se ho sbagliato password al login">
       <created>1656256863294</created>
@@ -364,7 +372,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659791994654</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Finito l'inserimento di una canzone in una playlist... ho anche aggiornato la homepage e quasi finito la pagina della playlist">
+      <created>1659807013994</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1659807013994</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -418,12 +433,13 @@
     <MESSAGE value="Ricerca finita" />
     <MESSAGE value="Lista Playlist fatta" />
     <MESSAGE value="Playlist prova" />
-    <option name="LAST_COMMIT_MESSAGE" value="Playlist prova" />
+    <MESSAGE value="Finito l'inserimento di una canzone in una playlist... ho anche aggiornato la homepage e quasi finito la pagina della playlist" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finito l'inserimento di una canzone in una playlist... ho anche aggiornato la homepage e quasi finito la pagina della playlist" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__auth_py_.coverage" NAME="Flask (auth.py) Coverage Results" MODIFIED="1656161871967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PROJECT_BD2$app.coverage" NAME="app Coverage Results" MODIFIED="1656755028549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1656678137328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1659800742785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1659882662201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

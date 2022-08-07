@@ -3,7 +3,7 @@ import json
 from app import *
 from auth import *
 from stats import *
-from stats import take_song, take_playlist
+from stats import take_song, take_playlist, take_artist
 from struttura_db import *
 import datetime
 
@@ -26,6 +26,7 @@ def get_playlist():
 
 
 def is_love(id_playlist):
+
     playlist = db.session.query(Playlist).filter(Playlist.id_playlist == id_playlist).first()
 
     if playlist.name == 'Preferiti':
@@ -75,14 +76,17 @@ def playlist_page(id_playlist=None):
     all_playlist = db.session.query(Playlist).filter(Playlist.id_playlist != id_playlist)
 
     playlist_list = []
+    count = 0
 
     for play in playlist_list_song:
         tmp = []
+        count += 1
         song = take_song(play.id_songs)
         tmp.append(song)
         tmp.append(os.path.join(app.config['UPLOAD_FOLDER'], song.image))
         tmp.append(take_artist(play.id_songs))
         tmp.append(str(datetime.timedelta(seconds=song.length)))
+        tmp.append(count)
         playlist_list.append(tmp)
 
     if is_love(id_playlist):
@@ -104,13 +108,20 @@ def count_id_playlist():
     return db.session.query(func.max(Playlist.id_playlist)).first()
 
 
-def exits_song_playlist(id_playlist, id_song):
+def exits_song_playlist(id_song, id_playlist):
+    db.session.refresh()
     song = db.session.query(PlaylistSongs).filter(PlaylistSongs.id_playlist == id_playlist)
 
     for s in song:
         if s.id_songs == id_song:
             return True
+
     return False
+
+
+
+
+
 
 
 @app.route('/create_playlist', methods=['GET', 'POST'])
@@ -119,22 +130,22 @@ def create_playlist():
     if request.method == 'POST':
         lol = count_id_playlist()
 
-        id_playlist = 8
+        id_playlist = db.session.query(Playlist).count() + 1
+
         name = request.form['name']
         private = request.form['type']
         description = request.form['description']
         date_creation = date.today()
 
         if private == "True":
-            playlist = Playlist(id_playlist + 1, name, description, date_creation, True)
+            playlist = Playlist(id_playlist, name, description, date_creation, True)
         else:
-            playlist = Playlist(id_playlist + 1, name, description, date_creation, False)
+            playlist = Playlist(id_playlist, name, description, date_creation, False)
 
         db.session.add(playlist)
         db.session.commit()
 
         playlist_user = PlaylistUsers(current_user.id_users, id_playlist, 0)
-        '''playlist_user = PlaylistUsers(user.id_users, id_playlist)'''
 
         db.session.add(playlist_user)
         db.session.commit()
@@ -147,15 +158,14 @@ def create_playlist():
 @app.route('/addSongPlaylist/<id_song>/<id_playlist>/<id_playlist_arr>', methods=['GET', 'POST'])
 @login_required
 def add_song_playlist(id_song, id_playlist, id_playlist_arr):
-    if not exits_song_playlist(id_playlist, id_song):
+    if not exits_song_playlist(id_song, id_playlist):
         playlist_song = PlaylistSongs(id_song, id_playlist)
         db.session.add(playlist_song)
         db.session.commit()
-        return redirect(url_for('playlist_page', id_playlist=id_playlist))
+
+        return redirect(url_for('playlist_page', id_playlist=id_playlist_arr))
     else:
-        if id_playlist_arr == -1:
-            return redirect(url_for('search'))
-        else:
-            return redirect(url_for('playlist_page', id_playlist=id_playlist_arr))
+
+        return redirect(url_for('playlist_page', id_playlist=id_playlist_arr))
 
 

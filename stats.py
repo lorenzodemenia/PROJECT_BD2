@@ -4,7 +4,7 @@ import auth
 from app import *
 from struttura_db import *
 from artist import *
-from passlib.hash import scram
+import datetime
 
 
 # function that upload the user image from Image in static path
@@ -284,16 +284,29 @@ def is_accepted(song_list, elem):
 
 # give a list of recommended songs
 def song_cons():
+
+    song_list = db.session.query(Songs)
+
     art = artist_listened()
     song = song_listened()
     list_end = []
-    song_list = db.session.query(Songs).group_by(Songs.type)
+
+    count_song = 0
 
     for s in song_list:
         if is_accepted(song, s.type) or is_accepted(art, s.id_artist):
-            list_end.append(s)
+            tmp = []
+            count_song += 1
+            song_artist = db.session.query(Artists).filter(Artists.id_artists == s.id_artist).first()
+            tmp.append(s)
+            tmp.append(os.path.join(app.config['UPLOAD_FOLDER'], s.image))
+            tmp.append(song_artist)
+            tmp.append(str(datetime.timedelta(seconds=s.length)))
+            tmp.append(count_song)
+            list_end.append(tmp)
 
     return list_end
+
 
 
 

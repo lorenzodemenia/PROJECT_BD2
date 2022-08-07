@@ -28,7 +28,7 @@
         {% for play in playlist_list_song %}
             <div class="card-body">
                 <div class="row g-0">
-                    <div class="col-md-1">
+                    <div class="col-sm-1">
                         <img src="{{ play[1] }}" width="60" height="60" class="img-rounded" alt="PlaylistLogo">
                     </div>
                     <div class="col-sm">
@@ -55,7 +55,7 @@
                                     <input  type="search" class="form-control filter" id="filter-playlist" onkeyup="searchPlaylist()" placeholder="Search.." aria-label="Search" >
                                 </form>
                                 {% for all in all_playlist %}
-                                    <li class="card-body prova"><a class="dropdown-item"  href="{{ url_for('add_song_playlist', id_song=play[0].id_songs ,id_playlist=all.id_playlist, id_playlist_arr=playlist.id_playlist) }}">
+                                    <li class="card-body prova-playlist"><a class="dropdown-item"  href="{{ url_for('add_song_playlist', id_song=play[0].id_songs ,id_playlist=all.id_playlist, id_playlist_arr=playlist.id_playlist) }}">
                                         {{ all.name }}
                                     </a>
                                     </li>

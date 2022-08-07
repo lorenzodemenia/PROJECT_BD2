@@ -4,7 +4,6 @@ from passlib.hash import scram
 from search import *
 
 
-
 def upload_user_image():
     return os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
 
@@ -16,8 +15,8 @@ def index():
     else:
         return redirect(url_for('login'))  # ALtrimenti lo faccio loggare
 
-#----------------------------------------------------Login--------------------------------------------------------------
-#Da fare: implementare l'hashing della password, fare differenza tra un listener e un artist quando questo si logga
+# ----------------------------------------------------Login--------------------------------------------------------------
+# Da fare: implementare l'hashing della password, fare differenza tra un listener e un artist quando questo si logga
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -47,7 +46,7 @@ def login():
 
     return render_template('Sign/login.html')
 
-#----------------------------------------------------Homepage-----------------------------------------------------------
+# ----------------------------------------------------Homepage-----------------------------------------------------------
 
 
 def playlist_filter(playlist):
@@ -71,7 +70,11 @@ def home():
     playlist_wallpaper = os.path.join(app.config['UPLOAD_FOLDER'], "playlist_wallpaper.jpg")
     all_playlist = db.session.query(Playlist)
 
-    list_song_image = song_list()
+    if not song_cons():
+        list_song_image = song_list()
+    else:
+        list_song_image = song_cons()
+
     list_artist_image = artist_list()
     list_playlist_image = playlist_list()
     list_album_image = album_list()
@@ -84,7 +87,7 @@ def home():
                            playlist_logo=playlist_logo_love, playlist_wallpaper=playlist_wallpaper,
                            best_playlist=best_playlist, all_playlist=all_playlist)
 
-#----------------------------------------------------Signup-------------------------------------------------------------
+# ----------------------------------------------------Signup-------------------------------------------------------------
 
 
 @app.route("/signup")
@@ -105,12 +108,15 @@ def signup_listener():
         image = 'Netflix-avatar.png'
 
         user = Users(name, surname, sex, mail, scram.using(rounds=8000).hash(pwd), birth_date, image)
+        playlist = Playlist(db.session.query(Playlist).count() + 1, 'Preferiti', 'canzoni preferite',
+                            date.today(), True)
         check = db.session.query(Users).filter(Users.mail == request.form['mail']).first()
 
         if scram.verify(request.form['pwd_repeat'], user.pwd):#Se le password sono uguali procedo con l'inserimento
 
             if user.mail and not check:#Se la mail c'è e non è già stata usata da un altro user
                 db.session.add(user)  # Aggiungo l'user da inserire
+                db.session.add(playlist)
                 db.session.commit()  # Apporto effettivamente l'INSERT del database
             else:#Altrimenti lo avviso che non va bene
                 flash('Mail already in use!', category='error')
@@ -135,11 +141,14 @@ def signup_artist():
         image = 'Netflix-avatar.png'
 
         user = Users(name, surname, sex, mail, scram.using(rounds=8000).hash(pwd), birth_date, image)
+        playlist = Playlist(db.session.query(Playlist).count() + 1, 'Preferiti', 'canzoni preferite',
+                            date.today(), True)
         check = db.session.query(Users).filter(Users.mail == request.form['mail']).first()
         if scram.verify(request.form['pwd_repeat'], user.pwd):#Se le password sono uguali procedo con l'inserimento
 
             if user.mail and not check:#Se la mail c'è e non è già stata usata da un altro user
                 db.session.add(user)  # Aggiungo l'user da inserire
+                db.session.add(playlist)
                 db.session.commit()  # Apporto effettivamente l'INSERT del database
                 #Aggiungo la parte su artist
                 art_name = request.form['art_name']
@@ -155,7 +164,7 @@ def signup_artist():
             flash("""Passwords don't coincide!""", category='error')
 
     return render_template('Sign/signup_artist.html')
-#----------------------------------------------------Logout-------------------------------------------------------------
+# ----------------------------------------------------Logout-------------------------------------------------------------
 
 
 @app.route('/logout', methods=['GET', 'POST'])
@@ -163,7 +172,9 @@ def signup_artist():
 def logout():
     logout_user()
     return redirect(url_for('login'))
-#---------------------------------------------------Profile page--------------------------------------------------------
+
+
+# ---------------------------------------------------Profile page--------------------------------------------------------
 
 @app.route('/profile', methods=['GET', 'POST'])
 @login_required
