@@ -30,7 +30,6 @@ login_manager.login_view = "login"
 db = SQLAlchemy(app)
 
 
-
 @login_manager.user_loader
 def load_user(id_users):
     user = db.session.query(Users).filter(Users.id_users == id_users).first()

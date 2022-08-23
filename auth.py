@@ -2,6 +2,7 @@ from stats import *
 from home import *
 from passlib.hash import scram
 from search import *
+from playlist import take_love
 
 
 def upload_user_image():
@@ -64,7 +65,7 @@ def playlist_filter(playlist):
 @login_required
 def home():
 
-    best_playlist = db.session.query(Playlist).filter(Playlist.name == 'Preferiti').first()
+    best_playlist = db.session.query(Playlist).filter(Playlist.name == 'Best Song of '+current_user.name).first()
     user_image = os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
     playlist_logo_love = os.path.join(app.config['UPLOAD_FOLDER'], "heart.jpeg")
     playlist_wallpaper = os.path.join(app.config['UPLOAD_FOLDER'], "playlist_wallpaper.jpg")
@@ -78,14 +79,14 @@ def home():
     list_artist_image = artist_list()
     list_playlist_image = playlist_list()
     list_album_image = album_list()
-
+    play_love = take_love()
     logo_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'images.jpeg')
     user_image = os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
 
     return render_template('Home/home.html', user_image=user_image, artists=list_artist_image,
                            playlist=list_playlist_image, songs=list_song_image, album=list_album_image,
                            playlist_logo=playlist_logo_love, playlist_wallpaper=playlist_wallpaper,
-                           best_playlist=best_playlist, all_playlist=all_playlist)
+                           best_playlist=best_playlist, all_playlist=all_playlist, play_love=play_love)
 
 # ----------------------------------------------------Signup-------------------------------------------------------------
 
@@ -108,7 +109,7 @@ def signup_listener():
         image = 'Netflix-avatar.png'
 
         user = Users(name, surname, sex, mail, scram.using(rounds=8000).hash(pwd), birth_date, image)
-        playlist = Playlist(db.session.query(Playlist).count() + 1, 'Preferiti', 'canzoni preferite',
+        playlist = Playlist(db.session.query(Playlist).count() + 1, 'Best Song of '+name, 'canzoni preferite',
                             date.today(), True)
         check = db.session.query(Users).filter(Users.mail == request.form['mail']).first()
 
@@ -118,6 +119,9 @@ def signup_listener():
                 db.session.add(user)  # Aggiungo l'user da inserire
                 db.session.add(playlist)
                 db.session.commit()  # Apporto effettivamente l'INSERT del database
+                playlist_user = PlaylistUsers(db.session.query(Users).count(), db.session.query(Playlist).count(), 1)
+                db.session.add(playlist_user)
+                db.session.commit()
             else:#Altrimenti lo avviso che non va bene
                 flash('Mail already in use!', category='error')
 
@@ -141,7 +145,7 @@ def signup_artist():
         image = 'Netflix-avatar.png'
 
         user = Users(name, surname, sex, mail, scram.using(rounds=8000).hash(pwd), birth_date, image)
-        playlist = Playlist(db.session.query(Playlist).count() + 1, 'Preferiti', 'canzoni preferite',
+        playlist = Playlist(db.session.query(Playlist).count() + 1, 'Best Song of '+name, 'canzoni preferite',
                             date.today(), True)
         check = db.session.query(Users).filter(Users.mail == request.form['mail']).first()
         if scram.verify(request.form['pwd_repeat'], user.pwd):#Se le password sono uguali procedo con l'inserimento
@@ -150,6 +154,10 @@ def signup_artist():
                 db.session.add(user)  # Aggiungo l'user da inserire
                 db.session.add(playlist)
                 db.session.commit()  # Apporto effettivamente l'INSERT del database
+                playlist_user = PlaylistUsers(db.session.query(Users).count(), db.session.query(Playlist).count(), 1)
+                db.session.add(playlist_user)
+                db.session.commit()
+
                 #Aggiungo la parte su artist
                 art_name = request.form['art_name']
                 label = request.form['label']

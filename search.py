@@ -4,9 +4,9 @@ import datetime
 
 def under_number(count):
     if count % 4 == 0:
-        elem_artist = int(count/4)
+        elem_artist = int(count / 4)
     else:
-        elem_artist = int((count/4)+1)
+        elem_artist = int((count / 4) + 1)
     return count
 
 
@@ -32,7 +32,7 @@ def song_list():
 
 # Playlist
 def playlist_list():
-    playlist = db.session.query(Playlist)
+    playlist = db.session.query(Playlist).filter(Playlist.private == False)
     count_play = 0
     list_playlist_image = []
 
@@ -100,5 +100,3 @@ def search():
                            playlist=list_playlist_image, songs=list_song_image, album=list_album_image,
                            playlist_logo=playlist_logo_love, playlist_wallpaper=playlist_wallpaper,
                            best_playlist=best_playlist, all_playlist=all_playlist)
-
-

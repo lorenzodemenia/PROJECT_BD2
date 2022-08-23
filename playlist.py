@@ -29,13 +29,13 @@ def is_love(id_playlist):
 
     playlist = db.session.query(Playlist).filter(Playlist.id_playlist == id_playlist).first()
 
-    if playlist.name == 'Preferiti':
+    if playlist.name == 'Best Song of '+current_user.name:
         return True
     return False
 
 
 def take_love():
-    playlist_user = db.session.query(PlaylistSongs).filter(PlaylistUsers.id_users == current_user.id_users)
+    playlist_user = db.session.query(PlaylistUsers).filter(PlaylistUsers.id_users == current_user.id_users)
     for play in playlist_user:
         if is_love(play.id_playlist):
             return play
@@ -117,11 +117,6 @@ def exits_song_playlist(id_song, id_playlist):
             return True
 
     return False
-
-
-
-
-
 
 
 @app.route('/create_playlist', methods=['GET', 'POST'])
