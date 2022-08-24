@@ -4,38 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d88d96a5-0874-4866-a26c-939fcccc884d" name="Changes" comment="Modificato la navbar e alcune cosette">
-      <change afterPath="$PROJECT_DIR$/home.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Image/images.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/headers.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/home/images.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/home/unify.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Home/headers.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Profile/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/progetto.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/progetto.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_05_22,_10_18_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_05_22__10_18__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_06_22,_15_34_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_06_22,_15_37_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_06_22,_15_41_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_06_22__15_34__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_06_22__15_37__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_06_22__15_41__Changes_.xml" beforeDir="false" />
+    <list default="true" id="d88d96a5-0874-4866-a26c-939fcccc884d" name="Changes" comment="Sistemato album">
+      <change afterPath="$PROJECT_DIR$/templates/lol.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/album.py" beforeDir="false" afterPath="$PROJECT_DIR$/album.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/artist.py" beforeDir="false" afterPath="$PROJECT_DIR$/artist.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/playlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/profile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/search.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/struttura_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/struttura_db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Album/album_interface.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Album/album_interface.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Home/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Home/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Home/navbar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Playlist/playlists_interface.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Playlist/playlists_interface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Profile/artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Profile/artist.html" afterDir="false" />
     </list>
     <list id="c667252f-f681-4057-bf25-df95b3989900" name="Changes by lorenzodemenia" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,6 +28,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="HTML File" />
       </list>
@@ -65,7 +47,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="MIXED" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -86,12 +68,14 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;python.debugger.dataview.coloredbydefault&quot;: &quot;false&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;ChangesTree.GroupingKeys&quot;: [
@@ -104,8 +88,9 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/Profile" />
       <recent name="$PROJECT_DIR$/static/Image" />
-      <recent name="$PROJECT_DIR$/static/Image/Home " />
+      <recent name="$PROJECT_DIR$/templates/Search" />
       <recent name="$PROJECT_DIR$/templates" />
     </key>
   </component>
@@ -182,6 +167,42 @@
       <workItem from="1656748854161" duration="2751000" />
       <workItem from="1656754808059" duration="79000" />
       <workItem from="1656754904920" duration="8408000" />
+      <workItem from="1657186040381" duration="3233000" />
+      <workItem from="1657199374418" duration="27000" />
+      <workItem from="1657288332950" duration="4291000" />
+      <workItem from="1657363174734" duration="13547000" />
+      <workItem from="1657445614633" duration="8968000" />
+      <workItem from="1657462504162" duration="3067000" />
+      <workItem from="1657525770762" duration="1008000" />
+      <workItem from="1657536190516" duration="1216000" />
+      <workItem from="1657537438943" duration="1014000" />
+      <workItem from="1657538508406" duration="94000" />
+      <workItem from="1657717224900" duration="9481000" />
+      <workItem from="1657797077694" duration="29000" />
+      <workItem from="1657797122915" duration="1616000" />
+      <workItem from="1657970337349" duration="4250000" />
+      <workItem from="1658306997017" duration="9853000" />
+      <workItem from="1658482079915" duration="2513000" />
+      <workItem from="1658506918498" duration="896000" />
+      <workItem from="1658997012578" duration="13280000" />
+      <workItem from="1659084127259" duration="21089000" />
+      <workItem from="1659440341266" duration="678000" />
+      <workItem from="1659536929589" duration="11991000" />
+      <workItem from="1659600666991" duration="21170000" />
+      <workItem from="1659686422530" duration="9219000" />
+      <workItem from="1659709900506" duration="4064000" />
+      <workItem from="1659775152369" duration="8306000" />
+      <workItem from="1659790943453" duration="12853000" />
+      <workItem from="1659862469604" duration="8441000" />
+      <workItem from="1659881332994" duration="5081000" />
+      <workItem from="1660644505301" duration="4537000" />
+      <workItem from="1660732751291" duration="3899000" />
+      <workItem from="1660752080547" duration="2113000" />
+      <workItem from="1661014906624" duration="140000" />
+      <workItem from="1661241541295" duration="3110000" />
+      <workItem from="1661334366121" duration="475000" />
+      <workItem from="1661335915720" duration="5343000" />
+      <workItem from="1661344917494" duration="1780000" />
     </task>
     <task id="LOCAL-00001" summary="Sistemato l'errore che non mi diceva se ho sbagliato password al login">
       <created>1656256863294</created>
@@ -281,7 +302,105 @@
       <option name="project" value="LOCAL" />
       <updated>1656686615378</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Profilo quasi al completo ...">
+      <created>1657802538606</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1657802538606</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Profilo completato">
+      <created>1657804202507</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1657804202507</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Sistemato cose con Daniele">
+      <created>1657806190895</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1657806190895</updated>
+    </task>
+    <task id="LOCAL-00018" summary="aggiornamento">
+      <created>1657974422900</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1657974422900</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Quasi finito di fare la ricerca... devo modificare un due cose e farla effettivamente funzionare">
+      <created>1659609626092</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1659609626092</updated>
+    </task>
+    <task id="LOCAL-00020" summary="La ricerca funziona ma solo su quello che ho visualizzato ...">
+      <created>1659626155291</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1659626155291</updated>
+    </task>
+    <task id="LOCAL-00021" summary="La ricerca funziona ma solo su quello che ho visualizzato ... anche per le canzoni">
+      <created>1659626726774</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1659626726774</updated>
+    </task>
+    <task id="LOCAL-00022" summary="funziona tutto ... ma a volte non funziona per le playlist ... domani finisco">
+      <created>1659633613530</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1659633613530</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Ricerca finita">
+      <created>1659693026204</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1659693026204</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Lista Playlist fatta">
+      <created>1659696828940</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1659696828940</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Playlist prova">
+      <created>1659791994654</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1659791994654</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Finito l'inserimento di una canzone in una playlist... ho anche aggiornato la homepage e quasi finito la pagina della playlist">
+      <created>1659807013994</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1659807013994</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Home">
+      <created>1659885452954</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1659885452954</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Sistemato album">
+      <created>1661242388177</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1661242388177</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -311,8 +430,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Sistemato l'errore che non mi diceva se ho sbagliato password al login" />
-    <MESSAGE value="Ho iniziato a lavorare sulla home, primi lavoretti" />
     <MESSAGE value="mi son svegliato" />
     <MESSAGE value="Fanculo ho messo un'immagine stock per tutte e ciao, presa da un link online così non devo caricare nulla" />
     <MESSAGE value="Ho fatto in modo che nella home gli artisti vengano caricati dal db, ho iniziato a lavorare alla pagina dell'artista" />
@@ -324,12 +441,26 @@
     <MESSAGE value="FUnziona la generazione delle righe nell'inserimento album" />
     <MESSAGE value="Inserimento album a buon punto" />
     <MESSAGE value="Ho aggiunto su struttura_db func da sqlalchemy" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ho aggiunto su struttura_db func da sqlalchemy" />
+    <MESSAGE value="Profilo quasi al completo ..." />
+    <MESSAGE value="Profilo completato" />
+    <MESSAGE value="Sistemato cose con Daniele" />
+    <MESSAGE value="aggiornamento" />
+    <MESSAGE value="Quasi finito di fare la ricerca... devo modificare un due cose e farla effettivamente funzionare" />
+    <MESSAGE value="La ricerca funziona ma solo su quello che ho visualizzato ..." />
+    <MESSAGE value="La ricerca funziona ma solo su quello che ho visualizzato ... anche per le canzoni" />
+    <MESSAGE value="funziona tutto ... ma a volte non funziona per le playlist ... domani finisco" />
+    <MESSAGE value="Ricerca finita" />
+    <MESSAGE value="Lista Playlist fatta" />
+    <MESSAGE value="Playlist prova" />
+    <MESSAGE value="Finito l'inserimento di una canzone in una playlist... ho anche aggiornato la homepage e quasi finito la pagina della playlist" />
+    <MESSAGE value="Home" />
+    <MESSAGE value="Sistemato album" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sistemato album" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__auth_py_.coverage" NAME="Flask (auth.py) Coverage Results" MODIFIED="1656161871967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PROJECT_BD2$app.coverage" NAME="app Coverage Results" MODIFIED="1656755028549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1656678137328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1656930085147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1661344935591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

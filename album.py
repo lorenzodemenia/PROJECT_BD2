@@ -7,8 +7,10 @@ from stats import take_song, take_playlist
 from struttura_db import *
 
 
+
+
 def get_album():
-    album_list = db.session.query(Album).filter(Album.id_artist == user.id_users)
+    album_list = db.session.query(Album).filter(Album.id_artist == current_user.id_users)
     album = []
     for al in album_list:
         tmp = []
@@ -25,7 +27,7 @@ def album_list_page():
 
     album_list = get_album()
 
-    return render_template('Album/album_list.html', album=album_list)
+    return render_template('Album/album_list.html', album=album_list, user_image=upload_user_image())
 
 
 def exists_song_album(id_song, id_album):
@@ -78,7 +80,7 @@ def album_page(id_album):
     artist = db.session.query(Artists).filter(Artists.id_artists == play.id_artist).first()
 
     return render_template('Album/album.html', headings=title, data=song_list, albums=album_list,
-                           album_obj=play, artist_obj=artist, song_choose=song_choose)
+                           album_obj=play, artist_obj=artist, song_choose=song_choose, user_image=upload_user_image())
 
 # ----------------------------------------------------Add Album-Song-----------------------------------------------
 
@@ -89,9 +91,9 @@ def add():
 
     check = current_user.is_artist()#Un check in più non fa mai male...
     if check:
-        return render_template('/Home/add.html')
+        return render_template('/Home/add.html', user_image=upload_user_image())
     else:
-        render_template('/Home/home.html')
+        render_template('/Home/home.html', user_image=upload_user_image())
 
 
 @app.route('/add_album', methods=['GET', 'POST'])
@@ -109,9 +111,9 @@ def add_album():
         genres = form.getlist('type')
         #Conto quante canzoni devo inserire
         counter = titles.__len__()
-
+        image_album = 'images.jpeg'
         #Creo oggetto album
-        album = Album(current_user.id_users, date.today(), album_name)
+        album = Album(current_user.id_users, date.today(), album_name, image_album)
 
         #Aggiungo l'album al db
         db.session.add(album)
@@ -121,7 +123,7 @@ def add_album():
 
         #Inserisco con un ciclo for le canzoni
         for i in range(0, counter):
-            song = Songs(current_user.id_users, titles[i], lengths[i], date.today(), genres[i])
+            song = Songs(current_user.id_users, titles[i], lengths[i], date.today(), genres[i], image_album)
             # Aggiungo la canzone
             db.session.add(song)
             db.session.commit()
@@ -142,7 +144,7 @@ def add_album():
 
         return redirect(url_for('home'))
 
-    return render_template('Album/add_album.html')
+    return render_template('Album/add_album.html', user_image=upload_user_image())
 
 
 def last_song_id():
@@ -158,4 +160,4 @@ def last_album_id():
 @login_required
 def add_single():
 
-    return render_template('Home/add_single.html')
+    return render_template('Home/add_single.html', user_image=upload_user_image())

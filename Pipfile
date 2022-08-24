@@ -11,6 +11,7 @@ psycopg2-binary = "==2.9.3"
 flask-login = "*"
 psycopg2 = "*"
 passlib = "*"
+scram = "*"
 
 [dev-packages]
 

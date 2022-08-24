@@ -18,7 +18,7 @@ app.config['UPLOAD_FOLDER'] = IMAGE_FOLDER
 # Lorenzo
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:A1n3m3d123!@localhost:5432/bd2_proj"
 # Daniele
-# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Internet10@localhost:5432/bd2progetto"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Internet10@localhost:5432/bd2progetto2"
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -46,14 +46,16 @@ class Users(UserMixin, db.Model):
     pwd = db.Column(db.String)
     birth_date = db.Column(db.Date)
     authenticated = db.Column(db.Boolean, default=False)
+    image = db.Column(db.String)
 
-    def __init__(self, name, surname, sex, mail, pwd, birth_date):
+    def __init__(self, name, surname, sex, mail, pwd, birth_date, image):
         self.name = name
         self.surname = surname
         self.sex = sex
         self.mail = mail
         self.pwd = pwd
         self.birth_date = birth_date
+        self.image = image
 
     def get_id(self):
         return self.id_users
@@ -87,8 +89,9 @@ class Songs(db.Model):
     length = db.Column(db.Integer)
     date_pub = db.Column(db.Date)
     type = db.Column(db.String)
+    image = db.Column(db.String)
 
-    def __init__(self, id_artists, title, length, date_pub, type):
+    def __init__(self, id_artists, title, length, date_pub, type, image):
         self.id_artist = id_artists
         self.title = title
         self.length = length
@@ -116,11 +119,13 @@ class Album(db.Model):
     id_artist = db.Column(db.Integer, db.ForeignKey('artists.id_artists'))
     date_pub = db.Column(db.Date)
     title = db.Column(db.String)
+    image = db.Column(db.String)
 
-    def __init__(self, id_artist, date_pub, title):
+    def __init__(self, id_artist, date_pub, title, image):
         self.id_artist = id_artist
         self.date_pub = date_pub
         self.title = title
+        self.image = image
 
 
 class PlaylistSongs(db.Model):
@@ -166,3 +171,4 @@ class SongsListened(db.Model):
 
 
 db.create_all()
+

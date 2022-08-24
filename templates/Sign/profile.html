@@ -1,9 +1,54 @@
 {% extends 'Home/base.html' %}
 
-{% block content %}
+<Style type = "text / css">
+img {margin: 10px}
+</Style>
 
-    {% if current_user.is_authenticated %}
-        Hi {{ current_user.name }}!
+{% block content %}
+    <section class="py-5 text-center container ">
+    <div class="row py-lg-3">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Profile</h1>
+      </div>
+    </div>
+    </section>
+
+    <h2>Information</h2>
+    <a><b>Full name:</b> {{ current_user.name }} {{ current_user.surname }}</a><br>
+    {% if current_user.is_artist() %}
+    <a><b>Art name:</b> </a><br>
     {% endif %}
+    <a><b>Sex:</b> {{ current_user.sex }}</a><br>
+    <a><b>Date of Birth:</b> {{ current_user.birth_date }}</a><br>
+    <a><b>E-mail:</b> {{ current_user.mail }}</a><br>
+    <hr>
+    <br>
+    <h2>Change Avatar</h2>
+    <p>Avevo pensato di mettere qua l'opzione di cambiare avatar. Ci sono varie opzioni possibili, chiedere a Lorenzo come vuole procedere.</p>
+
+    <!-- le due immagini qua sotto hanno, secondo me, le dimensioni giuste per essere visibili abbastanza che l'utente
+     possa sceglierle vedendole bene. Con l'opzione (style="horizontal-align:bottom") si possono mettere una affianco all'altra -->
+    <img src="https://cloud.radiofreccia.it/RadioFreccia/News/Article/600x600/rhcp-fruscianteil-meglio-deve-ancora-arrivare-square-site-suszn.jpg" style="margin: 10px" width="150px" height="150px" style="horizontal-align:bottom">
+    <img src="https://cloud.radiofreccia.it/RadioFreccia/News/Article/600x600/rhcp-fruscianteil-meglio-deve-ancora-arrivare-square-site-suszn.jpg" style="margin: 10px" width="150px" height="150px" style="horizontal-align:bottom">
+
+    <!-- qua ho semplicemente copiato del codice dalla Home, avevo iniziato a modificarlo, poi sono tornato a quello originale perchè
+    non sapevo bene come volevamo implementare il cambiamento dell'avatar (se al momento dell'autenticazione o quì nel profilo -->
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card border-dark mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="https://cloud.radiofreccia.it/RadioFreccia/News/Article/600x600/rhcp-fruscianteil-meglio-deve-ancora-arrivare-square-site-suszn.jpg" class="img-fluid rounded-start">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <a class="home_artista" href="{{ url_for('playlist_page', id_playlist=current_user.id_playlist) }}" class="stretched-link"><h5 class="card-title">
+                                {{ current_user.name }}</h5></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
