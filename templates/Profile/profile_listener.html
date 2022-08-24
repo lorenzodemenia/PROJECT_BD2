@@ -50,7 +50,7 @@
           <div class="card-body text-center shadow">
               <a href="{{ url_for('change_avatar') }}">
               <button class="btn default">
-                  <img  width="120" height="120" alt="Logo Image" src="{{ user_image }}"  >
+                  <img  width="120" height="120" alt="Logo Image" src="{{ url_for('static', filename=user_image) }}"  >
               </button>
               </a>
             <h5 class="my-3">{{ current_user.name }}</h5>
