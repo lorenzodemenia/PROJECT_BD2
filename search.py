@@ -86,7 +86,7 @@ def album_list():
 @login_required
 def search():
     best_playlist = db.session.query(Playlist).filter(Playlist.name == 'Preferiti').first()
-    user_image = os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
+    user_image = "Image/" + current_user.image
     playlist_logo_love = os.path.join(app.config['UPLOAD_FOLDER'], "heart.jpeg")
     playlist_wallpaper = os.path.join(app.config['UPLOAD_FOLDER'], "playlist_wallpaper.jpg")
     all_playlist = db.session.query(Playlist)

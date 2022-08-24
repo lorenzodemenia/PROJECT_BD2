@@ -8,14 +8,14 @@
     <div class="container">
         <div class="row g-0">
             <div class="col-md-3">
-                <img src="{{ playlist_logo }}" style="width:300px;height:300px;" alt="PlaylistLogo">
+                <img src="{{ url_for('static', filename=playlist_logo) }}" style="width:300px;height:300px;" alt="PlaylistLogo">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
                 <div class="card-title">
-                     <h1 style="padding-left: 1px">{{ playlist.name }}</h1>
+                     <h1 style="padding-left: 20px">{{ playlist.name }}</h1>
                 </div>
-                    <div class="card-list-song">
+                    <div class="card-list-song" style="margin-left: 20px">
                         <p>{{ playlist.description }}</p>
                         <p>{{ playlist.date_creation }}</p>
                     </div>
@@ -29,7 +29,7 @@
             <div class="card-body">
                 <div class="row g-0">
                     <div class="col-sm-1">
-                        <img src="{{ play[1] }}" width="60" height="60" class="img-rounded" alt="PlaylistLogo">
+                        <img src="{{ url_for('static', filename=play[1]) }}" width="90" height="60" class="img-rounded" alt="PlaylistLogo">
                     </div>
                     <div class="col-sm">
                         <div class="card-title">

@@ -77,7 +77,7 @@ def stats_song():
 
 
 def upload_user_image():
-    return os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
+    return "Image/" + current_user.image
 
 
 @app.route('/artist_page',  methods=['GET', 'POST'])
@@ -85,7 +85,7 @@ def artist_page():
 
     artist_user = db.session.query(Artists).filter(Artists.id_artists == current_user.id_users).first()
 
-    user_image = os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
+    user_image = "Image/" + current_user.image
 
     song = stats_song()
 
@@ -93,8 +93,9 @@ def artist_page():
     album_list = stats_album()
     ARTIST_BOOL = True
 
-    return render_template('Profile/profile_artist.html', IS_ARTIST= prova_art(), artist=artist_user, user_image=user_image,
-                           type=type_list, album=album_list, song=song, artist_bool=True)
+    return render_template('Profile/profile_artist.html', IS_ARTIST= prova_art(), artist=artist_user,
+                           user_image=upload_user_image(), type=type_list, album=album_list,
+                           song=song, artist_bool=True)
 
 
 # ----------------------------------------------------Listener----------------------------------------------------------
@@ -171,13 +172,13 @@ def listener_playlist(num):
 @app.route('/listener_page', methods=['GET', 'POST'])
 def listener_page():
     dim = 5
-    user_image = os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
+    user_image = "Image/" + current_user.image
     type_list = listener_type(dim)
     song_list = listener_song(dim)
     artist_list = listener_artist(dim)
     playlist_list = listener_playlist(dim)
     ARTIST_BOOL = False
-    return render_template('Profile/profile_listener.html', IS_ARTIST=prova_art(), user_image=user_image, type=type_list, song=song_list,
+    return render_template('Profile/profile_listener.html', IS_ARTIST=prova_art(), user_image=upload_user_image(), type=type_list, song=song_list,
                            artist=artist_list, playlist=playlist_list, artist_bool=False)
 
 # ----------------------------------------------------Change Icon-------------------------------------------------------

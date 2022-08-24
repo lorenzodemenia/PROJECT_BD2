@@ -9,7 +9,7 @@ import datetime
 
 # function that upload the user image from Image in static path
 def upload_user_image():
-    return os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
+    return "Image/" + current_user.image
 
 
 # ---------------------------------------------------Stats page---------------------------------------------------------

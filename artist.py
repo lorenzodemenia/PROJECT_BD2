@@ -2,8 +2,9 @@ import json
 
 from app import *
 from auth import *
+from stats import *
 from struttura_db import *
-
+import datetime
 
 
 # take a song using the id
@@ -31,7 +32,7 @@ def count_num(list_id, elem_id,):
 
 
 def upload_user_image():
-    return os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
+    return "Image/" + current_user.image
 
 
 def is_artist():
@@ -172,18 +173,39 @@ def alb_ar():
                            songs_name=json.dumps(songs_name), artist_b=is_artist(), user_image=upload_user_image())
 
 
+def artist_song_page(id_artists, artist):
+    song = db.session.query(Songs).filter(Songs.id_artist == id_artists)
+    song_list = []
+    count = 0
+
+    for s in song:
+        tmp = []
+        count += 1
+        tmp.append(s)
+        tmp.append("Image/"+s.image)
+        tmp.append(artist)
+        tmp.append(str(datetime.timedelta(seconds=s.length)))
+        tmp.append(count)
+        song_list.append(tmp)
+
+    return song_list
+
+
+
+
 @app.route('/artist_profile_page/<int:id_artists>', methods=['GET', 'POST'])
 @login_required
 def artist_profile_page(id_artists):
 
     artist = get_artist(id_artists)
     album = get_artist_albums(id_artists)
-    user_image = os.path.join(app.config['UPLOAD_FOLDER'], current_user.image)
-    user_artist = db.session.query(Users).filter(Users.id_users == id_artists).first()
-    artist_image = os.path.join(app.config['UPLOAD_FOLDER'], user_artist.image)
+    song = artist_song_page(id_artists, artist)
 
-    return render_template('Profile/artist.html', artist=artist, album=album, user_image=user_image,
-                           artist_image=artist_image, user_artist=user_artist)
+    user_artist = db.session.query(Users).filter(Users.id_users == id_artists).first()
+    artist_image = "Image/" + user_artist.image
+
+    return render_template('Profile/artist.html', artist=artist, album=album, user_image=upload_user_image(),
+                           artist_image=artist_image, user_artist=user_artist, song=song)
 
 
 

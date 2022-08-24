@@ -83,19 +83,20 @@ def playlist_page(id_playlist=None):
         count += 1
         song = take_song(play.id_songs)
         tmp.append(song)
-        tmp.append(os.path.join(app.config['UPLOAD_FOLDER'], song.image))
+        tmp.append("Image/"+song.image)
         tmp.append(take_artist(play.id_songs))
         tmp.append(str(datetime.timedelta(seconds=song.length)))
         tmp.append(count)
         playlist_list.append(tmp)
 
     if is_love(id_playlist):
-        playlist_logo = os.path.join(app.config['UPLOAD_FOLDER'], "heart.jpeg")
+        playlist_logo = "Image/heart.jpeg"
     else:
-        playlist_logo = os.path.join(app.config['UPLOAD_FOLDER'], "playlist_def.jpeg")
+        playlist_logo = "Image/playlist_def.jpeg"
 
     return render_template('Playlist/playlists_interface.html', playlist=playlist, playlist_list_song=playlist_list,
-                           playlist_logo=playlist_logo, all_playlist=all_playlist)
+                           playlist_logo="Image/playlist_def.jpeg", all_playlist=all_playlist,
+                           user_image=upload_user_image())
 
 
 @app.route('/playlist_prova/<int:id_playlist>', methods=['GET', 'POST'])
