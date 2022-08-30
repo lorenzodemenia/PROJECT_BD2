@@ -4,7 +4,7 @@ function clearCache(){
 function  searchPlaylist(){
     const input = document.getElementById('filter-playlist').value.toUpperCase();
     const card_playlist =  document.getElementsByClassName('prova-playlist');
-
+    console.log(card_playlist);
     for(let i=0; i<card_playlist.length; i++){
         let title_song = card_playlist[i].querySelector(".dropdown-item");
 

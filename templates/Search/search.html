@@ -58,7 +58,8 @@
                                     </button>
                                     <ul class="dropdown-menu" style="margin:4px; padding:4px; width: 300px; height: 350px; overflow-x: hidden; overflow-y: auto; text-align:justify;"  role="menu" aria-labelledby="dLabel">
                                         <form method="POST" action=""  class="live-search-box col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                                            <input  type="search" class="form-control filter" id="filter-playlist-search" onkeyup="searchPlaylistSearch()" placeholder="Search.." aria-label="Search" >
+                                            <h3>Choose a Playlist </h3>
+                                            <hr>
                                         </form>
                                         {% for all in all_playlist %}
                                             <li class="card-body prova-search"><a class="dropdown-item"  href="{{ url_for('add_song_playlist', id_song=song[0].id_songs ,id_playlist=all.id_playlist, id_playlist_arr=all.id_playlist) }}">

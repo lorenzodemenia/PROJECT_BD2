@@ -67,6 +67,15 @@ def take_list_song(id_playlist):
     return song_list
 
 
+def insert_song_playlist(id_song, playlist):
+    list_song_play = []
+    for play in playlist:
+        if not exits_song_playlist(id_song, play.id_playlist):
+            list_song_play.append(play)
+
+    return list_song_play
+
+
 @app.route('/playlist_page/<id_playlist>', methods=['GET', 'POST'])
 @login_required
 def playlist_page(id_playlist=None):
@@ -87,6 +96,7 @@ def playlist_page(id_playlist=None):
         tmp.append(take_artist(play.id_songs))
         tmp.append(str(datetime.timedelta(seconds=song.length)))
         tmp.append(count)
+        tmp.append(insert_song_playlist(play.id_songs, all_playlist))
         playlist_list.append(tmp)
 
     if is_love(id_playlist):
@@ -95,7 +105,7 @@ def playlist_page(id_playlist=None):
         playlist_logo = "Image/playlist_def.jpeg"
 
     return render_template('Playlist/playlists_interface.html', playlist=playlist, playlist_list_song=playlist_list,
-                           playlist_logo="Image/playlist_def.jpeg", all_playlist=all_playlist,
+                           playlist_logo="Image/playlist_def.jpeg",
                            user_image=upload_user_image())
 
 
@@ -110,7 +120,7 @@ def count_id_playlist():
 
 
 def exits_song_playlist(id_song, id_playlist):
-    db.session.refresh()
+
     song = db.session.query(PlaylistSongs).filter(PlaylistSongs.id_playlist == id_playlist)
 
     for s in song:
@@ -154,11 +164,11 @@ def create_playlist():
 @app.route('/addSongPlaylist/<id_song>/<id_playlist>/<id_playlist_arr>', methods=['GET', 'POST'])
 @login_required
 def add_song_playlist(id_song, id_playlist, id_playlist_arr):
+    db.session.commit()
     if not exits_song_playlist(id_song, id_playlist):
         playlist_song = PlaylistSongs(id_song, id_playlist)
         db.session.add(playlist_song)
         db.session.commit()
-
         return redirect(url_for('playlist_page', id_playlist=id_playlist_arr))
     else:
 

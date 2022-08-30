@@ -3,9 +3,29 @@ import json
 import auth
 from app import *
 from struttura_db import *
+
 from artist import *
+
 import datetime
 
+def exits_song_playlist(id_song, id_playlist):
+
+    song = db.session.query(PlaylistSongs).filter(PlaylistSongs.id_playlist == id_playlist)
+
+    for s in song:
+        if s.id_songs == id_song:
+            return True
+
+    return False
+
+
+def insert_song_playlist(id_song, playlist):
+    list_song_play = []
+    for play in playlist:
+        if not exits_song_playlist(id_song, play.id_playlist):
+            list_song_play.append(play)
+
+    return list_song_play
 
 # function that upload the user image from Image in static path
 def upload_user_image():
@@ -290,6 +310,7 @@ def song_cons():
     art = artist_listened()
     song = song_listened()
     list_end = []
+    all_playlist = db.session.query(Playlist)
 
     count_song = 0
 
@@ -299,10 +320,11 @@ def song_cons():
             count_song += 1
             song_artist = db.session.query(Artists).filter(Artists.id_artists == s.id_artist).first()
             tmp.append(s)
-            tmp.append(os.path.join(app.config['UPLOAD_FOLDER'], s.image))
+            tmp.append(s.image)
             tmp.append(song_artist)
             tmp.append(str(datetime.timedelta(seconds=s.length)))
             tmp.append(count_song)
+            tmp.append(insert_song_playlist(s.id_songs, all_playlist))
             list_end.append(tmp)
 
     return list_end

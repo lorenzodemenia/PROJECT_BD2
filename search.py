@@ -1,3 +1,4 @@
+from playlist import insert_song_playlist
 from struttura_db import *
 import datetime
 
@@ -15,6 +16,7 @@ def song_list():
     songs = db.session.query(Songs)
     list_song_image = []
     count_song = 0
+    all_playlist = db.session.query(Playlist)
 
     for song in songs:
         tmp = []
@@ -25,6 +27,7 @@ def song_list():
         tmp.append(song_artist)
         tmp.append(str(datetime.timedelta(seconds=song.length)))
         tmp.append(count_song)
+        tmp.append(insert_song_playlist(song.id_songs, all_playlist))
         list_song_image.append(tmp)
 
     return list_song_image

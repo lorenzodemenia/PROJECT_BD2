@@ -2,8 +2,9 @@
 {% extends "Home/base.html" %}
 
 {% block content %}
-    <link href="static/css/search.css" rel="stylesheet">
+    <link href="/static/css/search.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
+
 
     <div class="container">
         <div class="row g-0">
@@ -52,9 +53,10 @@
                             </button>
                             <ul class="dropdown-menu" onkeyup="clearCache()" style="margin:4px; padding:4px; width: 300px; height: 350px; overflow-x: hidden; overflow-y: auto; text-align:justify;"  role="menu" aria-labelledby="dLabel">
                                 <form method="POST" action=""  class="live-search-box col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                                    <input  type="search" class="form-control filter" id="filter-playlist" onkeyup="searchPlaylist()" placeholder="Search.." aria-label="Search" >
+                                    <h3>Choose a Playlist </h3>
+                                    <hr>
                                 </form>
-                                {% for all in all_playlist %}
+                                {% for all in play[5] %}
                                     <li class="card-body prova-playlist"><a class="dropdown-item"  href="{{ url_for('add_song_playlist', id_song=play[0].id_songs ,id_playlist=all.id_playlist, id_playlist_arr=playlist.id_playlist) }}">
                                         {{ all.name }}
                                     </a>
@@ -67,9 +69,6 @@
             </div>
         {% endfor %}
     </div>
-
-
-
     </div>
 
 {% endblock %}
