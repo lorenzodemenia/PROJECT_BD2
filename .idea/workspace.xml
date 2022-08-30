@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d88d96a5-0874-4866-a26c-939fcccc884d" name="Changes" comment="sistemate le foto">
+    <list default="true" id="d88d96a5-0874-4866-a26c-939fcccc884d" name="Changes" comment="sistemate le foto... avatar profile">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/profile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Profile/profile_artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Profile/profile_artist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Profile/profile_listener.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Profile/profile_listener.html" afterDir="false" />
     </list>
     <list id="c667252f-f681-4057-bf25-df95b3989900" name="Changes by lorenzodemenia" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -194,7 +191,10 @@
       <workItem from="1661241541295" duration="3110000" />
       <workItem from="1661334366121" duration="475000" />
       <workItem from="1661335915720" duration="5343000" />
-      <workItem from="1661344917494" duration="2869000" />
+      <workItem from="1661344917494" duration="3618000" />
+      <workItem from="1661515581476" duration="872000" />
+      <workItem from="1661784440888" duration="28000" />
+      <workItem from="1661784498927" duration="363000" />
     </task>
     <task id="LOCAL-00001" summary="Sistemato l'errore che non mi diceva se ho sbagliato password al login">
       <created>1656256863294</created>
@@ -399,7 +399,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661347197929</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="sistemate le foto... avatar profile">
+      <created>1661348252157</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1661348252157</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -429,7 +436,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fanculo ho messo un'immagine stock per tutte e ciao, presa da un link online così non devo caricare nulla" />
     <MESSAGE value="Ho fatto in modo che nella home gli artisti vengano caricati dal db, ho iniziato a lavorare alla pagina dell'artista" />
     <MESSAGE value="Ora il testo nella card ha un aspetto decente" />
     <MESSAGE value="Aggiunto su struttura db il metodo per vedere se un utente è anche un artista" />
@@ -454,12 +460,13 @@
     <MESSAGE value="Home" />
     <MESSAGE value="Sistemato album" />
     <MESSAGE value="sistemate le foto" />
-    <option name="LAST_COMMIT_MESSAGE" value="sistemate le foto" />
+    <MESSAGE value="sistemate le foto... avatar profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="sistemate le foto... avatar profile" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__auth_py_.coverage" NAME="Flask (auth.py) Coverage Results" MODIFIED="1656161871967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PROJECT_BD2$app.coverage" NAME="app Coverage Results" MODIFIED="1656755028549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1656678137328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1661344935591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PROJECT_BD2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1661784499582" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
