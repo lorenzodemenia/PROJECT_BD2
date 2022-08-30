@@ -7,8 +7,6 @@ from stats import take_song, take_playlist
 from struttura_db import *
 
 
-
-
 def get_album():
     album_list = db.session.query(Album).filter(Album.id_artist == current_user.id_users)
     album = []
@@ -98,7 +96,7 @@ def add():
 
 @app.route('/add_album', methods=['GET', 'POST'])
 @login_required
-def add_album():
+def add_single():
     if request.method == 'POST':
         #Mi faccio fare il form in forma di dizionario
         form = request.form
@@ -111,7 +109,7 @@ def add_album():
         genres = form.getlist('type')
         #Conto quante canzoni devo inserire
         counter = titles.__len__()
-        image_album = str('images.jpeg')
+        image_album = 'images.jpeg'
         #Creo oggetto album
         album = Album(current_user.id_users, date.today(), album_name, image_album)
 
@@ -129,8 +127,6 @@ def add_album():
             db.session.commit()
             # Mi salvo il
             song_ids.append(last_song_id())
-            print('tipo immagine:')
-            print(song.image)
 
         # Associo le canzoni inserite all'album inserito
         x = song_ids.__len__()
@@ -161,18 +157,5 @@ def last_album_id():
 @app.route('/add_single')
 @login_required
 def add_single():
-    if request.method == 'POST':
-        form = request.form
-
-        single_title = form.get('single_name')
-        single_length = form.get('single_length')
-        single_genre = form.get('single_genre')
-
-        song = Songs(current_user.id_users, single_title, single_length, date.today(), single_genre)
-
-        db.session.add(song)
-        db.session.commit()
-
-        return redirect(url_for('home'))
 
     return render_template('Home/add_single.html', user_image=upload_user_image())

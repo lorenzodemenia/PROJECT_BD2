@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="PY-221.5787.24">
+  <component name="dataSourceStorageLocal" created-in="PY-221.5921.27">
     <data-source name="postgres@localhost" uuid="a92c5a0c-b267-4bb0-8269-692e77c6ff8d">
-      <database-info product="PostgreSQL" version="14.3" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.3.3" dbms="POSTGRES" exact-version="14.3" exact-driver-version="42.3">
+      <database-info product="PostgreSQL" version="14.1" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.3.3" dbms="POSTGRES" exact-version="14.1" exact-driver-version="42.3">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
-      <secret-storage>master_key</secret-storage>
       <user-name>postgres</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node negative="1">
-            <node kind="database" qname="bd2_proj">
-              <node kind="schema" negative="1" />
-            </node>
-            <node kind="database" qname="postgres" />
+          <node kind="database" negative="1">
+            <node kind="schema" negative="1" />
           </node>
         </introspection-scope>
       </schema-mapping>
