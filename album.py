@@ -158,7 +158,7 @@ def last_album_id():
     # So che l'id è sequenziale, quindi ritorno il valore massimo
     return db.session.query(func.max(Album.id_album)).first()[0]
 
-@app.route('/add_single')
+@app.route('/add_single', methods=['GET', 'POST'])
 @login_required
 def add_single():
     if request.method == 'POST':
@@ -167,12 +167,13 @@ def add_single():
         single_title = form.get('single_name')
         single_length = form.get('single_length')
         single_genre = form.get('single_genre')
+        single_image = 'images.jpeg'
 
-        song = Songs(current_user.id_users, single_title, single_length, date.today(), single_genre)
-
+        song = Songs(current_user.id_users, single_title, single_length, date.today(), single_genre, single_image)
+        #Ok
         db.session.add(song)
         db.session.commit()
 
         return redirect(url_for('home'))
 
-    return render_template('Home/add_single.html', user_image=upload_user_image())
+    return render_template('Album/add_single.html', user_image=upload_user_image())

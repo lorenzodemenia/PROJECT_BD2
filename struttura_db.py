@@ -97,6 +97,7 @@ class Songs(db.Model):
         self.length = length
         self.date_pub = date_pub
         self.type = type
+        self.image = image
 
 
 class Playlist(db.Model):
