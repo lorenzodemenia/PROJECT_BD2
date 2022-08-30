@@ -21,7 +21,7 @@ def song_list():
         count_song += 1
         song_artist = db.session.query(Artists).filter(Artists.id_artists == song.id_artist).first()
         tmp.append(song)
-        tmp.append(os.path.join(app.config['UPLOAD_FOLDER'], song.image))
+        tmp.append(song.image)
         tmp.append(song_artist)
         tmp.append(str(datetime.timedelta(seconds=song.length)))
         tmp.append(count_song)
