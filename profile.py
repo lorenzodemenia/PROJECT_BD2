@@ -178,8 +178,8 @@ def listener_page():
     artist_list = listener_artist(dim)
     playlist_list = listener_playlist(dim)
     ARTIST_BOOL = False
-    return render_template('Profile/profile_listener.html', IS_ARTIST=prova_art(), user_image=upload_user_image(), type=type_list, song=song_list,
-                           artist=artist_list, playlist=playlist_list, artist_bool=False)
+    return render_template('Profile/profile_listener.html', IS_ARTIST=prova_art(), user_image=upload_user_image(),
+                           type=type_list, song=song_list,artist=artist_list, playlist=playlist_list, artist_bool=False)
 
 # ----------------------------------------------------Change Icon-------------------------------------------------------
 
