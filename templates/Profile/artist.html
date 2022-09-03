@@ -1,9 +1,6 @@
 {% extends "Home/base.html" %}
 
 {% block content %}
-     <link href="static/css/search.css" rel="stylesheet">
-    <!-- Bootstrap core CSS -->
-    <form action="/artist_profile_page/<int:id_artists>" method="post">
     <div class="container" >
         <div class="row g-0">
             <div class="col-md-3">
@@ -18,10 +15,13 @@
             </div>
         </div>
     </div>
+    <br>
     <hr class="solid">
-    <div class="col-md-6" >
-        <div class="card-body shadow  mb-8 mb-md-6" >
-        <h1 style="margin-left: initial">Recommended Songs</h1>
+    <br>
+    <div class="row">
+     <div class="col-md-6" >
+        <div class="card-body shadow  mb-7 mb-md-5" >
+        <h1 style="margin-left: initial">Songs</h1>
          <div class="card-list-song">
           <hr class="solid">
                 {% for song in song %}
@@ -68,7 +68,39 @@
          </div>
     </div>
     </div>
-    </form>
+     <div class="col-md-6" >
+        <div class="card-body shadow  mb-7 mb-md-5" >
+        <h1 style="margin-left: initial">Album</h1>
+         <div class="card-list-song">
+          <hr class="solid">
+                {% for al in album %}
+                    <a href="{{  url_for('album_page', id_album=al[0].id_album) }}" class="home_artista">
+                    <div class="card-body lol">
+                        <div class="row g-0 ">
+                            <div class="col-md-2">
+                                <img src="{{ url_for('static', filename=al[1]) }}" width="70" height="45" class="img-rounded" alt="PlaylistLogo">
+                            </div>
+                            <div class="col-sm">
+                                <div class="card-title mona">
+                                     <h6>{{ al[0].title }}</h6>
+                                </div>
+                                <p>{{ al[2].art_name }}</p>
+                            </div>
+                            <div class="col-sm">
+                                <p> </p>
+                            </div>
+                            <div class="col-sm">
+                                <p>{{ al[3] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                {% endfor %}
+         </div>
+    </div>
+    </div>
+    </div>
+
 
 
 {% endblock %}

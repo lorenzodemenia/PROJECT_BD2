@@ -3,7 +3,7 @@ import json
 from app import *
 from auth import *
 from stats import *
-from stats import take_song, take_playlist
+from stats import take_song, take_playlist, insert_song_playlist
 from struttura_db import *
 
 
@@ -55,32 +55,26 @@ def take_song_album(id_album):
 @login_required
 def album_page(id_album):
 
-    title = ("#", "Title", "Artist", "length", "Date", "Type")
+    album = db.session.query(Album).filter(Album.id_album == id_album).first()
+    album_list_song = db.session.query(SongsAlbum).filter(SongsAlbum.id_album == id_album)
+    all_playlist = db.session.query(Playlist).all()
 
-    album = db.session.query(SongsAlbum).filter(SongsAlbum.id_album == id_album)
-    list_tmp = []
-    count = 0
-    for al in album:
-        song_tmp = []
-        count = count + 1
-        prova = take_song(al.id_songs)
-        song_tmp.append(count)
-        song_tmp.append(prova.title)
-        art = db.session.query(Artists).filter(Artists.id_artists == prova.id_artist).first()
-        song_tmp.append(art.art_name)
-        song_tmp.append(prova.length)
-        song_tmp.append(prova.date_pub)
-        song_tmp.append(prova.type)
-        list_tmp.append(song_tmp)
+    album_take = []
 
-    song_list = tuple(list_tmp)
-    album_list = get_album()
-    play = db.session.query(Album).filter(Album.id_album == id_album).first()
-    song_choose = take_song_album(id_album)
-    artist = db.session.query(Artists).filter(Artists.id_artists == play.id_artist).first()
+    for al in album_list_song:
+        tmp = []
 
-    return render_template('Album/album.html', headings=title, data=song_list, albums=album_list,
-                           album_obj=play, artist_obj=artist, song_choose=song_choose, user_image=upload_user_image())
+        song = take_song(al.id_songs)
+        tmp.append(song)
+        tmp.append("Image/" + song.image)
+        tmp.append(take_artist(al.id_songs))
+        tmp.append(str(datetime.timedelta(seconds=song.length)))
+        tmp.append(insert_song_playlist(al.id_songs, all_playlist))
+        album_take.append(tmp)
+
+    return render_template('Album/album.html', album=album, playlist_list_song=album_take,
+                           album_logo="Image/"+album.image,
+                           user_image=upload_user_image(), bestPlay=take_love())
 
 # ----------------------------------------------------Add Album-Song-----------------------------------------------
 

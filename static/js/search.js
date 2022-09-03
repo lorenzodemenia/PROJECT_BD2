@@ -1,54 +1,7 @@
 function clearCache(){
     location.reload()
 }
-function  searchPlaylist(){
-    const input = document.getElementById('filter-playlist').value.toUpperCase();
-    const card_playlist =  document.getElementsByClassName('prova-playlist');
-    console.log(card_playlist);
-    for(let i=0; i<card_playlist.length; i++){
-        let title_song = card_playlist[i].querySelector(".dropdown-item");
 
-        txtValue_song =  title_song.innerText;
-        if (txtValue_song.toUpperCase().indexOf(input) > -1) {
-            card_playlist[i].style.display = "";
-        } else {
-            card_playlist[i].style.display = "none";
-        }
-    }
-}
-
-function  searchPlaylistHome(){
-    const input = document.getElementById('filter-playlist-home').value.toUpperCase();
-    const card_playlist =  document.getElementsByClassName('prova-home');
-
-    for(let i=0; i<card_playlist.length; i++){
-        let title_song = card_playlist[i].querySelector(".dropdown-item");
-
-        txtValue_song =  title_song.innerText;
-        if (txtValue_song.toUpperCase().indexOf(input) > -1) {
-            card_playlist[i].style.display = "";
-        } else {
-            card_playlist[i].style.display = "none";
-        }
-    }
-}
-
-function  searchPlaylistSearch(){
-    const input = document.getElementById('filter-playlist-search').value.toUpperCase();
-    const card_playlist =  document.getElementsByClassName('prova-search');
-
-
-    for(let i=0; i<card_playlist.length; i++){
-        let title_song = card_playlist[i].querySelector(".dropdown-item");
-
-        txtValue_song =  title_song.innerText;
-        if (txtValue_song.toUpperCase().indexOf(input) > -1) {
-            card_playlist[i].style.display = "";
-        } else {
-            card_playlist[i].style.display = "none";
-        }
-    }
-}
 
 function searchProduct(){
     const input = document.getElementById('filter').value.toUpperCase();

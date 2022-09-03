@@ -173,24 +173,36 @@ def alb_ar():
                            songs_name=json.dumps(songs_name), artist_b=is_artist(), user_image=upload_user_image())
 
 
-def artist_song_page(id_artists, artist):
-    song = db.session.query(Songs).filter(Songs.id_artist == id_artists)
+def artist_song_page(artist):
+    song = db.session.query(Songs).filter(Songs.id_artist == artist.id_artists)
     song_list = []
-    count = 0
+
 
     for s in song:
         tmp = []
-        count += 1
         tmp.append(s)
         tmp.append("Image/"+s.image)
         tmp.append(artist)
         tmp.append(str(datetime.timedelta(seconds=s.length)))
-        tmp.append(count)
+
         song_list.append(tmp)
 
     return song_list
 
 
+def artist_album_page(artist):
+    album = db.session.query(Album).filter(Album.id_artist == artist.id_artists)
+    album_list = []
+
+    for al in album:
+        tmp = []
+        tmp.append(al)
+        tmp.append("Image/"+al.image)
+        tmp.append(artist)
+        tmp.append(al.date_pub)
+        album_list.append(tmp)
+
+    return album_list
 
 
 @app.route('/artist_profile_page/<int:id_artists>', methods=['GET', 'POST'])
@@ -198,8 +210,8 @@ def artist_song_page(id_artists, artist):
 def artist_profile_page(id_artists):
 
     artist = get_artist(id_artists)
-    album = get_artist_albums(id_artists)
-    song = artist_song_page(id_artists, artist)
+    song = artist_song_page(artist)
+    album = artist_album_page(artist)
 
     user_artist = db.session.query(Users).filter(Users.id_users == id_artists).first()
     artist_image = "Image/" + user_artist.image

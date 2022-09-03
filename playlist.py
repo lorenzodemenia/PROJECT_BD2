@@ -164,14 +164,8 @@ def create_playlist():
 @app.route('/addSongPlaylist/<id_song>/<id_playlist>/<id_playlist_arr>', methods=['GET', 'POST'])
 @login_required
 def add_song_playlist(id_song, id_playlist, id_playlist_arr):
+    playlist_song = PlaylistSongs(id_song, id_playlist)
+    db.session.add(playlist_song)
     db.session.commit()
-    if not exits_song_playlist(id_song, id_playlist):
-        playlist_song = PlaylistSongs(id_song, id_playlist)
-        db.session.add(playlist_song)
-        db.session.commit()
-        return redirect(url_for('playlist_page', id_playlist=id_playlist_arr))
-    else:
-
-        return redirect(url_for('playlist_page', id_playlist=id_playlist_arr))
-
+    return redirect(url_for('playlist_page', id_playlist=id_playlist_arr))
 

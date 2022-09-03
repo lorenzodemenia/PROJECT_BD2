@@ -191,15 +191,6 @@ def logout():
 
 # ---------------------------------------------------Profile page--------------------------------------------------------
 
-@app.route('/profile', methods=['GET', 'POST'])
-@login_required
-def profile():
-    user = current_user
-    print(user.name)
-
-    return render_template('Sign/profile.html', user=user)
-
-
 def is_artist():
     art = db.session.query(Artists).filter(Artists.id_artists == current_user.id_users)
     if art:
